@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Trang chủ" />
+        <item
+            android:id="@+id/nav_category"
+            android:icon="@drawable/ic_format_list_bulleted_black_24dp"
+            android:title="Danh sách ngành hàng" />
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/ic_receipt_black_24dp"
+            android:title="Quản lý đơn hàng" />
+        <item
+            android:id="@+id/nav_favorites"
+            android:icon="@drawable/ic_favorite_black_24dp"
+            android:title="Sản phẩm yêu thích" />
+        <item
+            android:id="@+id/nav_manage_account"
+            android:icon="@drawable/ic_account_circle_black_24dp"
+            android:title="Quản lý tài khoản" />
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="@drawable/ic_notifications_active_black_24dp"
+            android:title="Thông báo của tôi" />
+    </group>
+
+    <item android:title="KHUYẾN MÃI HOT">
+        <menu>
+            <item
+                android:id="@+id/nav_deal"
+                android:title="Jun Deal" />
+            <item
+                android:id="@+id/nav_coupon"
+                android:title="Phiếu quà tặng" />
+        </menu>
+    </item>
+
+    <item android:title="HỖ TRỢ">
+        <menu>
+            <item
+                android:id="@+id/nav_hot_line"
+                android:title="1800-6963 (Miễn phí)" />
+            <item
+                android:id="@+id/nav_setting"
+                android:title="Cài đặt" />
+            <item
+                android:id="@+id/nav_support_customer"
+                android:title="Hỗ trợ khách hàng" />
+        </menu>
+    </item>
+
+</menu>
