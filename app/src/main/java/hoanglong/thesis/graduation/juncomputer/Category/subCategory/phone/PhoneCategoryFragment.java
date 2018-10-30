@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -65,11 +66,14 @@ public class PhoneCategoryFragment extends Fragment implements PhoneAdapter.OnCl
         BaseService.getService().getAllPhone().enqueue(new Callback<PhoneProduct>() {
             @Override
             public void onResponse(@NonNull Call<PhoneProduct> call, @NonNull Response<PhoneProduct> response) {
-                List<ItemPhoneProduct> itemPhoneProducts = null;
+                List<ItemPhoneProduct> itemPhoneProducts = new ArrayList<>();
                 if (response.body() != null) {
-                    itemPhoneProducts = response.body().getPhoneProduct();
+                    for(int i =0;i<4;i++){
+                        itemPhoneProducts.add(response.body().getPhoneProduct().get(i));
+                    }
+                    //itemPhoneProducts = response.body().getPhoneProduct();
+                    setUpRecyclerProduct(itemPhoneProducts);
                 }
-                setUpRecyclerProduct(itemPhoneProducts);
             }
 
             @Override
