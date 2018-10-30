@@ -15,10 +15,14 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hoanglong.thesis.graduation.juncomputer.Category.subCategory.phone.adapter.PhoneAdapter;
+import hoanglong.thesis.graduation.juncomputer.Category.subCategory.phone.adapter.PhoneCategoryAdapter;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.home.adapter.SamplePagerAdapter;
 import hoanglong.thesis.graduation.juncomputer.model.ItemPhoneCategory;
+import hoanglong.thesis.graduation.juncomputer.model.ItemPhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.model.PhoneCategory;
+import hoanglong.thesis.graduation.juncomputer.model.PhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager;
 import me.relex.circleindicator.CircleIndicator;
@@ -30,7 +34,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PhoneCategoryFragment extends Fragment implements PhoneCategoryAdapter.OnClickPhoneCategoryListener {
+public class PhoneCategoryFragment extends Fragment implements PhoneAdapter.OnClickProductListener, PhoneCategoryAdapter.OnClickPhoneCategoryListener {
 
     public static final String TAG = PhoneCategoryFragment.class.getName();
     @BindView(R.id.recycler_category_phone)
@@ -39,6 +43,8 @@ public class PhoneCategoryFragment extends Fragment implements PhoneCategoryAdap
     LoopViewPager mViewPager;
     @BindView(R.id.indicator)
     CircleIndicator mIndicator;
+    @BindView(R.id.recycler_phone_noibat)
+    RecyclerView mRecyclerNoiBat;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -50,8 +56,32 @@ public class PhoneCategoryFragment extends Fragment implements PhoneCategoryAdap
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        setData();
+        setDataCategory();
         setSlide();
+        setDataNoiBat();
+    }
+
+    private void setDataNoiBat() {
+        BaseService.getService().getAllPhone().enqueue(new Callback<PhoneProduct>() {
+            @Override
+            public void onResponse(@NonNull Call<PhoneProduct> call, @NonNull Response<PhoneProduct> response) {
+                List<ItemPhoneProduct> itemPhoneProducts = null;
+                if (response.body() != null) {
+                    itemPhoneProducts = response.body().getPhoneProduct();
+                }
+                setUpRecyclerProduct(itemPhoneProducts);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<PhoneProduct> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    private void setUpRecyclerProduct(List<ItemPhoneProduct> itemPhoneProducts) {
+        PhoneAdapter phoneAdapter = new PhoneAdapter(itemPhoneProducts, this);
+        mRecyclerNoiBat.setAdapter(phoneAdapter);
     }
 
     private void setSlide() {
@@ -59,7 +89,7 @@ public class PhoneCategoryFragment extends Fragment implements PhoneCategoryAdap
         mIndicator.setViewPager(mViewPager);
     }
 
-    private void setData() {
+    private void setDataCategory() {
         BaseService.getService().getCategoryPhone().enqueue(new Callback<PhoneCategory>() {
             @Override
             public void onResponse(@NonNull Call<PhoneCategory> call, @NonNull Response<PhoneCategory> response) {
@@ -79,6 +109,11 @@ public class PhoneCategoryFragment extends Fragment implements PhoneCategoryAdap
     private void setUpRecyclerView(List<ItemPhoneCategory> phoneCategoryList) {
         PhoneCategoryAdapter phoneCategoryAdapter = new PhoneCategoryAdapter(phoneCategoryList, this);
         mRecyclerCategoryPhone.setAdapter(phoneCategoryAdapter);
+    }
+
+    @Override
+    public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
+
     }
 
     @Override

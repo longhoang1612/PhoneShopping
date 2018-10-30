@@ -12,4 +12,7 @@ public interface IApiService {
 
     @GET("/getPhoneProduct/{type}")
     Call<PhoneProduct> getPhoneProduct(@Path("type") String type);
+
+    @GET("/getPhoneProduct")
+    Call<PhoneProduct> getAllPhone();
 }

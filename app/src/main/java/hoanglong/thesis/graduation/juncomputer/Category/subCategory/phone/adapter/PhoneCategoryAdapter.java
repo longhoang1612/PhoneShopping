@@ -1,4 +1,4 @@
-package hoanglong.thesis.graduation.juncomputer.Category.subCategory.phone;
+package hoanglong.thesis.graduation.juncomputer.Category.subCategory.phone.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -47,7 +47,7 @@ public class PhoneCategoryAdapter extends RecyclerView.Adapter<PhoneCategoryAdap
         return mPhoneCategoryList != null ? mPhoneCategoryList.size() : 0;
     }
 
-    interface OnClickPhoneCategoryListener {
+    public interface OnClickPhoneCategoryListener {
         void onClickItem(ItemPhoneCategory phoneCategory);
     }
 
@@ -73,7 +73,7 @@ public class PhoneCategoryAdapter extends RecyclerView.Adapter<PhoneCategoryAdap
             }
             mPhoneCategory = phoneCategory;
             Glide.with(mContext)
-                    .load("https://"+phoneCategory.getImageCategory())
+                    .load("https://" + phoneCategory.getImageCategory())
                     .into(mImagePhoneCategory);
         }
 
