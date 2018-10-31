@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -13,7 +14,7 @@
         <RelativeLayout
             android:id="@+id/slide_phone"
             android:layout_width="@dimen/dimen_0"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/dimen_200dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -45,12 +46,12 @@
 
         <ProgressBar
             android:id="@+id/progress_phone_category"
-            app:layout_constraintBottom_toTopOf="@+id/title_seen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/text_category_phone"
+            app:layout_constraintBottom_toTopOf="@+id/title_seen"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/text_category_phone" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_category_phone"
@@ -76,16 +77,16 @@
             app:layout_constraintStart_toStartOf="@+id/text_category_phone"
             app:layout_constraintTop_toBottomOf="@+id/recycler_category_phone" />
 
-        <include layout="@layout/card_no_item"/>
+        <include layout="@layout/card_no_item" />
 
         <android.support.v7.widget.RecyclerView
-            android:visibility="gone"
             android:id="@+id/recycler_phone_recent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
-            android:text="Sản phẩm nổi bật"
+            android:text="@string/product_hot"
             android:textSize="@dimen/dimen_text_16"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/button_see_more"
@@ -122,9 +123,9 @@
             android:id="@+id/progress_phone_noibat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/button_see_more"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/button_see_more" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_phone_noibat"
@@ -140,4 +141,5 @@
             app:spanCount="2" />
 
     </android.support.constraint.ConstraintLayout>
+
 </android.support.v4.widget.NestedScrollView>

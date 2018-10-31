@@ -69,4 +69,5 @@
     <dimen name="dimen_text_16">16sp</dimen>
     <dimen name="dimen_text_14">14sp</dimen>
     <dimen name="dimen_text_10">10sp</dimen>
+    <dimen name="dimen_200dp">200dp</dimen>
 </resources>
