@@ -1,5 +1,6 @@
 package hoanglong.thesis.graduation.juncomputer.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -12,10 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import hoanglong.thesis.graduation.juncomputer.Category.CategoryFragment;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.home.fragment.HomeFragment;
+import hoanglong.thesis.graduation.juncomputer.login.LoginActivity;
+import hoanglong.thesis.graduation.juncomputer.main.MainActivity;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
 import hoanglong.thesis.graduation.juncomputer.utils.ScreenManager;
 
@@ -38,7 +42,7 @@ public class HomeActivity extends AppCompatActivity
     private DrawerLayout drawer;
     private Toolbar toolbar;
     private FloatingActionButton fab;
-
+    private LinearLayout mLinearLogin;
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
 
@@ -57,6 +61,15 @@ public class HomeActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        mLinearLogin = headerView.findViewById(R.id.linear_login);
+        mLinearLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         setUpNavigationView();
 
@@ -187,14 +200,14 @@ public class HomeActivity extends AppCompatActivity
             drawer.closeDrawers();
             return;
         }
-        if (shouldLoadHomeFragOnBackPress) {
-            if (navItemIndex != 0) {
-                navItemIndex = 0;
-                CURRENT_TAG = TAG_HOME;
-                loadHomeFragment();
-                return;
-            }
-        }
+//        if (shouldLoadHomeFragOnBackPress) {
+//            if (navItemIndex != 0) {
+//                navItemIndex = 0;
+//                CURRENT_TAG = TAG_HOME;
+//                loadHomeFragment();
+//                return;
+//            }
+//        }
 
         super.onBackPressed();
     }

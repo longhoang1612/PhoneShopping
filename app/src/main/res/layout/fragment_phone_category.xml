@@ -67,7 +67,10 @@
             app:layout_constraintStart_toStartOf="@+id/text_category_phone"
             app:layout_constraintTop_toBottomOf="@+id/recycler_category_phone" />
 
+        <include layout="@layout/card_no_item"/>
+
         <android.support.v7.widget.RecyclerView
+            android:visibility="gone"
             android:id="@+id/recycler_phone_recent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,7 +107,7 @@
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_phone_recent" />
+            app:layout_constraintTop_toBottomOf="@+id/card_no_item" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_phone_noibat"

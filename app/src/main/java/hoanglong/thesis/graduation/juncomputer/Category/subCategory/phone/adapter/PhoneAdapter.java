@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -58,9 +59,10 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ItemPhoneVie
         private TextView mTextSale;
         private TextView mTextPrice;
         private TextView mTextProduct;
-        private TextView mTextInfo;
+        //private TextView mTextInfo;
         private TextView mTextNumberRatting;
         private RatingBar mRatingBar;
+        private RelativeLayout mRelativeSale;
         private ItemPhoneProduct mItemPhoneProduct;
 
         public ItemPhoneViewHolder(@NonNull View itemView, Context context, OnClickProductListener listener) {
@@ -71,7 +73,8 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ItemPhoneVie
             mTextSale = itemView.findViewById(R.id.text_sale);
             mTextPrice = itemView.findViewById(R.id.text_price);
             mTextProduct = itemView.findViewById(R.id.text_name_product);
-            mTextInfo = itemView.findViewById(R.id.text_info_product);
+//            mTextInfo = itemView.findViewById(R.id.text_info_product);
+            mRelativeSale = itemView.findViewById(R.id.relative_sale);
             mTextNumberRatting = itemView.findViewById(R.id.text_number_rating);
             mRatingBar = itemView.findViewById(R.id.rating_bar);
             itemView.setOnClickListener(this);
@@ -83,12 +86,19 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ItemPhoneVie
             }
             mItemPhoneProduct = itemPhoneProduct;
             Glide.with(mContext).load(itemPhoneProduct.getImage()).into(mImageView);
-            Log.d("ABCD", "bindData: " + "https://"+itemPhoneProduct.getImage());
+            if(itemPhoneProduct.getDeal().equals("")){
+                mRelativeSale.setVisibility(View.GONE);
+            }else{
+                mRelativeSale.setVisibility(View.VISIBLE);
+            }
             mTextSale.setText(itemPhoneProduct.getDeal());
-            mTextPrice.setText(itemPhoneProduct.getPrice());
-//            mTextInfo.setText(itemPhoneProduct.getInfo());
+            mTextPrice.setText(itemPhoneProduct.getPrice().split("₫")[0] + "₫");
             mTextProduct.setText(itemPhoneProduct.getName());
-            mTextNumberRatting.setText(itemPhoneProduct.getNumberRating());
+            if(itemPhoneProduct.getNumberRating().equals("")){
+                mTextNumberRatting.setText("Chưa có đánh giá");
+            }else{
+                mTextNumberRatting.setText(itemPhoneProduct.getNumberRating());
+            }
             mRatingBar.setRating(Float.valueOf(itemPhoneProduct.getRating()));
         }
 

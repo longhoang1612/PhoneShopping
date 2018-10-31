@@ -18,7 +18,7 @@
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
-            android:background="#000"
+            android:background="@raw/backgroud_login_tiki"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -48,8 +48,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/ic_close"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/ic_close"
                         android:textSize="18sp"
                         android:fontFamily="@font/sanfranciscodisplay_regular"/>
                 </RelativeLayout>

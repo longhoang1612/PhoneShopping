@@ -6,4 +6,5 @@
     <color name="colorBlack">#000000</color>
     <color name="colorLogin">#0079ca</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorRadioNormal">#beb1b1</color>
 </resources>

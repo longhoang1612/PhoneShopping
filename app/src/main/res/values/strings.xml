@@ -34,4 +34,5 @@
     <string name="danh_muc_chinh">Danh mục chính</string>
     <string name="san_pham_da_xem">Sản phẩm đã xem</string>
     <string name="see_more">Xem tất cả</string>
+    <string name="login_register">Đăng nhập/Đăng ký</string>
 </resources>

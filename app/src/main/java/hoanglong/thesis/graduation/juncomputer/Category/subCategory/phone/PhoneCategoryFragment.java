@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.Category.subCategory.phone.adapter.PhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.Category.subCategory.phone.adapter.PhoneCategoryAdapter;
+import hoanglong.thesis.graduation.juncomputer.PhoneFragment;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.home.adapter.SamplePagerAdapter;
 import hoanglong.thesis.graduation.juncomputer.model.ItemPhoneCategory;
@@ -25,6 +26,7 @@ import hoanglong.thesis.graduation.juncomputer.model.ItemPhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.model.PhoneCategory;
 import hoanglong.thesis.graduation.juncomputer.model.PhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
+import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
 import hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager;
 import me.relex.circleindicator.CircleIndicator;
 import retrofit2.Call;
@@ -122,6 +124,12 @@ public class PhoneCategoryFragment extends Fragment implements PhoneAdapter.OnCl
 
     @Override
     public void onClickItem(ItemPhoneCategory phoneCategory) {
-
+        if (getFragmentManager() != null) {
+            FragmentTransactionUtils.addFragment(
+                    getFragmentManager(),
+                    PhoneFragment.newInstance(phoneCategory),
+                    R.id.frame_home,
+                    PhoneFragment.TAG,true,-1,-1);
+        }
     }
 }
