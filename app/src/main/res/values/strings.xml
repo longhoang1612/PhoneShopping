@@ -35,4 +35,8 @@
     <string name="san_pham_da_xem">Sản phẩm đã xem</string>
     <string name="see_more">Xem tất cả</string>
     <string name="login_register">Đăng nhập/Đăng ký</string>
+    <string name="title_question_product">Hỏi đáp về sản phẩm</string>
+    <string name="mo_ta_san_pham">Mô tả sản phẩm</string>
+    <string name="xem_chi_tiet">Xem chi tiết</string>
+    <string name="thong_tin_chi_tiet">Thông tin chi tiết</string>
 </resources>

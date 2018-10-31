@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".PhoneFragment"
+    tools:context=".Category.subCategory.phone.PhoneFragment"
     android:background="@color/colorWhite"
     android:clickable="true"
     android:focusable="true">
@@ -82,6 +82,12 @@
             android:textAllCaps="true"
             android:textSize="18sp" />
     </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_phone"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
         app:layoutManager="android.support.v7.widget.GridLayoutManager"

@@ -1,4 +1,4 @@
-package hoanglong.thesis.graduation.juncomputer;
+package hoanglong.thesis.graduation.juncomputer.Category.subCategory.phone;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,11 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
 
 import hoanglong.thesis.graduation.juncomputer.Category.subCategory.phone.adapter.PhoneAdapter;
+import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.model.ItemPhoneCategory;
 import hoanglong.thesis.graduation.juncomputer.model.ItemPhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.model.PhoneProduct;
@@ -30,6 +32,7 @@ public class PhoneFragment extends Fragment implements PhoneAdapter.OnClickProdu
     private TextView mTextType;
     private RecyclerView mRecyclerPhone;
     private TextView mTextResult;
+    private ProgressBar mProgressBar;
 
     public static PhoneFragment newInstance(ItemPhoneCategory itemPhoneCategory) {
         Bundle args = new Bundle();
@@ -60,6 +63,8 @@ public class PhoneFragment extends Fragment implements PhoneAdapter.OnClickProdu
         mTextType.setText(typePhone);
         mRecyclerPhone = view.findViewById(R.id.recycler_phone);
         mTextResult = view.findViewById(R.id.text_result);
+        mProgressBar = view.findViewById(R.id.progress_phone);
+        mProgressBar.setVisibility(View.VISIBLE);
         setUpData();
     }
 
@@ -69,6 +74,7 @@ public class PhoneFragment extends Fragment implements PhoneAdapter.OnClickProdu
             public void onResponse(@NonNull Call<PhoneProduct> call, @NonNull Response<PhoneProduct> response) {
                 List<ItemPhoneProduct> productList = null;
                 if(response.body()!=null){
+                    mProgressBar.setVisibility(View.GONE);
                     productList = response.body().getPhoneProduct();
                     setUpRecyclerView(productList);
                 }

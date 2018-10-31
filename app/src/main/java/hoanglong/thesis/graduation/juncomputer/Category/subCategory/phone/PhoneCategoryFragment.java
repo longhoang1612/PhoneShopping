@@ -1,15 +1,16 @@
 package hoanglong.thesis.graduation.juncomputer.Category.subCategory.phone;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.Category.subCategory.phone.adapter.PhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.Category.subCategory.phone.adapter.PhoneCategoryAdapter;
-import hoanglong.thesis.graduation.juncomputer.PhoneFragment;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.home.adapter.SamplePagerAdapter;
 import hoanglong.thesis.graduation.juncomputer.model.ItemPhoneCategory;
@@ -48,6 +48,10 @@ public class PhoneCategoryFragment extends Fragment implements PhoneAdapter.OnCl
     CircleIndicator mIndicator;
     @BindView(R.id.recycler_phone_noibat)
     RecyclerView mRecyclerNoiBat;
+    @BindView(R.id.progress_phone_category)
+    ProgressBar mProgressPhoneCategory;
+    @BindView(R.id.progress_phone_noibat)
+    ProgressBar mProgressNoibat;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -62,6 +66,8 @@ public class PhoneCategoryFragment extends Fragment implements PhoneAdapter.OnCl
         setDataCategory();
         setSlide();
         setDataNoiBat();
+        mProgressNoibat.setVisibility(View.VISIBLE);
+        mProgressPhoneCategory.setVisibility(View.VISIBLE);
     }
 
     private void setDataNoiBat() {
@@ -69,18 +75,18 @@ public class PhoneCategoryFragment extends Fragment implements PhoneAdapter.OnCl
             @Override
             public void onResponse(@NonNull Call<PhoneProduct> call, @NonNull Response<PhoneProduct> response) {
                 List<ItemPhoneProduct> itemPhoneProducts = new ArrayList<>();
+                mProgressNoibat.setVisibility(View.GONE);
                 if (response.body() != null) {
-                    for(int i =0;i<4;i++){
+                    for(int i =0;i<8;i++){
                         itemPhoneProducts.add(response.body().getPhoneProduct().get(i));
                     }
-                    //itemPhoneProducts = response.body().getPhoneProduct();
                     setUpRecyclerProduct(itemPhoneProducts);
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<PhoneProduct> call, @NonNull Throwable t) {
-
+                mProgressNoibat.setVisibility(View.GONE);
             }
         });
     }
@@ -100,6 +106,7 @@ public class PhoneCategoryFragment extends Fragment implements PhoneAdapter.OnCl
             @Override
             public void onResponse(@NonNull Call<PhoneCategory> call, @NonNull Response<PhoneCategory> response) {
                 if (response.body() != null) {
+                    mProgressPhoneCategory.setVisibility(View.GONE);
                     List<ItemPhoneCategory> phoneCategoryList = response.body().getPhoneCategoryList();
                     setUpRecyclerView(phoneCategoryList);
                 }
@@ -107,7 +114,7 @@ public class PhoneCategoryFragment extends Fragment implements PhoneAdapter.OnCl
 
             @Override
             public void onFailure(@NonNull Call<PhoneCategory> call, @NonNull Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
+                mProgressPhoneCategory.setVisibility(View.GONE);
             }
         });
     }
@@ -119,7 +126,8 @@ public class PhoneCategoryFragment extends Fragment implements PhoneAdapter.OnCl
 
     @Override
     public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
-
+        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+        startActivity(intent);
     }
 
     @Override
