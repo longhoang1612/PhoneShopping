@@ -14,6 +14,7 @@
     <dimen name="button_title_margin_top">10dip</dimen>
     <item name="x_scale_factor" format="float" type="dimen">2.3</item>
     <item name="y_scale_factor" format="float" type="dimen">2.3</item>
+    <item name="dimen_0_5dp" type="dimen" format="float">0.5dp</item>
     <dimen name="grid_view_vertical_spacing">10dip</dimen>
     <dimen name="grid_view_horizontal_spacing">10dip</dimen>
     <dimen name="grid_view_margin">10dip</dimen>
@@ -70,4 +71,16 @@
     <dimen name="dimen_text_14">14sp</dimen>
     <dimen name="dimen_text_10">10sp</dimen>
     <dimen name="dimen_200dp">200dp</dimen>
+    <dimen name="dimen_18sp">18sp</dimen>
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="dimen_120dp">120dp</dimen>
+    <dimen name="dimen_70dp">70dp</dimen>
+    <dimen name="dimen_12sp">12sp</dimen>
+    <dimen name="dimen_48dp">48dp</dimen>
+    <dimen name="dimen_45dp">45dp</dimen>
+    <dimen name="dimen_120dp">120dp</dimen>
+    <dimen name="dimen_130dp">130dp</dimen>
+    <dimen name="dimen_150dp">150dp</dimen>
+    <dimen name="dimen_170dp">170dp</dimen>
+    <dimen name="dimen_140dp">140dp</dimen>
 </resources>

@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@color/colorWhite"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_margin="10dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/danh_muc_chinh"/>
+        android:layout_margin="@dimen/dimen_10"
+        android:text="@string/danh_muc_chinh"
+        android:textSize="@dimen/dimen_text_16"
+        android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
-        app:layoutManager="android.support.v7.widget.GridLayoutManager"
-        app:spanCount="3"
         android:id="@+id/recycler_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        app:spanCount="3" />
 
 </LinearLayout>

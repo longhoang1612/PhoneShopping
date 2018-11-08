@@ -77,7 +77,7 @@ public class PhoneCategoryFragment extends Fragment implements PhoneAdapter.OnCl
                 List<ItemPhoneProduct> itemPhoneProducts = new ArrayList<>();
                 mProgressNoibat.setVisibility(View.GONE);
                 if (response.body() != null) {
-                    for(int i =0;i<8;i++){
+                    for(int i =0;i<4;i++){
                         itemPhoneProducts.add(response.body().getPhoneProduct().get(i));
                     }
                     setUpRecyclerProduct(itemPhoneProducts);

@@ -40,4 +40,18 @@
     <string name="xem_chi_tiet">Xem chi tiết</string>
     <string name="thong_tin_chi_tiet">Thông tin chi tiết</string>
     <string name="product_hot">Sản phẩm nổi bật</string>
+    <string name="no_item">Bạn chưa có sản phẩm nào !</string>
+    <string name="phu_kien_di_kem">Ưu đãi khi mua phụ kiện</string>
+    <string name="sale">Khuyến mại</string>
+    <string name="email">Email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="log_in">Đăng nhập</string>
+    <string name="lost_pass">Quên mật khẩu?</string>
+    <string name="with_login">Hoặc đăng nhập với</string>
+    <string name="content">content</string>
+    <string name="name">Họ và tên</string>
+    <string name="male">Nam</string>
+    <string name="female">Nữ</string>
+    <string name="khi_ng_k_l_b_n_ch_p_nh_n">Khi đăng ký là bạn đã chấp nhận</string>
+    <string name="i_u_kho_n_s_d_ng">Điều khoản sử dụng</string>
 </resources>

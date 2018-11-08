@@ -14,10 +14,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/dimen_5dp"
             android:text="@string/title_question_product"
-            android:textColor="#333"
-            android:textSize="18sp" />
+            android:textColor="@color/color_blue_grey_900"
+            android:textSize="@dimen/dimen_18sp" />
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"

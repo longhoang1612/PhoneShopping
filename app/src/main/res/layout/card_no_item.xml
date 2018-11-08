@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_no_item"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="@dimen/dimen_120dp"
     android:layout_margin="@dimen/dimen_5"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -13,21 +13,24 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_margin="5dp"
+            android:contentDescription="@string/no_item"
             android:id="@+id/image_no_item"
-            android:layout_width="120dp"
+            android:layout_width="@dimen/dimen_120dp"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_5dp"
             android:src="@drawable/no_item" />
 
         <TextView
-            android:textStyle="bold"
-            android:textAllCaps="true"
-            android:textSize="18sp"
-            android:layout_marginStart="@dimen/dimen_10"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/image_no_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bạn chưa có sản phẩm nào !" />
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dimen_10"
+            android:layout_toEndOf="@+id/image_no_item"
+            android:text="@string/no_item"
+            android:textAllCaps="true"
+            android:textSize="@dimen/dimen_18sp"
+            android:textStyle="bold" />
+
     </RelativeLayout>
+
 </android.support.v7.widget.CardView>

@@ -7,31 +7,31 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/dimen_0"
         android:layout_weight="1">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager_default"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/indicator_default"
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:layout_centerInParent="true"/>
+            android:layout_height="@dimen/dimen_40"
+            android:layout_centerInParent="true" />
     </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/dimen_0"
         android:layout_weight="1">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager_custom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/indicator_custom"
@@ -41,34 +41,32 @@
             app:ci_animator="@animator/indicator_animator"
             app:ci_animator_reverse="@animator/indicator_animator_reverse"
             app:ci_drawable="@drawable/black_radius_square"
-            app:ci_height="4dp"
-            app:ci_margin="6dp"
-            app:ci_width="10dp"/>
+            app:ci_height="@dimen/dimen_4"
+            app:ci_margin="@dimen/dimen_6"
+            app:ci_width="@dimen/dimen_10" />
 
     </RelativeLayout>
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/dimen_0"
         android:layout_weight="1">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager_unselected_background"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/indicator_unselected_background"
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/dimen_40"
             android:layout_centerInParent="true"
             app:ci_animator="@animator/indicator_no_animator"
             app:ci_drawable="@drawable/white_radius"
             app:ci_drawable_unselected="@drawable/black_radius"
-            app:ci_height="6dp"
-            app:ci_width="6dp"/>
+            app:ci_height="@dimen/dimen_6"
+            app:ci_width="@dimen/dimen_6" />
     </RelativeLayout>
-
 
 </LinearLayout>

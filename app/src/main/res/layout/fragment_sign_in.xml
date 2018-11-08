@@ -3,22 +3,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <android.support.design.widget.TextInputLayout
         android:id="@+id/passwordWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="@dimen/dimen_30">
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:hint="Họ và tên"
             android:id="@+id/et_hoten"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50"
+            android:layout_marginEnd="@dimen/dimen_20"
+            android:layout_marginStart="@dimen/dimen_20"
             android:backgroundTint="@color/colorPrimaryDark"
-            />
+            android:hint="@string/name" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -26,89 +24,88 @@
         android:id="@+id/passwordWrapper2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="@dimen/dimen_30">
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:hint="Email"
             android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50"
+            android:layout_marginEnd="@dimen/dimen_20"
+            android:layout_marginStart="@dimen/dimen_20"
             android:backgroundTint="@color/colorPrimaryDark"
-            />
+            android:hint="@string/email" />
 
     </android.support.design.widget.TextInputLayout>
-
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/passwordWrapper3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="@dimen/dimen_30">
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="30dp"
-            android:hint="Mật khẩu"
             android:id="@+id/et_password"
-            android:backgroundTint="@color/colorPrimaryDark"/>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50"
+            android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_marginRight="@dimen/dimen_20"
+            android:layout_marginTop="@dimen/dimen_30"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:hint="@string/password" />
 
     </android.support.design.widget.TextInputLayout>
-
 
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_20"
         android:orientation="horizontal"
-        android:layout_margin="20dp"
         android:theme="@style/MyRadioButton">
+
         <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nam"
             android:id="@+id/radioButton_easy"
-            android:checked="false"
-            android:layout_marginRight="20dp"
-            android:theme="@style/MyRadioButton"
-            />
-        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nữ"
+            android:layout_marginEnd="@dimen/dimen_20"
+            android:checked="false"
+            android:text="@string/male"
+            android:theme="@style/MyRadioButton" />
+
+        <RadioButton
             android:id="@+id/radioButton_medium"
-            android:theme="@style/MyRadioButton"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/female"
+            android:theme="@style/MyRadioButton" />
     </RadioGroup>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:text="Đăng nhập"
-        android:textColor="#fff"
+        android:layout_height="@dimen/dimen_45dp"
+        android:layout_marginEnd="@dimen/dimen_20"
+        android:layout_marginStart="@dimen/dimen_20"
+        android:layout_marginTop="@dimen/dimen_40"
         android:background="@drawable/custom_button1"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="20dp"/>
+        android:text="@string/log_in"
+        android:textColor="@android:color/white" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        >
+        android:layout_marginTop="@dimen/dimen_20"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Khi đăng ký là bạn đã chấp nhận "/>
+            android:text="@string/khi_ng_k_l_b_n_ch_p_nh_n" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Điều khoản sử dụng"
-            android:textColor="#3971c4"/>
+            android:text="@string/i_u_kho_n_s_d_ng"
+            android:textColor="@color/color_blue_700" />
     </LinearLayout>
 
 </LinearLayout>
