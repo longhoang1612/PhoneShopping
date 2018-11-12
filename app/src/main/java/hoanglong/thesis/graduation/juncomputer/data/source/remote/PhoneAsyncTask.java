@@ -1,10 +1,7 @@
 package hoanglong.thesis.graduation.juncomputer.data.source.remote;
 
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import hoanglong.thesis.graduation.juncomputer.data.model.ItemPhoneProduct;

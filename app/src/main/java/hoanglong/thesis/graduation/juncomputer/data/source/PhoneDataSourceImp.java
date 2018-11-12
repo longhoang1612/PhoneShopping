@@ -1,7 +1,5 @@
 package hoanglong.thesis.graduation.juncomputer.data.source;
 
-import android.telecom.Call;
-
 import java.util.List;
 import hoanglong.thesis.graduation.juncomputer.data.model.ItemPhoneCategory;
 import hoanglong.thesis.graduation.juncomputer.data.model.ItemPhoneProduct;

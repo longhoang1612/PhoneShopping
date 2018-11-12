@@ -2,7 +2,8 @@
     android:id="@+id/linear_info"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dimen_40"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:baselineAligned="false">
 
     <RelativeLayout
         android:layout_width="@dimen/dimen_0"

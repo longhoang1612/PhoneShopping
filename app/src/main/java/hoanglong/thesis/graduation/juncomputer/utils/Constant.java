@@ -16,5 +16,7 @@ public class Constant {
         public static final String old_phone_type = "old_phone";
         public static final String sale = "Sản phẩm khuyến mãi";
         public static final String sale_type = "sale";
+        public static final String clock_type = "clock";
+        public static final String clock = "Đồng hồ";
     }
 }

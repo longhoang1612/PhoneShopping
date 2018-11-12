@@ -46,4 +46,5 @@
     <dimen name="dimen_text_16">16sp</dimen>
     <dimen name="dimen_18sp">18sp</dimen>
     <dimen name="dimen_10sp">10sp</dimen>
+    <dimen name="dimen_300dp">300dp</dimen>
 </resources>
