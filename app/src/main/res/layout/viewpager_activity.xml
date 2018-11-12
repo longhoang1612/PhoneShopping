@@ -67,6 +67,7 @@
             app:ci_drawable_unselected="@drawable/black_radius"
             app:ci_height="@dimen/dimen_6"
             app:ci_width="@dimen/dimen_6" />
+
     </RelativeLayout>
 
 </LinearLayout>

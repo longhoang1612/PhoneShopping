@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_5dp"
+            android:layout_margin="@dimen/dimen_5"
             android:text="@string/sale"
             android:textColor="@color/color_blue_grey_900"
             android:textSize="@dimen/dimen_18sp" />

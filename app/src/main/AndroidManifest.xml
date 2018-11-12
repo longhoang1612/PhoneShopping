@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".main.MainActivity"
+            android:name=".screen.main.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:noHistory="true"
             android:screenOrientation="portrait"
@@ -24,18 +24,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".home.HomeActivity"
+            android:name=".screen.home.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".main.CartActivity"
+            android:name=".screen.main.CartActivity"
             android:label="@string/title_activity_cart"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".screen.login.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Category.subCategory.phone.DetailProductActivity"></activity>
+        <activity android:name=".category.subCategory.phone.DetailProductActivity"></activity>
     </application>
 
 </manifest>
