@@ -18,8 +18,9 @@ import me.relex.circleindicator.CircleIndicator;
  */
 public class HomeFragment extends Fragment {
 
+    public static final String TAG = HomeFragment.class.getName();
+
     public HomeFragment() {
-        // Required empty public constructor
     }
 
     @Override
