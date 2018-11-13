@@ -1,4 +1,4 @@
-package hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.all_phone;
+package hoanglong.thesis.graduation.juncomputer.screen.phone.all_phone;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,9 +15,9 @@ import android.widget.TextView;
 import java.util.List;
 
 import hoanglong.thesis.graduation.juncomputer.R;
-import hoanglong.thesis.graduation.juncomputer.data.model.ItemPhoneCategory;
-import hoanglong.thesis.graduation.juncomputer.data.model.ItemPhoneProduct;
-import hoanglong.thesis.graduation.juncomputer.data.model.PhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneCategory;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.PhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.adapter.PhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import retrofit2.Call;

@@ -47,4 +47,11 @@
     <dimen name="dimen_18sp">18sp</dimen>
     <dimen name="dimen_10sp">10sp</dimen>
     <dimen name="dimen_300dp">300dp</dimen>
+    <dimen name="dimen_250dp">250dp</dimen>
+    <dimen name="dimen_40dp">40dp</dimen>
+    <dimen name="dimen_270dp">270dp</dimen>
+    <dimen name="dimen_260dp">260dp</dimen>
+    <dimen name="dimen_280dp">280dp</dimen>
+    <dimen name="dimen_240dp">240dp</dimen>
+    <dimen name="dimen_220dp">220dp</dimen>
 </resources>

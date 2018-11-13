@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.screen.category.CategoryFragment;
-import hoanglong.thesis.graduation.juncomputer.screen.home.fragment.HomeFragment;
+import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.HomeFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.login.LoginActivity;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
 

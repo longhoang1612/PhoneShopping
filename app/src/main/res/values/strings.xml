@@ -53,4 +53,10 @@
     <string name="female">Nữ</string>
     <string name="khi_ng_k_l_b_n_ch_p_nh_n">Khi đăng ký là bạn đã chấp nhận</string>
     <string name="i_u_kho_n_s_d_ng">Điều khoản sử dụng</string>
+    <string name="msg_location">location</string>
+    <string name="khuyen_mai">15 khuyến mãi hot nhất</string>
+    <string name="see_all">Xem tất cả</string>
+    <string name="title_phone_highlight">Điện thoại nổi bật nhất</string>
+    <string name="title_laptop_highlight">tablet - laptop nổi bật nhất</string>
+    <string name="title_accessories_hl">phụ kiện giá rẻ</string>
 </resources>

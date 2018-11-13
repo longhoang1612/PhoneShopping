@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_280dp"
+    android:background="@drawable/custom_item">
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_130dp">
+
+        <ImageView
+            android:id="@+id/image_phone_home"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_130dp"
+            android:layout_marginBottom="@dimen/dimen_5"
+            android:layout_marginLeft="@dimen/dimen_5"
+            android:layout_marginRight="@dimen/dimen_5"
+            android:layout_marginTop="@dimen/dimen_20" />
+
+        <RelativeLayout
+            android:id="@+id/relative_sale"
+            android:layout_width="@dimen/dimen_80"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/dimen_10"
+            android:background="@drawable/custom_button1">
+
+            <TextView
+                android:id="@+id/text_sale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/dimen_2"
+                android:fontFamily="@font/sanfranciscodisplay_regular"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/dimen_10sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_phone_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative"
+        android:layout_margin="@dimen/dimen_5"
+        android:fontFamily="@font/sanfranciscodisplay_regular"
+        android:textColor="@color/color_blue_grey_900" />
+
+    <TextView
+        android:id="@+id/price_phone_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_phone_home"
+        android:layout_margin="@dimen/dimen_5"
+        android:fontFamily="@font/sanfranciscodisplay_regular"
+        android:textColor="@color/color_yellow_900"
+        android:textSize="@dimen/dimen_text_14" />
+
+    <ImageView
+        android:id="@+id/image_promo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price_phone_home"
+        android:layout_margin="@dimen/dimen_5"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/text_promo_phone_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price_phone_home"
+        android:layout_marginEnd="@dimen/dimen_5"
+        android:layout_marginStart="@dimen/dimen_5"
+        android:layout_toEndOf="@+id/image_promo"
+        android:fontFamily="@font/sanfranciscodisplay_regular"
+        android:textColor="@color/color_blue_grey_900"
+        android:textSize="@dimen/dimen_10sp" />
+
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.adapter;
+package hoanglong.thesis.graduation.juncomputer.screen.phone.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

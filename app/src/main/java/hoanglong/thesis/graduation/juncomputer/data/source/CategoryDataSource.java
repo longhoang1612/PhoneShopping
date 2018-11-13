@@ -2,7 +2,7 @@ package hoanglong.thesis.graduation.juncomputer.data.source;
 
 import java.util.List;
 
-import hoanglong.thesis.graduation.juncomputer.data.model.Category;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.Category;
 
 public interface CategoryDataSource {
     interface remoteDataSource {

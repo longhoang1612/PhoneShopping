@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import java.util.ArrayList;
 import java.util.List;
 
-import hoanglong.thesis.graduation.juncomputer.data.model.Category;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.Category;
 import hoanglong.thesis.graduation.juncomputer.data.source.CallBack;
 import hoanglong.thesis.graduation.juncomputer.utils.Constant;
 

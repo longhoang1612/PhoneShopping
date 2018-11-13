@@ -1,4 +1,4 @@
-package hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.adapter;
+package hoanglong.thesis.graduation.juncomputer.screen.phone.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

@@ -1,4 +1,4 @@
-package hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.detail_product;
+package hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,10 +16,10 @@ import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.detailPhone.AllDetailPhone;
 import hoanglong.thesis.graduation.juncomputer.data.model.detailPhone.DetailPhone;
-import hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.adapter.ContentAdapter;
-import hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.adapter.ExtraProductAdapter;
-import hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.adapter.InfoAdapter;
-import hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.adapter.SaleAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ContentAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ExtraProductAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.InfoAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.SaleAdapter;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import retrofit2.Call;
 import retrofit2.Callback;

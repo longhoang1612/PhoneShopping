@@ -10,7 +10,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
-import hoanglong.thesis.graduation.juncomputer.data.model.Category;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.Category;
 import hoanglong.thesis.graduation.juncomputer.data.repository.CategoryRepository;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.CategoryLocalDataSource;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;

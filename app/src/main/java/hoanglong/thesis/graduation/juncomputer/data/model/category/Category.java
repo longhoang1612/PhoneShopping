@@ -1,4 +1,4 @@
-package hoanglong.thesis.graduation.juncomputer.data.model;
+package hoanglong.thesis.graduation.juncomputer.data.model.category;
 
 public class Category {
     private String mImage;

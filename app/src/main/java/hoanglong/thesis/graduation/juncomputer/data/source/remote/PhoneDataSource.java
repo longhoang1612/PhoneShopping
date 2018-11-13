@@ -2,8 +2,8 @@ package hoanglong.thesis.graduation.juncomputer.data.source.remote;
 
 import java.util.List;
 
-import hoanglong.thesis.graduation.juncomputer.data.model.ItemPhoneCategory;
-import hoanglong.thesis.graduation.juncomputer.data.model.ItemPhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneCategory;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.data.source.CallBack;
 import hoanglong.thesis.graduation.juncomputer.data.source.PhoneDataSourceImp;
 

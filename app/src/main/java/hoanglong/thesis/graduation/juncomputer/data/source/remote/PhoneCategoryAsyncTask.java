@@ -4,8 +4,8 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import hoanglong.thesis.graduation.juncomputer.data.model.ItemPhoneCategory;
-import hoanglong.thesis.graduation.juncomputer.data.model.PhoneCategory;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneCategory;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.PhoneCategory;
 import hoanglong.thesis.graduation.juncomputer.data.source.CallBack;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import retrofit2.Call;

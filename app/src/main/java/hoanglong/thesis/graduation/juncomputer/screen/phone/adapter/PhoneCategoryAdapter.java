@@ -1,4 +1,4 @@
-package hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.adapter;
+package hoanglong.thesis.graduation.juncomputer.screen.phone.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import hoanglong.thesis.graduation.juncomputer.R;
-import hoanglong.thesis.graduation.juncomputer.data.model.ItemPhoneCategory;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneCategory;
 
 public class PhoneCategoryAdapter extends RecyclerView.Adapter<PhoneCategoryAdapter.PhoneCategoryViewHolder> {
 

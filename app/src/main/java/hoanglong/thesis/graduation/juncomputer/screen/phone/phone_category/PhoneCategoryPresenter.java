@@ -2,8 +2,8 @@ package hoanglong.thesis.graduation.juncomputer.screen.phone.phone_category;
 
 import java.util.List;
 
-import hoanglong.thesis.graduation.juncomputer.data.model.ItemPhoneCategory;
-import hoanglong.thesis.graduation.juncomputer.data.model.ItemPhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneCategory;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.data.repository.PhoneRepository;
 import hoanglong.thesis.graduation.juncomputer.data.source.CallBack;
 

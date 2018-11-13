@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import hoanglong.thesis.graduation.juncomputer.R;
-import hoanglong.thesis.graduation.juncomputer.data.model.ItemPhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneProduct;
 
 public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ItemPhoneViewHolder> {
 
