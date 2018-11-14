@@ -1,11 +1,13 @@
 package hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -14,19 +16,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
-import hoanglong.thesis.graduation.juncomputer.data.model.detailPhone.AllDetailPhone;
-import hoanglong.thesis.graduation.juncomputer.data.model.detailPhone.DetailPhone;
-import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ContentAdapter;
-import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ExtraProductAdapter;
-import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.InfoAdapter;
-import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.SaleAdapter;
-import hoanglong.thesis.graduation.juncomputer.service.BaseService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
+
 
 public class DetailProductActivity extends AppCompatActivity {
 
+    private static final String TAG = DetailProductActivity.class.getName() ;
     @BindView(R.id.text_sale)
     TextView mTextSale;
     @BindView(R.id.text_title_product)
@@ -57,49 +52,52 @@ public class DetailProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_product);
         ButterKnife.bind(this);
-        setData();
+        //setData();
+        Intent intent = getIntent();
+        ItemPhoneProduct itemPhoneProduct = (ItemPhoneProduct) intent.getSerializableExtra("BUNDLE_ITEM_PRODUCT");
+        Log.d(TAG, "onCreate: " +itemPhoneProduct.getTitle());
     }
 
-    private void setData() {
-        Call<AllDetailPhone> call = BaseService.getService().getAllDetailPhone();
-        call.enqueue(new Callback<AllDetailPhone>() {
-            @Override
-            public void onResponse(@NonNull Call<AllDetailPhone> call, @NonNull Response<AllDetailPhone> response) {
-                if (response.body() != null) {
-                    List<DetailPhone> allDetailPhone = response.body().getDetailPhone();
-                    DetailPhone detailPhone = allDetailPhone.get(0);
-                    setupView(detailPhone);
-                }
-            }
+//    private void setData() {
+//        Call<AllDetailPhone> call = BaseService.getService().getAllDetailPhone();
+//        call.enqueue(new Callback<AllDetailPhone>() {
+//            @Override
+//            public void onResponse(@NonNull Call<AllDetailPhone> call, @NonNull Response<AllDetailPhone> response) {
+//                if (response.body() != null) {
+//                    List<DetailPhone> allDetailPhone = response.body().getDetailPhone();
+//                    DetailPhone detailPhone = allDetailPhone.get(0);
+//                    setupView(detailPhone);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<AllDetailPhone> call, @NonNull Throwable t) {
+//
+//            }
+//        });
+//    }
 
-            @Override
-            public void onFailure(@NonNull Call<AllDetailPhone> call, @NonNull Throwable t) {
-
-            }
-        });
-    }
-
-    private void setupView(DetailPhone detailPhone) {
-        if(detailPhone==null){
-            return;
-        }
-        mTextSale.setText(detailPhone.getSale());
-        mTextNameProduct.setText(detailPhone.getTitle());
-        mTextPrice.setText(detailPhone.getPrice());
-        mRecyclerSale.setAdapter(
-                new SaleAdapter(detailPhone.getListSale()));
-        mRecyclerExtraProduct.setAdapter(
-                new ExtraProductAdapter(detailPhone.getListExtraProduct()));
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerInfoProduct.getContext(),
-                LinearLayoutManager.VERTICAL);
-        mRecyclerInfoProduct.addItemDecoration(dividerItemDecoration);
-        mRecyclerInfoProduct.setAdapter(
-                new InfoAdapter(detailPhone.getListParameter()));
-
-        mTextTitleContent.setText(detailPhone.getTitleContent());
-        mTextH2.setText(detailPhone.getTitleH2());
-        mRecyclerDes.setAdapter(
-                new ContentAdapter(detailPhone.getDetailContent()));
-    }
+//    private void setupView(DetailPhone detailPhone) {
+//        if(detailPhone==null){
+//            return;
+//        }
+//        mTextSale.setText(detailPhone.getSale());
+//        mTextNameProduct.setText(detailPhone.getTitle());
+//        mTextPrice.setText(detailPhone.getPrice());
+//        mRecyclerSale.setAdapter(
+//                new SaleAdapter(detailPhone.getListSale()));
+//        mRecyclerExtraProduct.setAdapter(
+//                new ExtraProductAdapter(detailPhone.getListExtraProduct()));
+//
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerInfoProduct.getContext(),
+//                LinearLayoutManager.VERTICAL);
+//        mRecyclerInfoProduct.addItemDecoration(dividerItemDecoration);
+//        mRecyclerInfoProduct.setAdapter(
+//                new InfoAdapter(detailPhone.getListParameter()));
+//
+//        mTextTitleContent.setText(detailPhone.getTitleContent());
+//        mTextH2.setText(detailPhone.getTitleH2());
+//        mRecyclerDes.setAdapter(
+//                new ContentAdapter(detailPhone.getDetailContent()));
+//    }
 }

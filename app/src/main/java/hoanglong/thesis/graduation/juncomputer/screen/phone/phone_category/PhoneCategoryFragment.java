@@ -2,11 +2,13 @@ package hoanglong.thesis.graduation.juncomputer.screen.phone.phone_category;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +16,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneCategory;
-import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.data.repository.PhoneRepository;
 import hoanglong.thesis.graduation.juncomputer.data.source.remote.PhoneDataSource;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
-import hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.adapter.PhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.adapter.SamplePagerAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneCategoryAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.all_phone.PhoneFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
@@ -97,6 +99,7 @@ public class PhoneCategoryFragment extends BaseFragment implements
     @Override
     public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
         Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+        intent.putExtra("BUNDLE_ITEM_PRODUCT", itemPhoneProduct);
         startActivity(intent);
     }
 

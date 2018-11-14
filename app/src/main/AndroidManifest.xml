@@ -35,7 +35,7 @@
             android:name=".screen.login.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme" />
-        <activity android:name=".screen.category.sub_category.phone.detail_product.DetailProductActivity" />
+        <activity android:name=".screen.phone.detail_product.DetailProductActivity" />
     </application>
 
 </manifest>

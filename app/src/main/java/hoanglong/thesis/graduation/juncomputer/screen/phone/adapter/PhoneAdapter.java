@@ -1,4 +1,4 @@
-package hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.adapter;
+package hoanglong.thesis.graduation.juncomputer.screen.phone.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import hoanglong.thesis.graduation.juncomputer.R;
-import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
 
 public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ItemPhoneViewHolder> {
 
@@ -48,6 +48,10 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ItemPhoneVie
     @Override
     public int getItemCount() {
         return mPhoneProducts != null ? mPhoneProducts.size() : 0;
+    }
+
+    public interface OnClickProductListener {
+        void onClickItemProduct(ItemPhoneProduct itemPhoneProduct);
     }
 
     public static class ItemPhoneViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -85,17 +89,17 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ItemPhoneVie
             }
             mItemPhoneProduct = itemPhoneProduct;
             Glide.with(mContext).load(itemPhoneProduct.getImage()).into(mImageView);
-            if(itemPhoneProduct.getDeal().equals("")){
+            if (itemPhoneProduct.getDeal().equals("")) {
                 mRelativeSale.setVisibility(View.GONE);
-            }else{
+            } else {
                 mRelativeSale.setVisibility(View.VISIBLE);
             }
             mTextSale.setText(itemPhoneProduct.getDeal());
-            mTextPrice.setText(itemPhoneProduct.getPrice().split("₫")[0] + "₫");
-            mTextProduct.setText(itemPhoneProduct.getName());
-            if(itemPhoneProduct.getNumberRating().equals("")){
+            mTextPrice.setText(itemPhoneProduct.getPrice());
+            mTextProduct.setText(itemPhoneProduct.getTitle());
+            if (itemPhoneProduct.getNumberRating().equals("")) {
                 mTextNumberRatting.setText("Chưa có đánh giá");
-            }else{
+            } else {
                 mTextNumberRatting.setText(itemPhoneProduct.getNumberRating());
             }
             mRatingBar.setRating(Float.valueOf(itemPhoneProduct.getRating()));
@@ -105,9 +109,5 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ItemPhoneVie
         public void onClick(View view) {
             mListener.onClickItemProduct(mItemPhoneProduct);
         }
-    }
-
-    public interface OnClickProductListener {
-        void onClickItemProduct(ItemPhoneProduct itemPhoneProduct);
     }
 }

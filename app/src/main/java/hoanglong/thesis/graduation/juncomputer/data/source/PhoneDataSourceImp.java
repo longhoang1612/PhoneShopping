@@ -2,7 +2,7 @@ package hoanglong.thesis.graduation.juncomputer.data.source;
 
 import java.util.List;
 import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneCategory;
-import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
 
 public interface PhoneDataSourceImp {
     interface remoteDataSource {

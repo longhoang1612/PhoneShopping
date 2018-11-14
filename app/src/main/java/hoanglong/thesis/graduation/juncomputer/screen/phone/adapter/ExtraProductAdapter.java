@@ -16,7 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
-import hoanglong.thesis.graduation.juncomputer.data.model.detailPhone.ListExtraProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ListExtraProduct;
 
 public class ExtraProductAdapter extends RecyclerView.Adapter<ExtraProductAdapter.ItemExtra> {
 

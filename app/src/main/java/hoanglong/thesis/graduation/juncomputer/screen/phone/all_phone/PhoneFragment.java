@@ -16,9 +16,9 @@ import java.util.List;
 
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneCategory;
-import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneProduct;
-import hoanglong.thesis.graduation.juncomputer.data.model.category.PhoneProduct;
-import hoanglong.thesis.graduation.juncomputer.screen.category.sub_category.phone.adapter.PhoneAdapter;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.PhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import retrofit2.Call;
 import retrofit2.Callback;

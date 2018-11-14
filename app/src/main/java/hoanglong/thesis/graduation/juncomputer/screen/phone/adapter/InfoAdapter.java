@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import hoanglong.thesis.graduation.juncomputer.R;
-import hoanglong.thesis.graduation.juncomputer.data.model.detailPhone.ListParameter;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ListParameter;
 
 public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoHolder> {
 
