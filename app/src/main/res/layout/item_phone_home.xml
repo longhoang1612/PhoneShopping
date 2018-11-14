@@ -24,21 +24,21 @@
 
             <RelativeLayout
                 android:id="@+id/relative_sale"
-                android:layout_marginStart="@dimen/dimen_10"
                 android:layout_width="@dimen/dimen_80"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/dimen_10"
                 android:background="@drawable/custom_button1">
 
                 <TextView
-                    android:fontFamily="@font/sanfranciscodisplay_regular"
-                    android:textSize="@dimen/dimen_10sp"
                     android:id="@+id/text_sale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_margin="@dimen/dimen_2"
-                    android:textColor="@color/colorWhite" />
+                    android:fontFamily="@font/sanfranciscodisplay_regular"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/dimen_10sp" />
             </RelativeLayout>
         </RelativeLayout>
 

@@ -2,13 +2,11 @@ package hoanglong.thesis.graduation.juncomputer.screen.phone.phone_category;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,8 +84,8 @@ public class PhoneCategoryFragment extends BaseFragment implements
     }
 
     private void setSlide() {
-        mViewPager.setAdapter(new SamplePagerAdapter());
-        mIndicator.setViewPager(mViewPager);
+//        mViewPager.setAdapter(new SamplePagerAdapter());
+//        mIndicator.setViewPager(mViewPager);
     }
 
     private void setUpRecyclerView(List<ItemPhoneCategory> phoneCategoryList) {
@@ -99,7 +97,7 @@ public class PhoneCategoryFragment extends BaseFragment implements
     @Override
     public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
         Intent intent = new Intent(getActivity(), DetailProductActivity.class);
-        intent.putExtra("BUNDLE_ITEM_PRODUCT", itemPhoneProduct);
+        intent.putExtra("BUNDLE_ITEM_PRODUCT",itemPhoneProduct);
         startActivity(intent);
     }
 

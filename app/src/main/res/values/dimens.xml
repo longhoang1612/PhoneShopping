@@ -54,4 +54,5 @@
     <dimen name="dimen_280dp">280dp</dimen>
     <dimen name="dimen_240dp">240dp</dimen>
     <dimen name="dimen_220dp">220dp</dimen>
+    <dimen name="dimen_155dp">155dp</dimen>
 </resources>

@@ -1,21 +1,28 @@
 package hoanglong.thesis.graduation.juncomputer.screen.home.adapter;
 
-import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
+import java.util.List;
 import java.util.Random;
 
 public class SamplePagerAdapter extends PagerAdapter {
 
     private final Random random = new Random();
     private int mSize;
+    private List<String> sliders;
 
     public SamplePagerAdapter() {
         mSize = 5;
+    }
+
+    public SamplePagerAdapter(int size, List<String> sliders) {
+        mSize = size;
+        this.sliders = sliders;
     }
 
     public SamplePagerAdapter(int count) {
@@ -39,15 +46,12 @@ public class SamplePagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup view, int position) {
-        TextView textView = new TextView(view.getContext());
-        textView.setText(String.valueOf(position + 1));
-        textView.setBackgroundColor(0xff000000 | random.nextInt(0x00ffffff));
-        textView.setGravity(Gravity.CENTER);
-        textView.setTextColor(Color.WHITE);
-        textView.setTextSize(48);
-        view.addView(textView, ViewGroup.LayoutParams.MATCH_PARENT,
+        ImageView imageView = new ImageView(view.getContext());
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        Glide.with(view.getContext()).load(sliders.get(position)).into(imageView);
+        view.addView(imageView, ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
-        return textView;
+        return imageView;
     }
 
     public void addItem() {

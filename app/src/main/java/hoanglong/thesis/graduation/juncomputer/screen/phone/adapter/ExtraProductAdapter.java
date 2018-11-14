@@ -45,7 +45,7 @@ public class ExtraProductAdapter extends RecyclerView.Adapter<ExtraProductAdapte
 
     @Override
     public int getItemCount() {
-        return mExtraProductList != null ? mExtraProductList.size() : 0;
+        return mExtraProductList != null ? mExtraProductList.size()-1 : 0;
     }
 
     static class ItemExtra extends RecyclerView.ViewHolder {

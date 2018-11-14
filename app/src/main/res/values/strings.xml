@@ -59,4 +59,10 @@
     <string name="title_phone_highlight">Điện thoại nổi bật nhất</string>
     <string name="title_laptop_highlight">tablet - laptop nổi bật nhất</string>
     <string name="title_accessories_hl">phụ kiện giá rẻ</string>
+    <string name="title_detail_info">Thông tin chi tiết</string>
+    <string name="comment">Viết nhận xét</string>
+    <string name="title_add_image">Thêm hình sản phẩm thực tế nếu bạn muốn</string>
+    <string name="title_comment">Tiêu đề (không bắt buộc)</string>
+    <string name="comment_of_u">Đánh giá của bạn</string>
+    <string name="send">gửi</string>
 </resources>

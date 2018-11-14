@@ -50,7 +50,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:contentDescription="TODO"
                 android:src="@drawable/ic_shopping_cart_black_24dp" />
 
             <RelativeLayout
@@ -75,85 +74,96 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar_detail"
-        android:background="#0ff">
+        android:background="#eeeeee">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/slide_phone"
                     android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_250dp">
+
+                    <hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager
+                        android:id="@id/viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <me.relex.circleindicator.CircleIndicator
+                        android:id="@id/indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_alignParentBottom="true" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relative_sale"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_margin="@dimen/dimen_5"
+                    android:background="@drawable/custom_button">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dimen_300dp">
+                    <TextView
+                        android:id="@+id/text_sale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/sanfranciscodisplay_regular"
+                        android:padding="2sp"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/dimen_12sp" />
+                </RelativeLayout>
 
-                    </LinearLayout>
+                <TextView
+                    android:id="@+id/text_title_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/sanfranciscodisplay_regular"
+                    android:textColor="#333"
+                    android:textSize="18sp" />
 
-                    <RelativeLayout
-                        android:id="@+id/relative_sale"
+                <TextView
+                    android:id="@+id/text_price_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5"
+                    android:fontFamily="@font/sanfranciscodisplay_regular"
+                    android:textColor="#fa8627"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RatingBar
+                        android:id="@+id/rating_bar_product"
+                        style="@style/Base.Widget.AppCompat.RatingBar.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5"
-                        android:background="@drawable/custom_button">
-
-                        <TextView
-                            android:id="@+id/text_sale"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:padding="2sp"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="@dimen/dimen_12sp" />
-                    </RelativeLayout>
+                        android:rating="4" />
 
                     <TextView
-                        android:id="@+id/text_title_product"
+                        android:id="@+id/text_number_rating_product"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:textColor="#333"
-                        android:textSize="18sp" />
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/rating_bar_product"
+                        android:fontFamily="@font/sanfranciscodisplay_regular" />
+                </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/text_price_product"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_5"
-                        android:textColor="#fa8627"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RatingBar
-                            android:id="@+id/rating_bar_product"
-                            style="@style/Base.Widget.AppCompat.RatingBar.Small"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_5"
-                            android:rating="4" />
-
-                        <TextView
-                            android:id="@+id/text_number_rating_product"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/rating_bar_product" />
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
+            </LinearLayout>
 
             <include layout="@layout/card_sale_detail_product" />
 
@@ -163,8 +173,6 @@
 
             <include layout="@layout/card_describe_product" />
 
-            <include layout="@layout/card_question_product" />
-
             <include layout="@layout/card_comment" />
 
         </LinearLayout>
@@ -172,11 +180,17 @@
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/ic_shopping"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/dimen_24"
         android:src="@drawable/ic_shopping_cart_black_24dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frame_full"/>
 
 </RelativeLayout>

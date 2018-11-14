@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemPhoneProduct implements Parcelable {
@@ -86,6 +86,141 @@ public class ItemPhoneProduct implements Parcelable {
         slider = in.createStringArrayList();
         listSale = in.createStringArrayList();
         linkVideo = in.readString();
+        listParameter = in.createTypedArrayList(ListParameter.CREATOR);
+        listExtraProduct = in.createTypedArrayList(ListExtraProduct.CREATOR);
+        detailContent = in.createTypedArrayList(DetailContent.CREATOR);
+    }
+
+
+
+    private ItemPhoneProduct(ItemPhoneBuilder itemPhoneBuilder) {
+        itemPhoneBuilder.id = id;
+        itemPhoneBuilder.type = type;
+        itemPhoneBuilder.title = title;
+        itemPhoneBuilder.price = price;
+        itemPhoneBuilder.deal = deal;
+        itemPhoneBuilder.image = image;
+        itemPhoneBuilder.rating =rating;
+        itemPhoneBuilder.numberRating =numberRating;
+        itemPhoneBuilder.titleH2=titleH2;
+        itemPhoneBuilder.titleContent = titleContent;
+        itemPhoneBuilder.v = v;
+        itemPhoneBuilder.slider = null;
+        itemPhoneBuilder.detailContent = detailContent;
+        itemPhoneBuilder.listParameter = listParameter;
+        itemPhoneBuilder.listExtraProduct = listExtraProduct;
+        itemPhoneBuilder.listSale = listSale;
+        itemPhoneBuilder.linkVideo=linkVideo;
+    }
+
+    public static class ItemPhoneBuilder {
+
+        private String id;
+        private String type;
+        private String title;
+        private String price;
+        private String deal;
+        private String image;
+        private Integer rating;
+        private String numberRating;
+        private String titleH2;
+        private String titleContent;
+        private Integer v;
+        private List<String> slider = null;
+        private List<DetailContent> detailContent = null;
+        private List<ListParameter> listParameter = null;
+        private List<ListExtraProduct> listExtraProduct = null;
+        private List<String> listSale = null;
+        private String linkVideo;
+
+        public ItemPhoneBuilder setId(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public ItemPhoneBuilder setType(String type) {
+            this.type = type;
+            return this;
+        }
+
+        public ItemPhoneBuilder setTitle(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public ItemPhoneBuilder setPrice(String price) {
+            this.price = price;
+            return this;
+        }
+
+        public ItemPhoneBuilder setDeal(String deal) {
+            this.deal = deal;
+            return this;
+        }
+
+        public ItemPhoneBuilder setImage(String image) {
+            this.image = image;
+            return this;
+        }
+
+        public ItemPhoneBuilder setRating(Integer rating) {
+            this.rating = rating;
+            return this;
+        }
+
+        public ItemPhoneBuilder setNumberRating(String numberRating) {
+            this.numberRating = numberRating;
+            return this;
+        }
+
+        public ItemPhoneBuilder setTitleH2(String titleH2) {
+            this.titleH2 = titleH2;
+            return this;
+        }
+
+        public ItemPhoneBuilder setTitleContent(String titleContent) {
+            this.titleContent = titleContent;
+            return this;
+        }
+
+        public ItemPhoneBuilder setV(Integer v) {
+            this.v = v;
+            return this;
+        }
+
+        public ItemPhoneBuilder setSlider(List<String> slider) {
+            this.slider = slider;
+            return this;
+        }
+
+        public ItemPhoneBuilder setDetailContent(List<DetailContent> detailContent) {
+            this.detailContent = detailContent;
+            return this;
+        }
+
+        public ItemPhoneBuilder setListParameter(List<ListParameter> listParameter) {
+            this.listParameter = listParameter;
+            return this;
+        }
+
+        public ItemPhoneBuilder setListExtraProduct(List<ListExtraProduct> listExtraProduct) {
+            this.listExtraProduct = listExtraProduct;
+            return this;
+        }
+
+        public ItemPhoneBuilder setListSale(List<String> listSale) {
+            this.listSale = listSale;
+            return this;
+        }
+
+        public ItemPhoneBuilder setLinkVideo(String linkVideo) {
+            this.linkVideo = linkVideo;
+            return this;
+        }
+
+        public ItemPhoneProduct build() {
+            return new ItemPhoneProduct(this);
+        }
     }
 
     public static final Creator<ItemPhoneProduct> CREATOR = new Creator<ItemPhoneProduct>() {
@@ -267,5 +402,10 @@ public class ItemPhoneProduct implements Parcelable {
         dest.writeStringList(slider);
         dest.writeStringList(listSale);
         dest.writeString(linkVideo);
+        dest.writeTypedList(listParameter);
+        dest.writeTypedList(listExtraProduct);
+        dest.writeTypedList(detailContent);
     }
+
+
 }

@@ -53,8 +53,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     @Override
     protected void initData(Bundle saveInstanceState) {
-        viewpager.setAdapter(new SamplePagerAdapter());
-        indicator.setViewPager(viewpager);
         HomeDataSource homeDataSource = HomeDataSource.getInstance();
         HomeRepository homeRepository = HomeRepository.getInstance(homeDataSource);
         mHomePresenter = new HomePresenter(homeRepository);
@@ -68,6 +66,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     @Override
     public void onGetNewsFeedSuccess(NewsFeed newsFeed) {
+
+        viewpager.setAdapter(new SamplePagerAdapter(
+                newsFeed.getSlideImage().size(),
+                newsFeed.getSlideImage()));
+        indicator.setViewPager(viewpager);
+
         mRecyclerPhoneHome.setAdapter(new PhoneHomeAdapter(newsFeed.getKm()));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {

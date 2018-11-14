@@ -8,6 +8,7 @@
         android:id="@+id/text_content"
         android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/sanfranciscodisplay_regular"
         android:textColor="@color/color_blue_grey_900"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
