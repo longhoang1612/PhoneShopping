@@ -10,7 +10,7 @@
         android:id="@+id/ic_check"
         android:layout_width="@dimen/dimen_20"
         android:layout_height="@dimen/dimen_20"
-        android:src="@drawable/ic_check_circle_black_24dp" />
+        android:src="@drawable/ic_beenhere_black_24dp" />
 
     <TextView
         android:textSize="@dimen/dimen_text_14"

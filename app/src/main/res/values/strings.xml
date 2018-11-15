@@ -65,4 +65,5 @@
     <string name="title_comment">Tiêu đề (không bắt buộc)</string>
     <string name="comment_of_u">Đánh giá của bạn</string>
     <string name="send">gửi</string>
+    <string name="default_percent">0%</string>
 </resources>

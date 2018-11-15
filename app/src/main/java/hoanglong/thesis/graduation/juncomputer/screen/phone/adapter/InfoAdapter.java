@@ -38,7 +38,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoHolder> {
         ListParameter listParameter = mParameterList.get(i);
         infoHolder.bindData(listParameter);
         if(i%2==1){
-            infoHolder.mLinearInfo.setBackgroundColor(Color.LTGRAY);
+            infoHolder.mLinearInfo.setBackgroundColor(Color.parseColor("#fafafa"));
         }
     }
 

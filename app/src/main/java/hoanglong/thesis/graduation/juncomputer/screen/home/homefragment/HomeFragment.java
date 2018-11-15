@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
@@ -21,9 +23,11 @@ import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.
 import hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager;
 import me.relex.circleindicator.CircleIndicator;
 
-public class HomeFragment extends BaseFragment implements HomeContract.View {
+public class HomeFragment extends BaseFragment implements HomeContract.View
+        , SamplePagerAdapter.ClickSliderListener {
 
     public static final String TAG = HomeFragment.class.getName();
+
     @BindView(R.id.viewpager)
     LoopViewPager viewpager;
     @BindView(R.id.indicator)
@@ -68,8 +72,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     public void onGetNewsFeedSuccess(NewsFeed newsFeed) {
 
         viewpager.setAdapter(new SamplePagerAdapter(
-                newsFeed.getSlideImage().size(),
-                newsFeed.getSlideImage()));
+                newsFeed.getSlideImage(), this));
         indicator.setViewPager(viewpager);
 
         mRecyclerPhoneHome.setAdapter(new PhoneHomeAdapter(newsFeed.getKm()));
@@ -112,5 +115,10 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @Override
     public void onGetDataError(String error) {
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClickSlider(List<String> sliders, int position) {
+
     }
 }

@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,7 +30,8 @@ import hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager;
 import me.relex.circleindicator.CircleIndicator;
 
 
-public class DetailProductActivity extends AppCompatActivity implements View.OnClickListener {
+public class DetailProductActivity extends AppCompatActivity
+        implements View.OnClickListener, SamplePagerAdapter.ClickSliderListener, Listener {
 
     private static final String TAG = DetailProductActivity.class.getName();
     @BindView(R.id.text_sale)
@@ -69,6 +68,7 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
     RelativeLayout mRelativeComment;
     @BindView(R.id.ic_shopping)
     ImageView mImageShopping;
+
     private ItemPhoneProduct itemPhoneProduct;
     private List<DetailContent> mContentListHide;
     private List<ListParameter> mInfoProducts;
@@ -94,9 +94,10 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
     }
 
     private void setSlide() {
-        mViewPager.setAdapter(new SamplePagerAdapter(
-                itemPhoneProduct.getSlider().size(),
-                itemPhoneProduct.getSlider()));
+        SamplePagerAdapter samplePagerAdapter = new SamplePagerAdapter(
+                itemPhoneProduct.getSlider(), this
+        );
+        mViewPager.setAdapter(samplePagerAdapter);
         mIndicator.setViewPager(mViewPager);
     }
 
@@ -121,9 +122,6 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
         mRecyclerExtraProduct.setNestedScrollingEnabled(false);
 
         //InFo
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerInfoProduct.getContext(),
-                LinearLayoutManager.VERTICAL);
-        mRecyclerInfoProduct.addItemDecoration(dividerItemDecoration);
         for (int i = 0; i < 3; i++) {
             mInfoProducts.add(itemPhoneProduct.getListParameter().get(i));
         }
@@ -161,17 +159,29 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
                 startActivity(intentInfo);
                 break;
             case R.id.relative_comment:
-                mImageShopping.setVisibility(View.GONE);
                 FragmentTransactionUtils.addFragment(
                         getSupportFragmentManager(),
                         CommentFragment.newInstance(itemPhoneProduct),
                         R.id.frame_full,
                         CommentFragment.TAG,
                         true,
-                        -1, -1
-                );
-
+                        -1, -1);
                 break;
         }
+    }
+
+    @Override
+    public void onClickSlider(List<String> sliders, int position) {
+        FragmentTransactionUtils.addFragment(
+                getSupportFragmentManager(),
+                SliderImageFragment.newInstance(sliders, position),
+                R.id.frame_full, SliderImageFragment.TAG,
+                true, -1, -1
+        );
+    }
+
+    @Override
+    public void onHideButtonCart(int visibility) {
+        mImageShopping.setVisibility(View.GONE);
     }
 }

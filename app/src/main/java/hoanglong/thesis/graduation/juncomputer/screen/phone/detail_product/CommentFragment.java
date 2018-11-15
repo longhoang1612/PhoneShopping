@@ -1,5 +1,6 @@
 package hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -25,6 +26,14 @@ public class CommentFragment extends BaseFragment {
     @BindView(R.id.ic_back)
     ImageView mImageBack;
 
+    private Listener mListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mListener = (Listener) context;
+    }
+
     public static CommentFragment newInstance(ItemPhoneProduct itemPhoneProduct) {
         Bundle args = new Bundle();
         args.putParcelable(BUNDLE_PHONE, itemPhoneProduct);
@@ -46,6 +55,7 @@ public class CommentFragment extends BaseFragment {
     @Override
     protected void initComponent(View view) {
         ButterKnife.bind(this, view);
+        mListener.onHideButtonCart(View.GONE);
         mImageBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,5 +81,11 @@ public class CommentFragment extends BaseFragment {
             return;
         }
         Glide.with(getContext()).load(phoneProduct.getImage()).into(mImagePhone);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener.onHideButtonCart(View.VISIBLE);
     }
 }
