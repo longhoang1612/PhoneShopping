@@ -4,7 +4,6 @@ import android.support.v4.view.PagerAdapter;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
@@ -47,7 +46,11 @@ public class SamplePagerAdapter extends PagerAdapter {
                 mClickSliderListener.onClickSlider(sliders, position);
             }
         });
-        Glide.with(view.getContext()).load(sliders.get(position)).into(imageView);
+        String image = sliders.get(position);
+        if (!image.contains("https:")) {
+            image = "https:" + image;
+        }
+        Glide.with(view.getContext()).load(image).into(imageView);
         view.addView(imageView, ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         return imageView;

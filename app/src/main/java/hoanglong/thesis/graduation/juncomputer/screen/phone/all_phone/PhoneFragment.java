@@ -1,5 +1,6 @@
 package hoanglong.thesis.graduation.juncomputer.screen.phone.all_phone;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneCate
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.PhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,7 +74,7 @@ public class PhoneFragment extends Fragment implements PhoneAdapter.OnClickProdu
             @Override
             public void onResponse(@NonNull Call<PhoneProduct> call, @NonNull Response<PhoneProduct> response) {
                 List<ItemPhoneProduct> productList = null;
-                if(response.body()!=null){
+                if (response.body() != null) {
                     mProgressBar.setVisibility(View.GONE);
                     productList = response.body().getPhoneProduct();
                     setUpRecyclerView(productList);
@@ -90,12 +92,14 @@ public class PhoneFragment extends Fragment implements PhoneAdapter.OnClickProdu
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Tìm thấy ").append(productList.size()).append(" sản phẩm");
         mTextResult.setText(stringBuilder.toString());
-        PhoneAdapter phoneAdapter = new PhoneAdapter(productList,this);
+        PhoneAdapter phoneAdapter = new PhoneAdapter(productList, this);
         mRecyclerPhone.setAdapter(phoneAdapter);
     }
 
     @Override
     public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
-
+        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+        intent.putExtra("BUNDLE_ITEM_PRODUCT", itemPhoneProduct);
+        startActivity(intent);
     }
 }

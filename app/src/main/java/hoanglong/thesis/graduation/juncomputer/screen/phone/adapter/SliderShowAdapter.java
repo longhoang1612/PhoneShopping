@@ -96,7 +96,11 @@ public class SliderShowAdapter extends RecyclerView.Adapter<SliderShowAdapter.Sl
             if (sliders == null) {
                 return;
             }
-            Glide.with(mContext).load(sliders.get(position)).into(mImageShow);
+            String image = sliders.get(position);
+            if (!image.contains("https:")) {
+                image = "https:" + image;
+            }
+            Glide.with(mContext).load(image).into(mImageShow);
         }
 
     }

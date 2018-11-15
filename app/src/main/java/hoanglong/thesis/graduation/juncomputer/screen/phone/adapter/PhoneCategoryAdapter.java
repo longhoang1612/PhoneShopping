@@ -73,7 +73,7 @@ public class PhoneCategoryAdapter extends RecyclerView.Adapter<PhoneCategoryAdap
             }
             mPhoneCategory = phoneCategory;
             Glide.with(mContext)
-                    .load("https://" + phoneCategory.getImageCategory())
+                    .load(phoneCategory.getImageCategory())
                     .into(mImagePhoneCategory);
         }
 
