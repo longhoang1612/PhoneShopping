@@ -2,6 +2,7 @@ package hoanglong.thesis.graduation.juncomputer.screen.phone.phone_category;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.Category;
 import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneCategory;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.data.repository.PhoneRepository;
@@ -34,6 +36,8 @@ public class PhoneCategoryFragment extends BaseFragment implements
         PhoneCategoryAdapter.OnClickPhoneCategoryListener {
 
     public static final String TAG = PhoneCategoryFragment.class.getName();
+    public static final String BUNDLE_CATEGORY = "BUNDLE_CATEGORY";
+
     @BindView(R.id.recycler_category_phone)
     RecyclerView mRecyclerCategoryPhone;
     @BindView(R.id.viewpager)
@@ -47,6 +51,26 @@ public class PhoneCategoryFragment extends BaseFragment implements
     @BindView(R.id.progress_phone_noibat)
     ProgressBar mProgressHighlight;
     private PhoneCategoryPresenter mPresenter;
+    private Category mCategory;
+
+    public static PhoneCategoryFragment newInstance(Category category) {
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(BUNDLE_CATEGORY,category);
+        PhoneCategoryFragment fragment = new PhoneCategoryFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if(bundle==null){
+            return;
+        }
+        mCategory = bundle.getParcelable(BUNDLE_CATEGORY);
+    }
 
     @Override
     protected int getLayoutResources() {
@@ -72,7 +96,7 @@ public class PhoneCategoryFragment extends BaseFragment implements
     }
 
     private void loadDataHighLight() {
-        mPresenter.getPhones();
+        mPresenter.getPhones(mCategory.getType());
     }
 
     private void loadDataCategory() {
@@ -98,7 +122,7 @@ public class PhoneCategoryFragment extends BaseFragment implements
     @Override
     public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
         Intent intent = new Intent(getActivity(), DetailProductActivity.class);
-        intent.putExtra("BUNDLE_ITEM_PRODUCT",itemPhoneProduct);
+        intent.putExtra("BUNDLE_ITEM_PRODUCT",itemPhoneProduct.getTitle());
         startActivity(intent);
     }
 

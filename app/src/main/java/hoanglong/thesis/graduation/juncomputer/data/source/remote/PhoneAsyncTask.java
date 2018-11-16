@@ -20,8 +20,8 @@ public class PhoneAsyncTask {
         this.mCallBack = mCallBack;
     }
 
-    void getDataPhone(){
-        Call<PhoneProduct> call = BaseService.getService().getAllPhone();
+    void getDataPhone(String typeCategory){
+        Call<PhoneProduct> call = BaseService.getService().getItemWithCategory(typeCategory);
         call.enqueue(new Callback<PhoneProduct>() {
             @Override
             public void onResponse(@NonNull Call<PhoneProduct> call,

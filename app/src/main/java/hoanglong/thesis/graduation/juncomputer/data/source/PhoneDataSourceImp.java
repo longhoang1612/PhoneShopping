@@ -8,7 +8,7 @@ public interface PhoneDataSourceImp {
     interface remoteDataSource {
         void getPhoneCategory(CallBack<List<ItemPhoneCategory>> callBack);
 
-        void getPhoneItem(CallBack<List<ItemPhoneProduct>> callBack);
+        void getPhoneItem(CallBack<List<ItemPhoneProduct>> callBack,String typeCategory);
     }
 
     interface localDataSource {

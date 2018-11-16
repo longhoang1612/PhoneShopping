@@ -11,12 +11,18 @@ public interface IApiService {
     @GET("/getAllCategoryPhone")
     Call<PhoneCategory> getCategoryPhone();
 
-    @GET("/getPhoneProduct/{type}")
-    Call<PhoneProduct> getPhoneProduct(@Path("type") String type);
-
     @GET("/getPhoneProduct")
     Call<PhoneProduct> getAllPhone();
 
     @GET("/getHome")
     Call<Home> getHome();
+
+    @GET("/getPhoneWithType/{type}")
+    Call<PhoneProduct> getPhoneWithType(@Path("type") String type);
+
+    @GET("/getPhoneProduct/{title}")
+    Call<PhoneProduct> getPhoneWithTitle(@Path("title") String title);
+
+    @GET("/getPhoneCategory/{typeCategory}")
+    Call<PhoneProduct> getItemWithCategory(@Path("typeCategory") String typeCategory);
 }

@@ -54,24 +54,13 @@ public class CategoryFragment extends BaseFragment implements CategoryContract.V
 
     @Override
     public void onClickItem(Category category) {
-        switch (category.getType()) {
-            case "phone":
-                PhoneCategoryFragment phoneCategoryFragment = new PhoneCategoryFragment();
-                if (getFragmentManager() != null) {
-                    FragmentTransactionUtils.addFragment(
-                            getFragmentManager(),
-                            phoneCategoryFragment,
-                            R.id.frame_home,
-                            PhoneCategoryFragment.TAG,
-                            true, -1, -1);
-                }
-                break;
-            case "tablet":
-                // TODO: 30/10/2018
-                break;
-            case "laptop":
-                // TODO: 30/10/2018
-                break;
+        if (getFragmentManager() != null) {
+            FragmentTransactionUtils.addFragment(
+                    getFragmentManager(),
+                    PhoneCategoryFragment.newInstance(category),
+                    R.id.frame_home,
+                    PhoneCategoryFragment.TAG,
+                    true, -1, -1);
         }
     }
 

@@ -70,7 +70,7 @@ public class PhoneFragment extends Fragment implements PhoneAdapter.OnClickProdu
     }
 
     private void setUpData() {
-        BaseService.getService().getPhoneProduct(typePhone).enqueue(new Callback<PhoneProduct>() {
+        BaseService.getService().getPhoneWithType(typePhone).enqueue(new Callback<PhoneProduct>() {
             @Override
             public void onResponse(@NonNull Call<PhoneProduct> call, @NonNull Response<PhoneProduct> response) {
                 List<ItemPhoneProduct> productList = null;
@@ -99,7 +99,7 @@ public class PhoneFragment extends Fragment implements PhoneAdapter.OnClickProdu
     @Override
     public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
         Intent intent = new Intent(getActivity(), DetailProductActivity.class);
-        intent.putExtra("BUNDLE_ITEM_PRODUCT", itemPhoneProduct);
+        intent.putExtra("BUNDLE_ITEM_PRODUCT", itemPhoneProduct.getTitle());
         startActivity(intent);
     }
 }

@@ -24,6 +24,6 @@ class PhoneCategoryContract {
     interface Presenter extends BasePresenter<PhoneCategoryContract.View> {
         void getCategories();
 
-        void getPhones();
+        void getPhones(String typeCategory);
     }
 }

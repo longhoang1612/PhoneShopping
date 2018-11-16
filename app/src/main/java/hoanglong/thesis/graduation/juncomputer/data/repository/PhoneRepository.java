@@ -29,7 +29,7 @@ public class PhoneRepository implements PhoneDataSourceImp.localDataSource
     }
 
     @Override
-    public void getPhoneItem(CallBack<List<ItemPhoneProduct>> callBack) {
-        mPhoneDataSource.getPhoneItem(callBack);
+    public void getPhoneItem(CallBack<List<ItemPhoneProduct>> callBack,String typeCategory) {
+        mPhoneDataSource.getPhoneItem(callBack,typeCategory);
     }
 }

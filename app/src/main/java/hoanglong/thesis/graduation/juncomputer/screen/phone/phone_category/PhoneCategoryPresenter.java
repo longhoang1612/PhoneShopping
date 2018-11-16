@@ -37,7 +37,7 @@ public class PhoneCategoryPresenter implements PhoneCategoryContract.Presenter {
     }
 
     @Override
-    public void getPhones() {
+    public void getPhones(String typeCategory) {
         mPhoneRepository.getPhoneItem(new CallBack<List<ItemPhoneProduct>>() {
             @Override
             public void getDataSuccess(List<ItemPhoneProduct> data) {
@@ -52,7 +52,7 @@ public class PhoneCategoryPresenter implements PhoneCategoryContract.Presenter {
                 mView.onGetDataPhoneError(error);
                 mView.hideProgressPhone();
             }
-        });
+        }, typeCategory);
     }
 
     @Override

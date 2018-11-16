@@ -22,8 +22,8 @@ public class PhoneDataSource implements PhoneDataSourceImp.remoteDataSource
         new PhoneCategoryAsyncTask(callBack).getCategoryPhone();
     }
 
-    private void getPhoneFromApi(CallBack<List<ItemPhoneProduct>> callBack) {
-        new PhoneAsyncTask(callBack).getDataPhone();
+    private void getPhoneFromApi(CallBack<List<ItemPhoneProduct>> callBack,String typeCategory) {
+        new PhoneAsyncTask(callBack).getDataPhone(typeCategory);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class PhoneDataSource implements PhoneDataSourceImp.remoteDataSource
     }
 
     @Override
-    public void getPhoneItem(CallBack<List<ItemPhoneProduct>> callBack) {
-        getPhoneFromApi(callBack);
+    public void getPhoneItem(CallBack<List<ItemPhoneProduct>> callBack,String typeCategory) {
+        getPhoneFromApi(callBack,typeCategory);
     }
 }

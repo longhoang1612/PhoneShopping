@@ -1,5 +1,6 @@
 package hoanglong.thesis.graduation.juncomputer.screen.home.homefragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.home.NewsFeed;
+import hoanglong.thesis.graduation.juncomputer.data.model.home.Phone;
 import hoanglong.thesis.graduation.juncomputer.data.repository.HomeRepository;
 import hoanglong.thesis.graduation.juncomputer.data.source.remote.HomeDataSource;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
@@ -20,11 +22,12 @@ import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.LaptopHighLightAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.PhoneHighLightAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.PhoneHomeAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
 import hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager;
 import me.relex.circleindicator.CircleIndicator;
 
 public class HomeFragment extends BaseFragment implements HomeContract.View
-        , SamplePagerAdapter.ClickSliderListener {
+        , SamplePagerAdapter.ClickSliderListener, PhoneHighLightAdapter.ClickPhoneListener {
 
     public static final String TAG = HomeFragment.class.getName();
 
@@ -88,7 +91,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
             }
         });
         mRecyclerPhoneHighLight.setLayoutManager(gridLayoutManager);
-        mRecyclerPhoneHighLight.setAdapter(new PhoneHighLightAdapter(newsFeed.getPhone()));
+        mRecyclerPhoneHighLight.setAdapter(new PhoneHighLightAdapter(newsFeed.getPhone(), this));
 
         GridLayoutManager gridLaptop = new GridLayoutManager(getContext(), 3);
         gridLaptop.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -120,5 +123,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
     @Override
     public void onClickSlider(List<String> sliders, int position) {
 
+    }
+
+    @Override
+    public void onClickPhone(Phone phone) {
+        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+        intent.putExtra("BUNDLE_ITEM_PRODUCT", phone.getTitle());
+        startActivity(intent);
     }
 }

@@ -3,6 +3,7 @@ package hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -20,14 +21,19 @@ import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.DetailContent;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ListParameter;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.PhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.screen.home.adapter.SamplePagerAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ContentAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ExtraProductAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.InfoAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.SaleAdapter;
+import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
 import hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager;
 import me.relex.circleindicator.CircleIndicator;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class DetailProductActivity extends AppCompatActivity
@@ -72,6 +78,7 @@ public class DetailProductActivity extends AppCompatActivity
     private ItemPhoneProduct itemPhoneProduct;
     private List<DetailContent> mContentListHide;
     private List<ListParameter> mInfoProducts;
+    private String title;
 
 
     @Override
@@ -84,13 +91,30 @@ public class DetailProductActivity extends AppCompatActivity
         mRelativeComment.setOnClickListener(this);
         mContentListHide = new ArrayList<>();
         mInfoProducts = new ArrayList<>();
-        //setData();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            itemPhoneProduct = bundle.getParcelable("BUNDLE_ITEM_PRODUCT");
-            setupView(itemPhoneProduct);
+            title = bundle.getString("BUNDLE_ITEM_PRODUCT");
         }
-        setSlide();
+        setData();
+    }
+
+    private void setData() {
+        final Call<PhoneProduct> productCall = BaseService.getService().getPhoneWithTitle(title);
+        productCall.enqueue(new Callback<PhoneProduct>() {
+            @Override
+            public void onResponse(@NonNull Call<PhoneProduct> call, @NonNull Response<PhoneProduct> response) {
+                if (response.body() != null) {
+                    itemPhoneProduct = response.body().getPhoneProduct().get(0);
+                    setupView(itemPhoneProduct);
+                    setSlide();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<PhoneProduct> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 
     private void setSlide() {
@@ -122,8 +146,12 @@ public class DetailProductActivity extends AppCompatActivity
         mRecyclerExtraProduct.setNestedScrollingEnabled(false);
 
         //InFo
-        for (int i = 0; i < 3; i++) {
-            mInfoProducts.add(itemPhoneProduct.getListParameter().get(i));
+        if (itemPhoneProduct.getListParameter().size() > 3) {
+            for (int i = 0; i < 3; i++) {
+                mInfoProducts.add(itemPhoneProduct.getListParameter().get(i));
+            }
+        } else {
+            mInfoProducts.addAll(itemPhoneProduct.getListParameter());
         }
         mRecyclerInfoProduct.setAdapter(
                 new InfoAdapter(mInfoProducts));
