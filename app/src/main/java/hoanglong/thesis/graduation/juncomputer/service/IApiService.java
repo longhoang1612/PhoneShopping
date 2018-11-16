@@ -8,9 +8,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface IApiService {
-    @GET("/getAllCategoryPhone")
-    Call<PhoneCategory> getCategoryPhone();
-
     @GET("/getPhoneProduct")
     Call<PhoneProduct> getAllPhone();
 
@@ -25,4 +22,7 @@ public interface IApiService {
 
     @GET("/getPhoneCategory/{typeCategory}")
     Call<PhoneProduct> getItemWithCategory(@Path("typeCategory") String typeCategory);
+
+    @GET("getCategory/{typeCategory}")
+    Call<PhoneCategory> getTypeCategory(@Path("typeCategory") String typeCategory);
 }

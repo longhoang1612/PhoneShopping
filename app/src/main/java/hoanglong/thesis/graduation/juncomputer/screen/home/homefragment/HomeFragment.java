@@ -12,22 +12,29 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
+import hoanglong.thesis.graduation.juncomputer.data.model.category.Category;
 import hoanglong.thesis.graduation.juncomputer.data.model.home.NewsFeed;
 import hoanglong.thesis.graduation.juncomputer.data.model.home.Phone;
+import hoanglong.thesis.graduation.juncomputer.data.repository.CategoryRepository;
 import hoanglong.thesis.graduation.juncomputer.data.repository.HomeRepository;
+import hoanglong.thesis.graduation.juncomputer.data.source.local.CategoryLocalDataSource;
 import hoanglong.thesis.graduation.juncomputer.data.source.remote.HomeDataSource;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.home.adapter.SamplePagerAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.AccessoriesAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.CategoryHomeAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.LaptopHighLightAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.PhoneHighLightAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.PhoneHomeAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.phone_category.PhoneCategoryFragment;
+import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
 import hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager;
 import me.relex.circleindicator.CircleIndicator;
 
 public class HomeFragment extends BaseFragment implements HomeContract.View
-        , SamplePagerAdapter.ClickSliderListener, PhoneHighLightAdapter.ClickPhoneListener {
+        , SamplePagerAdapter.ClickSliderListener, PhoneHighLightAdapter.ClickPhoneListener,
+        CategoryHomeAdapter.OnClickCategoryItem {
 
     public static final String TAG = HomeFragment.class.getName();
 
@@ -43,6 +50,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
     RecyclerView mRecyclerLaptop;
     @BindView(R.id.recycler_accessories)
     RecyclerView mRecyclerAccessories;
+    @BindView(R.id.recycler_category_home)
+    RecyclerView mRecyclerCategoryHome;
     private HomePresenter mHomePresenter;
 
     public HomeFragment() {
@@ -62,12 +71,17 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
     protected void initData(Bundle saveInstanceState) {
         HomeDataSource homeDataSource = HomeDataSource.getInstance();
         HomeRepository homeRepository = HomeRepository.getInstance(homeDataSource);
-        mHomePresenter = new HomePresenter(homeRepository);
+
+        CategoryLocalDataSource localDataSource = CategoryLocalDataSource.getInstance();
+        CategoryRepository categoryRepository = CategoryRepository.getInstance(localDataSource);
+
+        mHomePresenter = new HomePresenter(homeRepository, categoryRepository);
         mHomePresenter.setView(this);
         loadNewsFeed();
     }
 
     private void loadNewsFeed() {
+        mHomePresenter.getCategoryHome();
         mHomePresenter.getHome();
     }
 
@@ -121,6 +135,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
     }
 
     @Override
+    public void onGetCategoryHomeSuccess(List<Category> categories) {
+        CategoryHomeAdapter categoryAdapter = new CategoryHomeAdapter(categories, this);
+        mRecyclerCategoryHome.setAdapter(categoryAdapter);
+    }
+
+    @Override
     public void onClickSlider(List<String> sliders, int position) {
 
     }
@@ -130,5 +150,17 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
         Intent intent = new Intent(getActivity(), DetailProductActivity.class);
         intent.putExtra("BUNDLE_ITEM_PRODUCT", phone.getTitle());
         startActivity(intent);
+    }
+
+    @Override
+    public void onClickItem(Category category) {
+        if (getFragmentManager() != null) {
+            FragmentTransactionUtils.addFragment(
+                    getFragmentManager(),
+                    PhoneCategoryFragment.newInstance(category),
+                    R.id.frame_home,
+                    PhoneCategoryFragment.TAG,
+                    true, -1, -1);
+        }
     }
 }

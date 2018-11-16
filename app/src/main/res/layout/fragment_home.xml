@@ -57,15 +57,37 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_category_home"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_5"
-            android:fontFamily="@font/sanfranciscodisplay_bold"
-            android:text="@string/khuyen_mai"
-            android:textAllCaps="true"
-            android:textColor="@color/color_blue_grey_900"
-            android:textSize="@dimen/dimen_text_16" />
+            android:layout_marginTop="@dimen/dimen_10"
+            android:orientation="horizontal"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:background="#333" />
+
+            <ImageView
+                android:layout_width="@dimen/dimen_200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/dimen_5"
+                android:fontFamily="@font/sanfranciscodisplay_bold"
+                android:scaleType="centerInside"
+                android:src="@drawable/gsct"
+                android:text="@string/khuyen_mai"
+                android:textAllCaps="true"
+                android:textColor="@color/color_blue_grey_900"
+                android:textSize="@dimen/dimen_text_16" />
+        </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_phone_home"
@@ -165,11 +187,11 @@
             android:textSize="@dimen/dimen_text_16" />
 
         <android.support.v7.widget.RecyclerView
-            android:orientation="horizontal"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             android:id="@+id/recycler_accessories"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
     </LinearLayout>
 

@@ -1,6 +1,12 @@
 package hoanglong.thesis.graduation.juncomputer.screen.home.homefragment;
 
+import android.util.Log;
+
+import java.util.List;
+
+import hoanglong.thesis.graduation.juncomputer.data.model.category.Category;
 import hoanglong.thesis.graduation.juncomputer.data.model.home.NewsFeed;
+import hoanglong.thesis.graduation.juncomputer.data.repository.CategoryRepository;
 import hoanglong.thesis.graduation.juncomputer.data.repository.HomeRepository;
 import hoanglong.thesis.graduation.juncomputer.data.source.CallBack;
 
@@ -8,9 +14,11 @@ public class HomePresenter implements HomeContract.Presenter {
 
     private HomeContract.View mView;
     private HomeRepository mHomeRepository;
+    private CategoryRepository mCategoryRepository;
 
-    public HomePresenter(HomeRepository homeRepository) {
+    HomePresenter(HomeRepository homeRepository, CategoryRepository categoryRepository) {
         mHomeRepository = homeRepository;
+        mCategoryRepository = categoryRepository;
     }
 
     @Override
@@ -25,6 +33,20 @@ public class HomePresenter implements HomeContract.Presenter {
             @Override
             public void getDataError(String error) {
                 mView.onGetDataError(error);
+            }
+        });
+    }
+
+    @Override
+    public void getCategoryHome() {
+        mCategoryRepository.getCategory(new CallBack<List<Category>>() {
+            @Override
+            public void getDataSuccess(List<Category> data) {
+                mView.onGetCategoryHomeSuccess(data);
+            }
+
+            @Override
+            public void getDataError(String error) {
             }
         });
     }

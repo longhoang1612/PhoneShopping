@@ -6,7 +6,7 @@ import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhon
 
 public interface PhoneDataSourceImp {
     interface remoteDataSource {
-        void getPhoneCategory(CallBack<List<ItemPhoneCategory>> callBack);
+        void getPhoneCategory(CallBack<List<ItemPhoneCategory>> callBack,String typeCategory);
 
         void getPhoneItem(CallBack<List<ItemPhoneProduct>> callBack,String typeCategory);
     }

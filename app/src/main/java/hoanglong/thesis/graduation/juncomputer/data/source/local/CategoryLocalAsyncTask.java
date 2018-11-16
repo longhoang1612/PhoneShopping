@@ -36,10 +36,6 @@ public class CategoryLocalAsyncTask extends AsyncTask<String, String, List<Categ
                 "https://cdn.tgdd.vn/Products/Images/58/88354/cap-lightning-1m-evalu-ltl-01-avatar-1-600x600.jpg",
                 Constant.Category.accessories,
                 Constant.Category.accessories_type);
-        Category category5 = new Category(
-                "https://cdn.tgdd.vn/Products/Images/42/172404/iphone-x-256gb-silver-400x400.jpg",
-                Constant.Category.old_phone,
-                Constant.Category.old_phone_type);
         Category category6 = new Category("https://cdn.tgdd.vn/Products/Images/7077/74701/apple-watch-s1-42mm-cthumb-400x400.jpg",
                 Constant.Category.clock,Constant.Category.clock_type);
 
@@ -47,7 +43,6 @@ public class CategoryLocalAsyncTask extends AsyncTask<String, String, List<Categ
         mCategories.add(category2);
         mCategories.add(category3);
         mCategories.add(category4);
-        mCategories.add(category5);
         mCategories.add(category6);
         return mCategories;
     }

@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -14,6 +14,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.all_phone.AllPhoneFragment;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.category.Category;
 import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneCategory;
@@ -21,42 +22,39 @@ import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhon
 import hoanglong.thesis.graduation.juncomputer.data.repository.PhoneRepository;
 import hoanglong.thesis.graduation.juncomputer.data.source.remote.PhoneDataSource;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
-import hoanglong.thesis.graduation.juncomputer.screen.home.adapter.SamplePagerAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneCategoryAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.all_phone.PhoneFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
-import hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager;
-import me.relex.circleindicator.CircleIndicator;
 
 public class PhoneCategoryFragment extends BaseFragment implements
         PhoneCategoryContract.View,
         PhoneAdapter.OnClickProductListener,
-        PhoneCategoryAdapter.OnClickPhoneCategoryListener {
+        PhoneCategoryAdapter.OnClickPhoneCategoryListener,
+        View.OnClickListener {
 
     public static final String TAG = PhoneCategoryFragment.class.getName();
     public static final String BUNDLE_CATEGORY = "BUNDLE_CATEGORY";
 
     @BindView(R.id.recycler_category_phone)
     RecyclerView mRecyclerCategoryPhone;
-    @BindView(R.id.viewpager)
-    LoopViewPager mViewPager;
-    @BindView(R.id.indicator)
-    CircleIndicator mIndicator;
     @BindView(R.id.recycler_phone_noibat)
     RecyclerView mRecyclerHighlight;
     @BindView(R.id.progress_phone_category)
     ProgressBar mProgressPhoneCategory;
     @BindView(R.id.progress_phone_noibat)
     ProgressBar mProgressHighlight;
+    @BindView(R.id.button_see_more)
+    Button mButtonSeeMore;
     private PhoneCategoryPresenter mPresenter;
     private Category mCategory;
+    private List<ItemPhoneProduct> mPhoneProducts;
 
     public static PhoneCategoryFragment newInstance(Category category) {
 
         Bundle bundle = new Bundle();
-        bundle.putParcelable(BUNDLE_CATEGORY,category);
+        bundle.putParcelable(BUNDLE_CATEGORY, category);
         PhoneCategoryFragment fragment = new PhoneCategoryFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -66,7 +64,7 @@ public class PhoneCategoryFragment extends BaseFragment implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
-        if(bundle==null){
+        if (bundle == null) {
             return;
         }
         mCategory = bundle.getParcelable(BUNDLE_CATEGORY);
@@ -82,11 +80,12 @@ public class PhoneCategoryFragment extends BaseFragment implements
         ButterKnife.bind(this, view);
         mProgressHighlight.setVisibility(View.VISIBLE);
         mProgressPhoneCategory.setVisibility(View.VISIBLE);
+        mButtonSeeMore.setOnClickListener(this);
     }
 
     @Override
     protected void initData(Bundle saveInstanceState) {
-        setSlide();
+        mPhoneProducts = new ArrayList<>();
         PhoneDataSource dataSource = PhoneDataSource.getInstance();
         PhoneRepository phoneRepository = PhoneRepository.getInstance(dataSource);
         mPresenter = new PhoneCategoryPresenter(phoneRepository);
@@ -100,17 +99,12 @@ public class PhoneCategoryFragment extends BaseFragment implements
     }
 
     private void loadDataCategory() {
-        mPresenter.getCategories();
+        mPresenter.getCategories(mCategory.getType());
     }
 
     private void setUpRecyclerProduct(List<ItemPhoneProduct> itemPhoneProducts) {
         PhoneAdapter phoneAdapter = new PhoneAdapter(itemPhoneProducts, this);
         mRecyclerHighlight.setAdapter(phoneAdapter);
-    }
-
-    private void setSlide() {
-//        mViewPager.setAdapter(new SamplePagerAdapter());
-//        mIndicator.setViewPager(mViewPager);
     }
 
     private void setUpRecyclerView(List<ItemPhoneCategory> phoneCategoryList) {
@@ -122,7 +116,7 @@ public class PhoneCategoryFragment extends BaseFragment implements
     @Override
     public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
         Intent intent = new Intent(getActivity(), DetailProductActivity.class);
-        intent.putExtra("BUNDLE_ITEM_PRODUCT",itemPhoneProduct.getTitle());
+        intent.putExtra("BUNDLE_ITEM_PRODUCT", itemPhoneProduct.getTitle());
         startActivity(intent);
     }
 
@@ -160,6 +154,7 @@ public class PhoneCategoryFragment extends BaseFragment implements
         if (products == null) {
             return;
         }
+        mPhoneProducts = products;
         List<ItemPhoneProduct> highlights = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             highlights.add(products.get(i));
@@ -175,5 +170,20 @@ public class PhoneCategoryFragment extends BaseFragment implements
     @Override
     public void hideProgressPhone() {
         mProgressHighlight.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button_see_more:
+                if (getFragmentManager() != null) {
+                    FragmentTransactionUtils.addFragment(
+                            getFragmentManager(),
+                            AllPhoneFragment.newInstance(mPhoneProducts),
+                            R.id.frame_home,
+                            PhoneFragment.TAG, true, -1, -1);
+                }
+                break;
+        }
     }
 }

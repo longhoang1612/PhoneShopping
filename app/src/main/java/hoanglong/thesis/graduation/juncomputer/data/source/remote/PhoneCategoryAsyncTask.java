@@ -19,8 +19,8 @@ public class PhoneCategoryAsyncTask {
         this.mCallBack = mCallBack;
     }
 
-    public void getCategoryPhone() {
-        Call<PhoneCategory> call = BaseService.getService().getCategoryPhone();
+    public void getCategoryPhone(String typeCategory) {
+        Call<PhoneCategory> call = BaseService.getService().getTypeCategory(typeCategory);
         call.enqueue(new Callback<PhoneCategory>() {
             @Override
             public void onResponse(@NonNull Call<PhoneCategory> call,

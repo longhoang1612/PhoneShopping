@@ -11,27 +11,6 @@
         android:clickable="true"
         android:focusable="true">
 
-        <RelativeLayout
-            android:id="@+id/slide_phone"
-            android:layout_width="@dimen/dimen_0"
-            android:layout_height="@dimen/dimen_200dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager
-                android:id="@id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <me.relex.circleindicator.CircleIndicator
-                android:id="@id/indicator"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_alignParentBottom="true" />
-
-        </RelativeLayout>
-
         <TextView
             android:id="@+id/text_category_phone"
             android:layout_width="wrap_content"
@@ -42,7 +21,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/recycler_category_phone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/slide_phone" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ProgressBar
             android:id="@+id/progress_phone_category"

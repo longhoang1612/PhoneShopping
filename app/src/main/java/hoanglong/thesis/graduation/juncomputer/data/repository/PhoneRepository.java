@@ -24,8 +24,8 @@ public class PhoneRepository implements PhoneDataSourceImp.localDataSource
     }
 
     @Override
-    public void getPhoneCategory(CallBack<List<ItemPhoneCategory>> callBack) {
-        mPhoneDataSource.getPhoneCategory(callBack);
+    public void getPhoneCategory(CallBack<List<ItemPhoneCategory>> callBack,String typeCategory) {
+        mPhoneDataSource.getPhoneCategory(callBack,typeCategory);
     }
 
     @Override

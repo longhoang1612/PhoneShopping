@@ -30,17 +30,6 @@
             android:title="Thông báo của tôi" />
     </group>
 
-    <item android:title="KHUYẾN MÃI HOT">
-        <menu>
-            <item
-                android:id="@+id/nav_deal"
-                android:title="Jun Deal" />
-            <item
-                android:id="@+id/nav_coupon"
-                android:title="Phiếu quà tặng" />
-        </menu>
-    </item>
-
     <item android:title="HỖ TRỢ">
         <menu>
             <item

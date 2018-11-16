@@ -22,7 +22,7 @@ class PhoneCategoryContract {
     }
 
     interface Presenter extends BasePresenter<PhoneCategoryContract.View> {
-        void getCategories();
+        void getCategories(String typeCategory);
 
         void getPhones(String typeCategory);
     }

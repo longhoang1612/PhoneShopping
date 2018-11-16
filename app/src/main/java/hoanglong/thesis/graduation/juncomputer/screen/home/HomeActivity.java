@@ -143,11 +143,6 @@ public class HomeActivity extends AppCompatActivity
 //                        startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
                         drawer.closeDrawers();
                         return true;
-                    case R.id.nav_deal:
-                        // launch new intent instead of loading fragment
-//                        startActivity(new Intent(MainActivity.this, PrivacyPolicyActivity.class));
-                        drawer.closeDrawers();
-                        return true;
                     default:
                         navItemIndex = 0;
                 }
