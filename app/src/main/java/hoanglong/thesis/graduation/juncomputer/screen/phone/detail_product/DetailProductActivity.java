@@ -72,8 +72,8 @@ public class DetailProductActivity extends AppCompatActivity
     TextView textSeeDetail;
     @BindView(R.id.relative_comment)
     RelativeLayout mRelativeComment;
-    @BindView(R.id.ic_shopping)
-    ImageView mImageShopping;
+//    @BindView(R.id.ic_shopping)
+//    ImageView mImageShopping;
 
     private ItemPhoneProduct itemPhoneProduct;
     private List<DetailContent> mContentListHide;
@@ -128,7 +128,7 @@ public class DetailProductActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        mImageShopping.setVisibility(View.VISIBLE);
+        //mImageShopping.setVisibility(View.VISIBLE);
     }
 
     private void setupView(ItemPhoneProduct itemPhoneProduct) {
@@ -160,8 +160,12 @@ public class DetailProductActivity extends AppCompatActivity
         //Content
         mTextTitleContent.setText(itemPhoneProduct.getTitleContent());
         mTextH2.setText(itemPhoneProduct.getTitleH2());
-        for (int i = 0; i < 2; i++) {
-            mContentListHide.add(itemPhoneProduct.getDetailContent().get(i));
+        if (itemPhoneProduct.getDetailContent().size() >= 2) {
+            for (int i = 0; i < 2; i++) {
+                mContentListHide.add(itemPhoneProduct.getDetailContent().get(i));
+            }
+        } else {
+            mContentListHide.addAll(itemPhoneProduct.getDetailContent());
         }
 
         mRecyclerDes.setAdapter(
@@ -210,6 +214,6 @@ public class DetailProductActivity extends AppCompatActivity
 
     @Override
     public void onHideButtonCart(int visibility) {
-        mImageShopping.setVisibility(View.GONE);
+        //mImageShopping.setVisibility(View.GONE);
     }
 }

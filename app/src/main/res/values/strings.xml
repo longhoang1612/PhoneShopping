@@ -66,4 +66,5 @@
     <string name="comment_of_u">Đánh giá của bạn</string>
     <string name="send">gửi</string>
     <string name="default_percent">0%</string>
+    <string name="category">category</string>
 </resources>
