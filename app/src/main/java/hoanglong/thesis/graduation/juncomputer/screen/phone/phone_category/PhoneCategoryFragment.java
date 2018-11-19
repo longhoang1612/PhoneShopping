@@ -14,7 +14,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hoanglong.thesis.graduation.juncomputer.screen.phone.all_phone.AllPhoneFragment;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.category.Category;
 import hoanglong.thesis.graduation.juncomputer.data.model.category.ItemPhoneCategory;
@@ -22,17 +21,20 @@ import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhon
 import hoanglong.thesis.graduation.juncomputer.data.repository.PhoneRepository;
 import hoanglong.thesis.graduation.juncomputer.data.source.remote.PhoneDataSource;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.AccessoriesCategoryAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneCategoryAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.all_phone.AllPhoneFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.all_phone.PhoneFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
+import hoanglong.thesis.graduation.juncomputer.utils.Constant;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
 
 public class PhoneCategoryFragment extends BaseFragment implements
         PhoneCategoryContract.View,
         PhoneAdapter.OnClickProductListener,
         PhoneCategoryAdapter.OnClickPhoneCategoryListener,
-        View.OnClickListener {
+        View.OnClickListener, AccessoriesCategoryAdapter.OnClickPhoneCategoryListener {
 
     public static final String TAG = PhoneCategoryFragment.class.getName();
     public static final String BUNDLE_CATEGORY = "BUNDLE_CATEGORY";
@@ -108,9 +110,15 @@ public class PhoneCategoryFragment extends BaseFragment implements
     }
 
     private void setUpRecyclerView(List<ItemPhoneCategory> phoneCategoryList) {
-        PhoneCategoryAdapter phoneCategoryAdapter =
-                new PhoneCategoryAdapter(phoneCategoryList, this);
-        mRecyclerCategoryPhone.setAdapter(phoneCategoryAdapter);
+        if (mCategory.getType().equals(Constant.Category.accessories_type)) {
+            AccessoriesCategoryAdapter accessoriesCategoryAdapter =
+                    new AccessoriesCategoryAdapter(phoneCategoryList, this);
+            mRecyclerCategoryPhone.setAdapter(accessoriesCategoryAdapter);
+        } else {
+            PhoneCategoryAdapter phoneCategoryAdapter =
+                    new PhoneCategoryAdapter(phoneCategoryList, this);
+            mRecyclerCategoryPhone.setAdapter(phoneCategoryAdapter);
+        }
     }
 
     @Override
