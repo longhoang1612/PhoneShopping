@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JunComputer</string>
+    <string name="app_name">JunJamJa</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
@@ -67,4 +67,10 @@
     <string name="send">gửi</string>
     <string name="default_percent">0%</string>
     <string name="category">category</string>
+    <string name="title_add_to_cart">Sản phẩm đã được thêm vào giỏ hàng</string>
+    <string name="view_cart">Xem giỏ hàng</string>
+    <string name="title_my_cart">Giỏ hàng của tôi</string>
+    <string name="go_to_shopping">Go to shopping</string>
+    <string name="payment">Thanh toán</string>
+    <string name="total_money">Tổng số tiền :</string>
 </resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    style="@style/BaseBottomSheetDialog"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ic_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10"
+        android:src="@drawable/ic_close_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_10"
+        android:fontFamily="@font/sanfranciscodisplay_regular"
+        android:text="@string/title_add_to_cart"
+        android:textColor="@color/color_blue_grey_900"
+        app:layout_constraintBottom_toBottomOf="@+id/ic_add"
+        app:layout_constraintStart_toEndOf="@+id/ic_add"
+        app:layout_constraintTop_toTopOf="@+id/ic_add" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_16"
+        android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ic_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ic_add" />
+
+    <ImageView
+        android:id="@+id/image_product"
+        android:layout_width="@dimen/dimen_100"
+        android:layout_height="@dimen/dimen_120dp"
+        android:layout_margin="@dimen/dimen_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic_add" />
+
+    <TextView
+        android:textColor="@color/color_blue_grey_900"
+        android:layout_marginStart="@dimen/dimen_15"
+        android:id="@+id/text_name_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/image_product"
+        app:layout_constraintTop_toTopOf="@+id/image_product" />
+
+    <TextView
+        android:textSize="@dimen/dimen_text_16"
+        android:layout_marginStart="@dimen/dimen_15"
+        android:textColor="@color/color_yellow_900"
+        android:fontFamily="@font/sanfranciscodisplay_bold"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:id="@+id/text_price_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/image_product"
+        app:layout_constraintTop_toBottomOf="@+id/text_name_product" />
+
+    <RelativeLayout
+        android:id="@+id/relative_view_cart"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_margin="@dimen/dimen_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/custom_button1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_product">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/sanfranciscodisplay_medium"
+            android:text="@string/view_cart"
+            android:textColor="@color/colorWhite" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

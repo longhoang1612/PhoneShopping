@@ -59,8 +59,8 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/dimen_7"
                     android:layout_marginTop="@dimen/dimen_7"
+                    android:layout_marginBottom="@dimen/dimen_7"
                     android:layout_toStartOf="@+id/ic_shopping_cart"
                     android:background="@color/colorWhite"
                     app:cardCornerRadius="@dimen/dimen_5">
@@ -81,8 +81,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/ic_search"
                             android:layout_toStartOf="@+id/ic_qr_code"
+                            android:layout_toEndOf="@+id/ic_search"
                             android:background="@android:color/transparent"
                             android:ellipsize="end"
                             android:fontFamily="@font/sanfranciscodisplay_regular"
@@ -109,6 +109,20 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <!--<android.support.v4.widget.SwipeRefreshLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+        <!--<FrameLayout-->
+            <!--android:id="@+id/frame_home"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--tools:context=".screen.home.HomeActivity"-->
+            <!--tools:showIn="@layout/app_bar_home" />-->
+    <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+
     <FrameLayout
         android:id="@+id/frame_home"
         android:layout_width="match_parent"
@@ -116,6 +130,6 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".screen.home.HomeActivity"
-        tools:showIn="@layout/app_bar_home"/>
+        tools:showIn="@layout/app_bar_home" />
 
 </android.support.design.widget.CoordinatorLayout>

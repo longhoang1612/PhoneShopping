@@ -24,7 +24,7 @@ import hoanglong.thesis.graduation.juncomputer.screen.login.fragment.SignInFragm
 
 public class LoginActivity extends AppCompatActivity {
 
-    final TextView tvTitle = findViewById(R.id.tv_title);
+    TextView tvTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setUpScroll();
+        tvTitle = findViewById(R.id.tv_title);
 
         ViewPager viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);

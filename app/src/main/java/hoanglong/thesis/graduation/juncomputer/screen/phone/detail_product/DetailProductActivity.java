@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,10 +18,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
+import hoanglong.thesis.graduation.juncomputer.data.model.cart.CartItem;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.DetailContent;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ListParameter;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.PhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
+import hoanglong.thesis.graduation.juncomputer.screen.bottomsheet.AddCartBottomDialogFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.home.adapter.SamplePagerAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ContentAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ExtraProductAdapter;
@@ -72,6 +75,8 @@ public class DetailProductActivity extends AppCompatActivity
     TextView textSeeDetail;
     @BindView(R.id.relative_comment)
     RelativeLayout mRelativeComment;
+    @BindView(R.id.fab_cart)
+    FloatingActionButton mFABCart;
 //    @BindView(R.id.ic_shopping)
 //    ImageView mImageShopping;
 
@@ -89,6 +94,7 @@ public class DetailProductActivity extends AppCompatActivity
         mRLAllContent.setOnClickListener(this);
         textSeeDetail.setOnClickListener(this);
         mRelativeComment.setOnClickListener(this);
+        mFABCart.setOnClickListener(this);
         mContentListHide = new ArrayList<>();
         mInfoProducts = new ArrayList<>();
         Bundle bundle = getIntent().getExtras();
@@ -198,6 +204,21 @@ public class DetailProductActivity extends AppCompatActivity
                         CommentFragment.TAG,
                         true,
                         -1, -1);
+                break;
+            case R.id.fab_cart:
+                CartItem cartItem = new CartItem(
+                        itemPhoneProduct.getTitle(),
+                        itemPhoneProduct.getPrice(),
+                        1,
+                        itemPhoneProduct.getImage(),
+                        itemPhoneProduct.getId()
+                );
+                RealmCart.addToCart(cartItem);
+
+                AddCartBottomDialogFragment addCartFragment =
+                        AddCartBottomDialogFragment.newInstance(itemPhoneProduct);
+                addCartFragment.show(getSupportFragmentManager(),
+                        "add_cart_fragment");
                 break;
         }
     }

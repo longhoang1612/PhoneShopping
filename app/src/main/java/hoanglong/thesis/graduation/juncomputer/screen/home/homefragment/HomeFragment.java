@@ -2,9 +2,14 @@ package hoanglong.thesis.graduation.juncomputer.screen.home.homefragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.List;
@@ -26,6 +31,7 @@ import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.LaptopHighLightAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.PhoneHighLightAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.PhoneHomeAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.main.MainActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.phone_category.PhoneCategoryFragment;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
@@ -52,6 +58,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
     RecyclerView mRecyclerAccessories;
     @BindView(R.id.recycler_category_home)
     RecyclerView mRecyclerCategoryHome;
+    @BindView(R.id.progress_home)
+    ProgressBar mProgressHome;
+    @BindView(R.id.linear_home)
+    LinearLayout mLinearHome;
+    @BindView(R.id.swipe_home)
+    SwipeRefreshLayout mSwipeRefreshHome;
     private HomePresenter mHomePresenter;
 
     public HomeFragment() {
@@ -78,6 +90,22 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
         mHomePresenter = new HomePresenter(homeRepository, categoryRepository);
         mHomePresenter.setView(this);
         loadNewsFeed();
+        mSwipeRefreshHome.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshContent();
+            }
+        });
+    }
+
+    private void refreshContent() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadNewsFeed();
+                mSwipeRefreshHome.setRefreshing(false);
+            }
+        },1000);
     }
 
     private void loadNewsFeed() {
@@ -126,7 +154,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
 
     @Override
     public void hideProgressBar() {
-
+        mProgressHome.setVisibility(View.GONE);
+        mLinearHome.setVisibility(View.VISIBLE);
     }
 
     @Override

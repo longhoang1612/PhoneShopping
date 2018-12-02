@@ -1,33 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screen.main.CartActivity">
+    android:background="@color/colorWhite"
+    tools:context=".screen.cart.CartActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_cart" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <ImageView
+        android:id="@+id/ic_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/dimen_16"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.design.widget.CoordinatorLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sanfranciscodisplay_bold"
+        android:text="@string/title_my_cart"
+        android:textSize="@dimen/dimen_text_16"
+        app:layout_constraintBottom_toBottomOf="@+id/ic_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ic_back" />
+
+    <ImageView
+        android:id="@+id/image_empty_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/empty_cart" />
+
+    <RelativeLayout
+        android:id="@+id/relative_go_shopping"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40dp"
+        android:layout_margin="@dimen/dimen_20"
+        android:background="@drawable/custom_button1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/sanfranciscodisplay_medium"
+            android:text="@string/go_to_shopping"
+            android:textColor="@color/colorWhite" />
+    </RelativeLayout>
+
+    <android.support.constraint.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="image_empty_cart,relative_go_shopping" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_cart"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="@dimen/dimen_0"
+        android:layout_marginStart="@dimen/dimen_5"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/relative_total_money"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic_back" />
+
+    <RelativeLayout
+        android:id="@+id/relative_total_money"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_60"
+        android:layout_margin="@dimen/dimen_5"
+        android:background="@color/color_blue_700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/title_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_5"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:fontFamily="@font/sanfranciscodisplay_semibold"
+            android:text="@string/total_money"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/dimen_text_16" />
+
+        <TextView
+            android:id="@+id/text_total_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_total"
+            android:layout_marginStart="@dimen/dimen_5"
+            android:fontFamily="@font/sanfranciscodisplay_medium"
+            android:textColor="@color/color_yellow_900"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:id="@+id/relative_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/dimen_10"
+            android:background="@drawable/custom_button6">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sanfranciscodisplay_bold"
+                android:padding="@dimen/dimen_8"
+                android:text="@string/payment"
+                android:textColor="@color/colorWhite" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <android.support.constraint.Group
+        android:id="@+id/group_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="relative_total_money,recycler_cart" />
+
+</android.support.constraint.ConstraintLayout>

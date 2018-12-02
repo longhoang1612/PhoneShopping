@@ -42,11 +42,13 @@ public class HomePresenter implements HomeContract.Presenter {
         mCategoryRepository.getCategory(new CallBack<List<Category>>() {
             @Override
             public void getDataSuccess(List<Category> data) {
+                //mView.hideProgressBar();
                 mView.onGetCategoryHomeSuccess(data);
             }
 
             @Override
             public void getDataError(String error) {
+                //mView.hideProgressBar();
             }
         });
     }

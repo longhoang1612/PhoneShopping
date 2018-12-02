@@ -1,198 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.v4.widget.SwipeRefreshLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/swipe_home"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_blue_gray_300"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/dimen_20"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".screen.home.HomeActivity">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#0079ca"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimen_10"
-                android:layout_marginStart="@dimen/dimen_15"
-                android:layout_marginTop="@dimen/dimen_10"
-                android:contentDescription="@string/msg_location"
-                android:src="@drawable/ic_location_on_black_24dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/dimen_10"
-                android:fontFamily="@font/sanfranciscodisplay_regular"
-                android:text="@string/b_n_mu_n_giao_h_ng_t_i_u"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/dimen_text_16" />
-        </LinearLayout>
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_140dp">
+            android:layout_height="match_parent">
 
-            <hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager
-                android:id="@id/viewpager"
+            <LinearLayout
+                android:id="@+id/linear_home"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@color/color_bg"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dimen_20"
+                android:visibility="gone"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:context=".screen.home.HomeActivity">
 
-            <me.relex.circleindicator.CircleIndicator
-                android:id="@id/indicator"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_48dp"
-                android:layout_alignParentBottom="true" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#0079ca"
+                    android:orientation="horizontal">
 
-        </RelativeLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_15"
+                        android:layout_marginTop="@dimen/dimen_10"
+                        android:layout_marginBottom="@dimen/dimen_10"
+                        android:contentDescription="@string/msg_location"
+                        android:src="@drawable/ic_location_on_black_24dp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_category_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10"
-            android:orientation="horizontal"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_regular"
+                        android:text="@string/b_n_mu_n_giao_h_ng_t_i_u"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/dimen_text_16" />
+                </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_140dp">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
-                android:background="#333" />
+                    <hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager
+                        android:id="@id/viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
-            <ImageView
-                android:layout_width="@dimen/dimen_200dp"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="@dimen/dimen_5"
-                android:fontFamily="@font/sanfranciscodisplay_bold"
-                android:scaleType="centerInside"
-                android:src="@drawable/gsct"
-                android:text="@string/khuyen_mai"
-                android:textAllCaps="true"
-                android:textColor="@color/color_blue_grey_900"
-                android:textSize="@dimen/dimen_text_16" />
-        </RelativeLayout>
+                    <me.relex.circleindicator.CircleIndicator
+                        android:id="@id/indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_48dp"
+                        android:layout_alignParentBottom="true" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_phone_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+                </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10"
-            android:background="@color/colorWhite"
-            android:orientation="vertical">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_category_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:layout_marginBottom="@dimen/dimen_10"
+                    android:orientation="horizontal"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_5"
-                android:fontFamily="@font/sanfranciscodisplay_bold"
-                android:text="@string/title_phone_highlight"
-                android:textAllCaps="true"
-                android:textColor="@color/color_blue_grey_900"
-                android:textSize="@dimen/dimen_text_16" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5"
+                    android:background="@color/colorWhite">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_phone_highlight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_centerInParent="true"
+                        android:background="#333" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="@dimen/dimen_200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="@dimen/dimen_5"
+                        android:fontFamily="@font/sanfranciscodisplay_bold"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/gsct"
+                        android:text="@string/khuyen_mai"
+                        android:textAllCaps="true"
+                        android:textColor="@color/color_blue_grey_900"
+                        android:textSize="@dimen/dimen_text_16" />
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_phone_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5"
+                        android:fontFamily="@font/sanfranciscodisplay_bold"
+                        android:text="@string/title_phone_highlight"
+                        android:textAllCaps="true"
+                        android:textColor="@color/color_blue_grey_900"
+                        android:textSize="@dimen/dimen_text_16" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_phone_highlight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_margin="@dimen/dimen_10"
+                            android:fontFamily="@font/sanfranciscodisplay_medium"
+                            android:text="@string/see_all"
+                            android:textColor="@color/color_blue_700"
+                            android:textSize="@dimen/dimen_18sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5"
+                        android:fontFamily="@font/sanfranciscodisplay_bold"
+                        android:text="@string/title_laptop_highlight"
+                        android:textAllCaps="true"
+                        android:textColor="@color/color_blue_grey_900"
+                        android:textSize="@dimen/dimen_text_16" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_laptop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_margin="@dimen/dimen_10"
+                            android:fontFamily="@font/sanfranciscodisplay_medium"
+                            android:text="@string/see_all"
+                            android:textColor="@color/color_blue_700"
+                            android:textSize="@dimen/dimen_18sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_margin="@dimen/dimen_10"
-                    android:fontFamily="@font/sanfranciscodisplay_medium"
-                    android:text="@string/see_all"
-                    android:textColor="@color/color_blue_700"
-                    android:textSize="@dimen/dimen_18sp" />
+                    android:layout_margin="@dimen/dimen_5"
+                    android:fontFamily="@font/sanfranciscodisplay_bold"
+                    android:text="@string/title_accessories_hl"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_blue_grey_900"
+                    android:textSize="@dimen/dimen_text_16" />
 
-            </RelativeLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_accessories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10"
-            android:background="@color/colorWhite"
-            android:orientation="vertical">
-
-            <TextView
+            <ProgressBar
+                android:id="@+id/progress_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_5"
-                android:fontFamily="@font/sanfranciscodisplay_bold"
-                android:text="@string/title_laptop_highlight"
-                android:textAllCaps="true"
-                android:textColor="@color/color_blue_grey_900"
-                android:textSize="@dimen/dimen_text_16" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_20" />
+        </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_laptop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    </android.support.v4.widget.NestedScrollView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_margin="@dimen/dimen_10"
-                    android:fontFamily="@font/sanfranciscodisplay_medium"
-                    android:text="@string/see_all"
-                    android:textColor="@color/color_blue_700"
-                    android:textSize="@dimen/dimen_18sp" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_5"
-            android:fontFamily="@font/sanfranciscodisplay_bold"
-            android:text="@string/title_accessories_hl"
-            android:textAllCaps="true"
-            android:textColor="@color/color_blue_grey_900"
-            android:textSize="@dimen/dimen_text_16" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_accessories"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
-
-    </LinearLayout>
-
-</android.support.v4.widget.NestedScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>
