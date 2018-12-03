@@ -7,8 +7,7 @@
     android:background="@color/colorWhite"
     android:clickable="true"
     android:focusable="true"
-    android:orientation="vertical"
-    tools:context=".NewAddressFragment">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/relative_top"
