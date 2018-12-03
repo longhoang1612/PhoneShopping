@@ -7,7 +7,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -18,6 +17,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.category.Category;
+import hoanglong.thesis.graduation.juncomputer.data.model.home.Accessories;
+import hoanglong.thesis.graduation.juncomputer.data.model.home.Km;
+import hoanglong.thesis.graduation.juncomputer.data.model.home.Laptop;
 import hoanglong.thesis.graduation.juncomputer.data.model.home.NewsFeed;
 import hoanglong.thesis.graduation.juncomputer.data.model.home.Phone;
 import hoanglong.thesis.graduation.juncomputer.data.repository.CategoryRepository;
@@ -27,11 +29,10 @@ import hoanglong.thesis.graduation.juncomputer.data.source.remote.HomeDataSource
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.home.adapter.SamplePagerAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.AccessoriesAdapter;
-import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.CategoryHomeAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.CategoriesAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.LaptopHighLightAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.PhoneHighLightAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter.PhoneHomeAdapter;
-import hoanglong.thesis.graduation.juncomputer.screen.main.MainActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.phone_category.PhoneCategoryFragment;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
@@ -40,7 +41,8 @@ import me.relex.circleindicator.CircleIndicator;
 
 public class HomeFragment extends BaseFragment implements HomeContract.View
         , SamplePagerAdapter.ClickSliderListener, PhoneHighLightAdapter.ClickPhoneListener,
-        CategoryHomeAdapter.OnClickCategoryItem {
+        CategoriesAdapter.OnClickCategoryItem, AccessoriesAdapter.OnClickAccessoriesListener,
+        LaptopHighLightAdapter.OnClickLaptopListener, PhoneHomeAdapter.OnClickSalePriceListener {
 
     public static final String TAG = HomeFragment.class.getName();
 
@@ -105,7 +107,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
                 loadNewsFeed();
                 mSwipeRefreshHome.setRefreshing(false);
             }
-        },1000);
+        }, 1000);
     }
 
     private void loadNewsFeed() {
@@ -120,7 +122,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
                 newsFeed.getSlideImage(), this));
         indicator.setViewPager(viewpager);
 
-        mRecyclerPhoneHome.setAdapter(new PhoneHomeAdapter(newsFeed.getKm()));
+        mRecyclerPhoneHome.setAdapter(new PhoneHomeAdapter(newsFeed.getKm(), this));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -147,9 +149,9 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
             }
         });
         mRecyclerLaptop.setLayoutManager(gridLaptop);
-        mRecyclerLaptop.setAdapter(new LaptopHighLightAdapter(newsFeed.getLaptop()));
+        mRecyclerLaptop.setAdapter(new LaptopHighLightAdapter(newsFeed.getLaptop(), this));
 
-        mRecyclerAccessories.setAdapter(new AccessoriesAdapter(newsFeed.getAccessories()));
+        mRecyclerAccessories.setAdapter(new AccessoriesAdapter(newsFeed.getAccessories(), this));
     }
 
     @Override
@@ -165,7 +167,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
 
     @Override
     public void onGetCategoryHomeSuccess(List<Category> categories) {
-        CategoryHomeAdapter categoryAdapter = new CategoryHomeAdapter(categories, this);
+        CategoriesAdapter categoryAdapter = new CategoriesAdapter(categories, this);
         mRecyclerCategoryHome.setAdapter(categoryAdapter);
     }
 
@@ -191,5 +193,26 @@ public class HomeFragment extends BaseFragment implements HomeContract.View
                     PhoneCategoryFragment.TAG,
                     true, -1, -1);
         }
+    }
+
+    @Override
+    public void onClickAccessories(Accessories accessories) {
+        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+        intent.putExtra("BUNDLE_ITEM_PRODUCT", accessories.getTitle());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClickLaptop(Laptop laptop) {
+        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+        intent.putExtra("BUNDLE_ITEM_PRODUCT", laptop.getTitle());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClickSalePrice(Km phone) {
+        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+        intent.putExtra("BUNDLE_ITEM_PRODUCT", phone.getTitleItem());
+        startActivity(intent);
     }
 }

@@ -24,9 +24,11 @@ public class PhoneHomeAdapter extends RecyclerView.Adapter<PhoneHomeAdapter.Phon
 
     private List<Km> mPhones;
     private LayoutInflater mInflater;
+    private OnClickSalePriceListener mSalePriceListener;
 
-    public PhoneHomeAdapter(List<Km> phones) {
+    public PhoneHomeAdapter(List<Km> phones, OnClickSalePriceListener onClickSalePriceListener) {
         mPhones = phones;
+        mSalePriceListener = onClickSalePriceListener;
     }
 
     @NonNull
@@ -36,7 +38,7 @@ public class PhoneHomeAdapter extends RecyclerView.Adapter<PhoneHomeAdapter.Phon
             mInflater = LayoutInflater.from(viewGroup.getContext());
         }
         View view = mInflater.inflate(R.layout.item_phone_home, viewGroup, false);
-        return new PhoneViewHolder(view, viewGroup.getContext());
+        return new PhoneViewHolder(view, viewGroup.getContext(), mSalePriceListener);
     }
 
     @Override
@@ -50,7 +52,11 @@ public class PhoneHomeAdapter extends RecyclerView.Adapter<PhoneHomeAdapter.Phon
         return mPhones != null ? mPhones.size() : 0;
     }
 
-    static class PhoneViewHolder extends RecyclerView.ViewHolder {
+    public interface OnClickSalePriceListener {
+        void onClickSalePrice(Km km);
+    }
+
+    static class PhoneViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.image_phone_home)
         ImageView mImagePhone;
@@ -67,17 +73,22 @@ public class PhoneHomeAdapter extends RecyclerView.Adapter<PhoneHomeAdapter.Phon
         @BindView(R.id.relative_sale)
         RelativeLayout mRelativeSale;
         private Context mContext;
+        private Km mKm;
+        private OnClickSalePriceListener mOnClickSalePriceListener;
 
-        PhoneViewHolder(@NonNull View itemView, Context context) {
+        PhoneViewHolder(@NonNull View itemView, Context context, OnClickSalePriceListener onClickSalePriceListener) {
             super(itemView);
             mContext = context;
+            mOnClickSalePriceListener = onClickSalePriceListener;
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
         }
 
         void bindData(Km phone) {
             if (phone == null) {
                 return;
             }
+            mKm = phone;
             Glide.with(mContext).load(phone.getImage()).into(mImagePhone);
             if (phone.getImagePromo() == null) {
                 mImagePromo.setVisibility(View.GONE);
@@ -102,6 +113,11 @@ public class PhoneHomeAdapter extends RecyclerView.Adapter<PhoneHomeAdapter.Phon
             }
             mTextPhone.setText(phone.getTitleItem());
             mTextPricePhone.setText(phone.getNewPrice());
+        }
+
+        @Override
+        public void onClick(View v) {
+            mOnClickSalePriceListener.onClickSalePrice(mKm);
         }
     }
 }

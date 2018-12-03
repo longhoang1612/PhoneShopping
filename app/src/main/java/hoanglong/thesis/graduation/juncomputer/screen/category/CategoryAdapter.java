@@ -24,7 +24,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     private List<Category> mCategoryList;
     private OnClickCategoryItem mCategoryItem;
 
-    CategoryAdapter(List<Category> categoryList, OnClickCategoryItem categoryItem) {
+    public CategoryAdapter(List<Category> categoryList, OnClickCategoryItem categoryItem) {
         mCategoryList = categoryList;
         mCategoryItem = categoryItem;
     }
@@ -50,7 +50,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return mCategoryList != null ? mCategoryList.size() : 0;
     }
 
-    interface OnClickCategoryItem {
+    public interface OnClickCategoryItem {
         void onClickItem(Category category);
     }
 

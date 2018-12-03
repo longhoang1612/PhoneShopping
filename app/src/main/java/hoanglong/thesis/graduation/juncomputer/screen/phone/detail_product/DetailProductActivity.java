@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -79,8 +82,16 @@ public class DetailProductActivity extends AppCompatActivity
     FloatingActionButton mFABCart;
     @BindView(R.id.tv_number_cart)
     TextView mTextNumberCart;
-//    @BindView(R.id.ic_shopping)
+    //    @BindView(R.id.ic_shopping)
 //    ImageView mImageShopping;
+    @BindView(R.id.progress_detail)
+    ProgressBar mProgressDetail;
+    @BindView(R.id.nest_scroll_detail)
+    NestedScrollView mNestedScrollView;
+    @BindView(R.id.relative_sale)
+    RelativeLayout mRelativeSale;
+    @BindView(R.id.ic_back)
+    ImageView mImageBack;
 
     private ItemPhoneProduct itemPhoneProduct;
     private List<DetailContent> mContentListHide;
@@ -96,6 +107,7 @@ public class DetailProductActivity extends AppCompatActivity
         mRLAllContent.setOnClickListener(this);
         textSeeDetail.setOnClickListener(this);
         mRelativeComment.setOnClickListener(this);
+        mImageBack.setOnClickListener(this);
         mFABCart.setOnClickListener(this);
         mContentListHide = new ArrayList<>();
         mInfoProducts = new ArrayList<>();
@@ -103,6 +115,8 @@ public class DetailProductActivity extends AppCompatActivity
         if (bundle != null) {
             title = bundle.getString("BUNDLE_ITEM_PRODUCT");
         }
+        mNestedScrollView.setVisibility(View.GONE);
+        mProgressDetail.setVisibility(View.VISIBLE);
         setData();
     }
 
@@ -112,6 +126,8 @@ public class DetailProductActivity extends AppCompatActivity
             @Override
             public void onResponse(@NonNull Call<PhoneProduct> call, @NonNull Response<PhoneProduct> response) {
                 if (response.body() != null) {
+                    mNestedScrollView.setVisibility(View.VISIBLE);
+                    mProgressDetail.setVisibility(View.GONE);
                     itemPhoneProduct = response.body().getPhoneProduct().get(0);
                     setupView(itemPhoneProduct);
                     setSlide();
@@ -120,7 +136,8 @@ public class DetailProductActivity extends AppCompatActivity
 
             @Override
             public void onFailure(@NonNull Call<PhoneProduct> call, @NonNull Throwable t) {
-
+                mProgressDetail.setVisibility(View.VISIBLE);
+                mNestedScrollView.setVisibility(View.GONE);
             }
         });
     }
@@ -151,7 +168,12 @@ public class DetailProductActivity extends AppCompatActivity
         if (itemPhoneProduct == null) {
             return;
         }
-        mTextSale.setText(itemPhoneProduct.getDeal());
+        if (itemPhoneProduct.getDeal() == null || itemPhoneProduct.getDeal().equals("")) {
+            mRelativeSale.setVisibility(View.GONE);
+        } else {
+            mRelativeSale.setVisibility(View.VISIBLE);
+            mTextSale.setText(itemPhoneProduct.getDeal());
+        }
         mTextNameProduct.setText(itemPhoneProduct.getTitle());
         mTextPrice.setText(itemPhoneProduct.getPrice());
         mRecyclerSale.setAdapter(
@@ -230,6 +252,9 @@ public class DetailProductActivity extends AppCompatActivity
                         AddCartBottomDialogFragment.newInstance(itemPhoneProduct);
                 addCartFragment.show(getSupportFragmentManager(),
                         "add_cart_fragment");
+                break;
+            case R.id.ic_back:
+                onBackPressed();
                 break;
         }
     }

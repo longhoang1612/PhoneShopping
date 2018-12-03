@@ -25,9 +25,11 @@ public class LaptopHighLightAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     private List<Laptop> mLaptops;
     private LayoutInflater mInflater;
+    private OnClickLaptopListener mLaptopListener;
 
-    public LaptopHighLightAdapter(List<Laptop> laptops) {
+    public LaptopHighLightAdapter(List<Laptop> laptops, OnClickLaptopListener onClickLaptopListener) {
         mLaptops = laptops;
+        mLaptopListener = onClickLaptopListener;
     }
 
     @NonNull
@@ -38,10 +40,10 @@ public class LaptopHighLightAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
         if (viewType == 0) {
             View viewTop = mInflater.inflate(R.layout.item_phone_top, viewGroup, false);
-            return new TopViewHolder(viewTop, viewGroup.getContext());
+            return new TopViewHolder(viewTop, viewGroup.getContext(), mLaptopListener);
         } else {
             View view = mInflater.inflate(R.layout.item_phone_hl_home, viewGroup, false);
-            return new PhoneViewHolder(view, viewGroup.getContext());
+            return new PhoneViewHolder(view, viewGroup.getContext(), mLaptopListener);
         }
     }
 
@@ -74,7 +76,7 @@ public class LaptopHighLightAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return mLaptops != null ? mLaptops.size() : 0;
     }
 
-    static class PhoneViewHolder extends RecyclerView.ViewHolder {
+    static class PhoneViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.image_phone_home)
         ImageView mImagePhone;
@@ -91,10 +93,14 @@ public class LaptopHighLightAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         @BindView(R.id.relative_sale)
         RelativeLayout mRelativeSale;
         private Context mContext;
+        private OnClickLaptopListener mOnClickLaptopListener;
+        private Laptop mLaptop;
 
-        PhoneViewHolder(@NonNull View itemView, Context context) {
+        PhoneViewHolder(@NonNull View itemView, Context context, OnClickLaptopListener onClickLaptopListener) {
             super(itemView);
             mContext = context;
+            mOnClickLaptopListener = onClickLaptopListener;
+            itemView.setOnClickListener(this);
             ButterKnife.bind(this, itemView);
         }
 
@@ -102,6 +108,7 @@ public class LaptopHighLightAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             if (laptop == null) {
                 return;
             }
+            mLaptop = laptop;
             Glide.with(mContext).load(laptop.getImage()).into(mImagePhone);
             if (laptop.getImagePromo() == null) {
                 mImagePromo.setVisibility(View.GONE);
@@ -110,8 +117,8 @@ public class LaptopHighLightAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 Glide.with(mContext).load(laptop.getImagePromo()).into(mImagePromo);
             }
             if (laptop.getPromo() != null) {
-                String temp = laptop.getPromo().replaceAll("\\n","")
-                        .replaceAll(" {10}","");
+                String temp = laptop.getPromo().replaceAll("\\n", "")
+                        .replaceAll(" {10}", "");
                 mTextPromo.setText(temp);
             }
             if (!laptop.getInstallment().equals("")) {
@@ -120,9 +127,14 @@ public class LaptopHighLightAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             mTextPhone.setText(laptop.getTitle());
             mTextPricePhone.setText(laptop.getPrice());
         }
+
+        @Override
+        public void onClick(View v) {
+            mOnClickLaptopListener.onClickLaptop(mLaptop);
+        }
     }
 
-    static class TopViewHolder extends RecyclerView.ViewHolder {
+    static class TopViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.image_phone_home)
         ImageView mImagePhone;
@@ -133,21 +145,35 @@ public class LaptopHighLightAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         @BindView(R.id.text_sale)
         TextView mTextSale;
         private Context mContext;
+        private Laptop mLaptop;
+        private OnClickLaptopListener mLaptopListener;
 
-        TopViewHolder(@NonNull View itemView, Context context) {
+        TopViewHolder(@NonNull View itemView, Context context, OnClickLaptopListener onClickLaptopListener) {
             super(itemView);
             mContext = context;
+            mLaptopListener = onClickLaptopListener;
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
         }
 
         void bindData(Laptop laptop) {
             if (laptop == null) {
                 return;
             }
+            mLaptop = laptop;
             Glide.with(mContext).load(laptop.getImage()).into(mImagePhone);
             mTextPhone.setText(laptop.getTitle());
             mTextPricePhone.setText(laptop.getPrice());
             mTextSale.setText(laptop.getInstallment());
         }
+
+        @Override
+        public void onClick(View v) {
+            mLaptopListener.onClickLaptop(mLaptop);
+        }
+    }
+
+    public interface OnClickLaptopListener {
+        void onClickLaptop(Laptop laptop);
     }
 }

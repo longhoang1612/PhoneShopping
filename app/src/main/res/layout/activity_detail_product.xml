@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,6 +11,7 @@
         android:background="@color/colorPrimary">
 
         <ImageView
+            android:id="@+id/ic_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -62,12 +62,12 @@
                 android:background="@drawable/custom_circle">
 
                 <TextView
-                    android:fontFamily="@font/sanfranciscodisplay_bold"
-                    android:textColor="@color/colorWhite"
                     android:id="@+id/tv_number_cart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
+                    android:fontFamily="@font/sanfranciscodisplay_bold"
+                    android:textColor="@color/colorWhite"
                     android:textSize="@dimen/dimen_10sp" />
             </RelativeLayout>
         </RelativeLayout>
@@ -75,9 +75,11 @@
     </RelativeLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nest_scroll_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar_detail"
+        android:visibility="gone"
         android:background="#eeeeee">
 
         <LinearLayout
@@ -202,5 +204,12 @@
         android:id="@+id/frame_full"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar_detail"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

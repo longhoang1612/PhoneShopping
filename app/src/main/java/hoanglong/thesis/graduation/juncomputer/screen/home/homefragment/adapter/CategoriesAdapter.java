@@ -2,7 +2,6 @@ package hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.adapter
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +18,13 @@ import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.category.Category;
 
-public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapter.CategoryViewHolder> {
+public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder> {
 
     private LayoutInflater mInflater;
     private List<Category> mCategoryList;
     private OnClickCategoryItem mCategoryItem;
 
-    public CategoryHomeAdapter(List<Category> categoryList, OnClickCategoryItem categoryItem) {
+    public CategoriesAdapter(List<Category> categoryList, OnClickCategoryItem categoryItem) {
         mCategoryList = categoryList;
         mCategoryItem = categoryItem;
     }
@@ -58,7 +57,7 @@ public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapte
     static class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.image_category)
-        FloatingActionButton mImageCategory;
+        ImageView mImageCategory;
         @BindView(R.id.text_title_category)
         TextView mTextCategory;
         private Context mContext;
@@ -70,7 +69,7 @@ public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapte
             ButterKnife.bind(this, itemView);
             mContext = context;
             mClickCategoryItem = onClickCategoryItem;
-            itemView.setOnClickListener(this);
+            mImageCategory.setOnClickListener(this);
         }
 
         void bindData(Category category) {

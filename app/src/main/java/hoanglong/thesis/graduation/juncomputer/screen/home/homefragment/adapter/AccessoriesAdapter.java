@@ -20,14 +20,17 @@ import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.home.Accessories;
 import hoanglong.thesis.graduation.juncomputer.data.model.home.Km;
+import hoanglong.thesis.graduation.juncomputer.data.model.home.Phone;
 
 public class AccessoriesAdapter extends RecyclerView.Adapter<AccessoriesAdapter.PhoneViewHolder> {
 
     private List<Accessories> mPhones;
     private LayoutInflater mInflater;
+    private OnClickAccessoriesListener mAccessoriesListener;
 
-    public AccessoriesAdapter(List<Accessories> phones) {
+    public AccessoriesAdapter(List<Accessories> phones,OnClickAccessoriesListener onClickAccessoriesListener) {
         mPhones = phones;
+        mAccessoriesListener = onClickAccessoriesListener;
     }
 
     @NonNull
@@ -37,7 +40,7 @@ public class AccessoriesAdapter extends RecyclerView.Adapter<AccessoriesAdapter.
             mInflater = LayoutInflater.from(viewGroup.getContext());
         }
         View view = mInflater.inflate(R.layout.item_accessories_home, viewGroup, false);
-        return new PhoneViewHolder(view, viewGroup.getContext());
+        return new PhoneViewHolder(view, viewGroup.getContext(),mAccessoriesListener);
     }
 
     @Override
@@ -51,7 +54,7 @@ public class AccessoriesAdapter extends RecyclerView.Adapter<AccessoriesAdapter.
         return mPhones != null ? mPhones.size() : 0;
     }
 
-    static class PhoneViewHolder extends RecyclerView.ViewHolder {
+    static class PhoneViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.image_phone_home)
         ImageView mImagePhone;
@@ -68,17 +71,22 @@ public class AccessoriesAdapter extends RecyclerView.Adapter<AccessoriesAdapter.
         @BindView(R.id.relative_sale)
         RelativeLayout mRelativeSale;
         private Context mContext;
+        private OnClickAccessoriesListener mAccessoriesListener;
+        private Accessories mAccessories;
 
-        PhoneViewHolder(@NonNull View itemView, Context context) {
+        PhoneViewHolder(@NonNull View itemView, Context context,OnClickAccessoriesListener onClickAccessoriesListener) {
             super(itemView);
             mContext = context;
+            mAccessoriesListener = onClickAccessoriesListener;
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
         }
 
         void bindData(Accessories phone) {
             if (phone == null) {
                 return;
             }
+            mAccessories = phone;
             Glide.with(mContext).load(phone.getImage()).into(mImagePhone);
             if (!phone.getPer().equals("")) {
                 mTextSale.setText(phone.getPer());
@@ -86,5 +94,14 @@ public class AccessoriesAdapter extends RecyclerView.Adapter<AccessoriesAdapter.
             mTextPhone.setText(phone.getTitle());
             mTextPricePhone.setText(phone.getPrice());
         }
+
+        @Override
+        public void onClick(View v) {
+            mAccessoriesListener.onClickAccessories(mAccessories);
+        }
+    }
+
+    public interface OnClickAccessoriesListener {
+        void onClickAccessories(Accessories accessories);
     }
 }
