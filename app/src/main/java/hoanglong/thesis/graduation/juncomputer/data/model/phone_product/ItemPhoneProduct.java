@@ -9,14 +9,21 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 public class ItemPhoneProduct implements Parcelable {
 
+    @PrimaryKey
     @SerializedName("_id")
     @Expose
     private String id;
     @SerializedName("type")
     @Expose
     private String type;
+    @SerializedName("typeCategory")
+    @Expose
+    private String typeCategory;
     @SerializedName("title")
     @Expose
     private String title;
@@ -63,9 +70,13 @@ public class ItemPhoneProduct implements Parcelable {
     @Expose
     private String linkVideo;
 
+    public ItemPhoneProduct() {
+    }
+
     protected ItemPhoneProduct(Parcel in) {
         id = in.readString();
         type = in.readString();
+        typeCategory = in.readString();
         title = in.readString();
         price = in.readString();
         deal = in.readString();
@@ -96,6 +107,7 @@ public class ItemPhoneProduct implements Parcelable {
     private ItemPhoneProduct(ItemPhoneBuilder itemPhoneBuilder) {
         itemPhoneBuilder.id = id;
         itemPhoneBuilder.type = type;
+        itemPhoneBuilder.typeCategory = typeCategory;
         itemPhoneBuilder.title = title;
         itemPhoneBuilder.price = price;
         itemPhoneBuilder.deal = deal;
@@ -117,6 +129,7 @@ public class ItemPhoneProduct implements Parcelable {
 
         private String id;
         private String type;
+        private String typeCategory;
         private String title;
         private String price;
         private String deal;
@@ -215,6 +228,11 @@ public class ItemPhoneProduct implements Parcelable {
 
         public ItemPhoneBuilder setLinkVideo(String linkVideo) {
             this.linkVideo = linkVideo;
+            return this;
+        }
+
+        public ItemPhoneBuilder setTypeCategory(String typeCategory) {
+            this.typeCategory = typeCategory;
             return this;
         }
 
@@ -371,6 +389,14 @@ public class ItemPhoneProduct implements Parcelable {
         this.linkVideo = linkVideo;
     }
 
+    public String getTypeCategory() {
+        return typeCategory;
+    }
+
+    public void setTypeCategory(String typeCategory) {
+        this.typeCategory = typeCategory;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -380,6 +406,7 @@ public class ItemPhoneProduct implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(type);
+        dest.writeString(typeCategory);
         dest.writeString(title);
         dest.writeString(price);
         dest.writeString(deal);

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorWhite"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -56,7 +58,10 @@
             app:layout_constraintStart_toStartOf="@+id/text_category_phone"
             app:layout_constraintTop_toBottomOf="@+id/recycler_category_phone" />
 
-        <include layout="@layout/card_no_item" />
+        <include
+            layout="@layout/card_no_item"
+            app:layout_constraintBottom_toTopOf="@+id/button_see_more"
+            app:layout_constraintTop_toBottomOf="@+id/title_seen" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_phone_recent"
@@ -96,7 +101,7 @@
             android:textSize="@dimen/dimen_12sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_no_item" />
+            app:layout_constraintTop_toBottomOf="@+id/recycler_phone_recent" />
 
         <ProgressBar
             android:id="@+id/progress_phone_noibat"
