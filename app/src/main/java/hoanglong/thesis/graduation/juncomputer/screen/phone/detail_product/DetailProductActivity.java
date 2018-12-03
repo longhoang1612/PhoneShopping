@@ -77,6 +77,8 @@ public class DetailProductActivity extends AppCompatActivity
     RelativeLayout mRelativeComment;
     @BindView(R.id.fab_cart)
     FloatingActionButton mFABCart;
+    @BindView(R.id.tv_number_cart)
+    TextView mTextNumberCart;
 //    @BindView(R.id.ic_shopping)
 //    ImageView mImageShopping;
 
@@ -135,6 +137,14 @@ public class DetailProductActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         //mImageShopping.setVisibility(View.VISIBLE);
+        onUpdateCart();
+    }
+
+    private void onUpdateCart() {
+        if (RealmCart.getCartOffline() == null) {
+            return;
+        }
+        mTextNumberCart.setText(String.valueOf(RealmCart.getCartOffline().size()));
     }
 
     private void setupView(ItemPhoneProduct itemPhoneProduct) {
@@ -214,6 +224,7 @@ public class DetailProductActivity extends AppCompatActivity
                         itemPhoneProduct.getId()
                 );
                 RealmCart.addToCart(cartItem);
+                onUpdateCart();
 
                 AddCartBottomDialogFragment addCartFragment =
                         AddCartBottomDialogFragment.newInstance(itemPhoneProduct);

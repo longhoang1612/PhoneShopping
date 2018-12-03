@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bg">
+
+    <RelativeLayout
+        android:id="@+id/relative_top"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/dimen_16"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+
+        <TextView
+            android:id="@+id/text_title_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/ic_back"
+            android:fontFamily="@font/sanfranciscodisplay_semibold"
+            android:text="@string/location_address"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/dimen_18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/card_view_step"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_70"
+        android:background="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relative_top">
+
+        <RelativeLayout
+            android:id="@+id/ic_step1"
+            android:layout_width="@dimen/dimen_45dp"
+            android:layout_height="@dimen/dimen_45dp"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@+id/view_step_1"
+            android:background="@drawable/circle_1">
+
+            <RelativeLayout
+                android:layout_width="@dimen/dimen_40"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_centerInParent="true"
+                android:background="@drawable/circle_2">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_30"
+                    android:layout_height="@dimen/dimen_30"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_add_location_black_24dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_step_1"
+            android:layout_width="@dimen/dimen_80"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/ic_step2"
+            android:background="@color/color_bg" />
+
+        <RelativeLayout
+            android:id="@+id/ic_step2"
+            android:layout_width="@dimen/dimen_45dp"
+            android:layout_height="@dimen/dimen_45dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_1">
+
+            <RelativeLayout
+                android:id="@+id/relative_step2"
+                android:layout_width="@dimen/dimen_40"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_centerInParent="true"
+                android:background="@drawable/circle_off">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_30"
+                    android:layout_height="@dimen/dimen_30"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_payment_black_24dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_step_2"
+            android:layout_width="@dimen/dimen_80"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/ic_step2"
+            android:background="@color/color_bg" />
+
+        <RelativeLayout
+            android:id="@+id/ic_step3"
+            android:layout_width="@dimen/dimen_45dp"
+            android:layout_height="@dimen/dimen_45dp"
+            android:layout_centerInParent="true"
+            android:layout_toEndOf="@+id/view_step_2"
+            android:background="@drawable/circle_1">
+
+            <RelativeLayout
+                android:id="@+id/relative_step3"
+                android:layout_width="@dimen/dimen_40"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_centerInParent="true"
+                android:background="@drawable/circle_off">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_30"
+                    android:layout_height="@dimen/dimen_30"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_done_black_24dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_add_new_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:background="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view_step">
+
+        <ImageView
+            android:id="@+id/ic_add_location"
+            android:layout_width="@dimen/dimen_24"
+            android:layout_height="@dimen/dimen_24"
+            android:layout_margin="@dimen/dimen_10"
+            android:src="@drawable/ic_add_circle_outline_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/ic_add_location"
+            android:fontFamily="@font/sanfranciscodisplay_semibold"
+            android:text="@string/title_add_new_location"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/dimen_text_16" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_continue"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_margin="@dimen/dimen_20"
+        android:background="@drawable/custom_button1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/sanfranciscodisplay_semibold"
+            android:text="@string/title_continue"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/dimen_text_16" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_add_address"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:layout_marginTop="@dimen/dimen_10"
+        android:id="@+id/frame_step"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view_step" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,24 +1,28 @@
 package hoanglong.thesis.graduation.juncomputer.screen.cart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.Group;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hoanglong.thesis.graduation.juncomputer.screen.payment.PaymentActivity;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.cart.CartItem;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.cart.adapter.CartAdapter;
 
-public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePrice {
+public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePrice, View.OnClickListener {
 
     @BindView(R.id.group)
     Group mGroup;
@@ -32,6 +36,8 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
     RelativeLayout mRelativePayment;
     @BindView(R.id.relative_go_shopping)
     RelativeLayout mRelativeGoShopping;
+    @BindView(R.id.ic_back)
+    ImageView mImageBack;
     private List<CartItem> mCartItems;
     private int total;
 
@@ -44,11 +50,12 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
     @Override
     protected void initComponent() {
         ButterKnife.bind(this);
+        mImageBack.setOnClickListener(this);
+        mRelativePayment.setOnClickListener(this);
     }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-       // mCartItems = new ArrayList<>();
         if (RealmCart.getCartOffline() == null || RealmCart.getCartOffline().size() == 0) {
             mGroup.setVisibility(View.VISIBLE);
             mGroupCart.setVisibility(View.GONE);
@@ -78,7 +85,8 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
             total += Integer.parseInt(b) * cartItem.getQuantity();
         }
 
-        mTextTotalCart.setText(String.valueOf(total) + "₫");
+        NumberFormat fmt = NumberFormat.getCurrencyInstance();
+        mTextTotalCart.setText(fmt.format(total));
     }
 
     @Override
@@ -92,5 +100,22 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
             setUpCart();
             onUpdatePrice();
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ic_back:
+                onBackPressed();
+                break;
+            case R.id.relative_payment:
+                openPayment();
+                break;
+        }
+    }
+
+    private void openPayment() {
+        Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
+        startActivity(intent);
     }
 }

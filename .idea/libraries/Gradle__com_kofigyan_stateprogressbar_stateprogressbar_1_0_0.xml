@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.kofigyan.stateprogressbar:stateprogressbar-1.0.0">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/stateprogressbar-1.0.0.aar/6f8dfca5269a49905b2cbaca3e792387/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/stateprogressbar-1.0.0.aar/6f8dfca5269a49905b2cbaca3e792387/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kofigyan.stateprogressbar/stateprogressbar/1.0.0/d43a7d06ee32f9ca92b02bf8f008c8dc8bd90136/stateprogressbar-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

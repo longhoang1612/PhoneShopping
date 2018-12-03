@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    tools:context=".screen.payment.NewAddressFragment">
+
+    <RelativeLayout
+        android:id="@+id/relative_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/dimen_16"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/ic_back"
+            android:fontFamily="@font/sanfranciscodisplay_semibold"
+            android:text="@string/title_add_new_location"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/dimen_18sp" />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10">
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Họ tên"
+            android:textColor="@color/color_blue_grey_900"
+            android:textColorHint="@color/color_blue_grey_900"
+            android:textSize="@dimen/dimen_text_14" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10">
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Số điện thoại"
+            android:textColor="@color/color_blue_grey_900"
+            android:textColorHint="@color/color_blue_grey_900"
+            android:textSize="@dimen/dimen_text_14" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout_provide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10">
+
+        <EditText
+            android:id="@+id/et_provide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tỉnh/Thành"
+            android:textColor="@color/color_blue_grey_900"
+            android:textColorHint="@color/color_blue_grey_900"
+            android:textSize="@dimen/dimen_text_14" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayout_quan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/et_quan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Quận/Huyện"
+                android:textColor="@color/color_blue_grey_900"
+                android:textColorHint="@color/color_blue_grey_900"
+                android:textSize="@dimen/dimen_text_14" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayout_phuong"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/et_phuong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phường/Xã"
+                android:textColor="@color/color_blue_grey_900"
+                android:textColorHint="@color/color_blue_grey_900"
+                android:textSize="@dimen/dimen_text_14" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10">
+
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Địa chỉ"
+            android:textColor="@color/color_blue_grey_900"
+            android:textColorHint="@color/color_blue_grey_900"
+            android:textSize="@dimen/dimen_text_14" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_20"
+        android:layout_marginTop="@dimen/dimen_100"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/custom_button1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/dimen_10"
+            android:fontFamily="@font/sanfranciscodisplay_semibold"
+            android:text="Lưu địa chỉ"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite" />
+    </RelativeLayout>
+
+</LinearLayout>
