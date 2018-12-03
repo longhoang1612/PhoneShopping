@@ -62,6 +62,8 @@
                 android:background="@drawable/custom_circle">
 
                 <TextView
+                    android:fontFamily="@font/sanfranciscodisplay_bold"
+                    android:textColor="@color/colorWhite"
                     android:id="@+id/tv_number_cart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

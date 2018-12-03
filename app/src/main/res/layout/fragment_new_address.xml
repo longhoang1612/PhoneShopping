@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    tools:context=".screen.payment.NewAddressFragment">
+    tools:context=".NewAddressFragment">
 
     <RelativeLayout
         android:id="@+id/relative_top"

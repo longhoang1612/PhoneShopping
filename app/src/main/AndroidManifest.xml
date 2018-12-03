@@ -36,7 +36,11 @@
         <activity android:name=".screen.phone.detail_product.ContentDetailActivity" />
         <activity android:name=".screen.phone.detail_product.InfoDetailActivity" />
         <activity android:name=".screen.cart.CartActivity" />
+<<<<<<< HEAD
         <activity android:name=".screen.payment.PaymentActivity"/>
+=======
+        <activity android:name=".PaymentActivity"/>
+>>>>>>> 89f386ab2c5cc1d4869e53878fc810864e2417ac
     </application>
 
 </manifest>

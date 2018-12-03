@@ -28,6 +28,8 @@ import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ListPara
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.PhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
 import hoanglong.thesis.graduation.juncomputer.screen.bottomsheet.AddCartBottomDialogFragment;
+import hoanglong.thesis.graduation.juncomputer.screen.home.HomeActivity;
+import hoanglong.thesis.graduation.juncomputer.screen.home.UpdateCart;
 import hoanglong.thesis.graduation.juncomputer.screen.home.adapter.SamplePagerAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ContentAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ExtraProductAdapter;
@@ -82,7 +84,7 @@ public class DetailProductActivity extends AppCompatActivity
     FloatingActionButton mFABCart;
     @BindView(R.id.tv_number_cart)
     TextView mTextNumberCart;
-    //    @BindView(R.id.ic_shopping)
+//    @BindView(R.id.ic_shopping)
 //    ImageView mImageShopping;
     @BindView(R.id.progress_detail)
     ProgressBar mProgressDetail;

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.Group;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -12,10 +13,15 @@ import android.widget.TextView;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+<<<<<<< HEAD
 import hoanglong.thesis.graduation.juncomputer.screen.payment.PaymentActivity;
+=======
+import hoanglong.thesis.graduation.juncomputer.PaymentActivity;
+>>>>>>> 89f386ab2c5cc1d4869e53878fc810864e2417ac
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.cart.CartItem;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
