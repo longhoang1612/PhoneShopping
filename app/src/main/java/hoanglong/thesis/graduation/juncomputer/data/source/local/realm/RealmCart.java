@@ -19,7 +19,6 @@ public class RealmCart {
         }else{
             ((CartItem) realmObject).setQuantity(((CartItem) realmObject).getQuantity()+1);
         }
-        //realm.copyToRealmOrUpdate(cartItem);
         realm.commitTransaction();
     }
 
@@ -31,7 +30,6 @@ public class RealmCart {
         }else{
             ((CartItem) realmObject).setQuantity(((CartItem) realmObject).getQuantity()-1);
         }
-        //realm.copyToRealmOrUpdate(cartItem);
         realm.commitTransaction();
     }
 

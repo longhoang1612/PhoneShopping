@@ -73,4 +73,9 @@
     <string name="go_to_shopping">Go to shopping</string>
     <string name="payment">Thanh toán</string>
     <string name="total_money">Tổng số tiền :</string>
+    <string name="title_continue">Tiếp tục</string>
+    <string name="location_address">Địa chỉ nhận hàng</string>
+    <string name="title_add_new_location">Thêm địa chỉ mới</string>
+    <string name="type_delivery">Hình thức giao hàng</string>
+    <string name="type_payment">Hình thức thanh toán</string>
 </resources>

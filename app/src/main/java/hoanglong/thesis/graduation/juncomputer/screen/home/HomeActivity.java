@@ -13,15 +13,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
+import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
+import hoanglong.thesis.graduation.juncomputer.screen.cart.CartActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.category.CategoryFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.HomeFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.login.LoginActivity;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, UpdateCart {
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
@@ -33,16 +39,24 @@ public class HomeActivity extends AppCompatActivity
     // index to identify current nav menu item
     public static int navItemIndex = 0;
     public static String CURRENT_TAG = TAG_HOME;
-    private NavigationView navigationView;
-    private DrawerLayout drawer;
-    private Toolbar toolbar;
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.tv_number_cart)
+    TextView mTextNumberCart;
+    @BindView(R.id.ic_shopping_cart)
+    RelativeLayout mRelativeShoppingCart;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        toolbar = findViewById(R.id.toolbar);
-        drawer = findViewById(R.id.drawer_layout);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -50,7 +64,6 @@ public class HomeActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         LinearLayout linearLogin = headerView.findViewById(R.id.linear_login);
@@ -58,6 +71,13 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        mRelativeShoppingCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,CartActivity.class);
                 startActivity(intent);
             }
         });
@@ -70,6 +90,12 @@ public class HomeActivity extends AppCompatActivity
             loadHomeFragment();
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        onUpdateCart();
     }
 
     private void loadHomeFragment() {
@@ -226,5 +252,13 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onUpdateCart() {
+        if (RealmCart.getCartOffline() == null) {
+            return;
+        }
+        mTextNumberCart.setText(String.valueOf(RealmCart.getCartOffline().size()));
     }
 }
