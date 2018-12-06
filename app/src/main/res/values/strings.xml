@@ -78,4 +78,5 @@
     <string name="title_add_new_location">Thêm địa chỉ mới</string>
     <string name="type_delivery">Hình thức giao hàng</string>
     <string name="type_payment">Hình thức thanh toán</string>
+    <string name="sign_in">Đăng ký</string>
 </resources>

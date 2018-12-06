@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,25 +19,37 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hoanglong.thesis.graduation.juncomputer.screen.search.SearchActivity;
+import hoanglong.thesis.graduation.juncomputer.screen.favorites.FavoritesFragment;
+import hoanglong.thesis.graduation.juncomputer.screen.manageOrder.ManagerOrderFragment;
 import hoanglong.thesis.graduation.juncomputer.R;
+import hoanglong.thesis.graduation.juncomputer.data.model.user.User;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
+import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmUser;
 import hoanglong.thesis.graduation.juncomputer.listener.UpdateCart;
 import hoanglong.thesis.graduation.juncomputer.screen.cart.CartActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.category.CategoryFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.HomeFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.login.LoginActivity;
+import hoanglong.thesis.graduation.juncomputer.screen.notification.NotificationFragment;
+import hoanglong.thesis.graduation.juncomputer.screen.userinfo.UserInfoActivity;
+import hoanglong.thesis.graduation.juncomputer.utils.Constant;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
+import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, UpdateCart {
 
     // tags used to attach the fragments
-    private static final String TAG_HOME = "home";
-    private static final String TAG_LOGIN = "login";
-    private static final String TAG_CATEGORY = "category";
-    private static final String TAG_MOVIES = "movies";
-    private static final String TAG_NOTIFICATIONS = "notifications";
-    private static final String TAG_SETTINGS = "settings";
+
+    private static final String TAG_HOME = "TAG_HOME";
+    private static final String TAG_LOGIN = "TAG_LOGIN";
+    private static final String TAG_CATEGORY = "TAG_CATEGORY";
+    private static final String TAG_MANAGER_ORDER = "TAG_MANAGER_ORDER";
+    private static final String TAG_NOTIFICATIONS = "TAG_NOTIFICATIONS";
+    private static final String TAG_MANAGER_ACCOUNT = "TAG_MANAGER_ACCOUNT";
+    private static final String TAG_FAVORITES = "TAG_FAVORITES";
+
     // index to identify current nav menu item
     public static int navItemIndex = 0;
     public static String CURRENT_TAG = TAG_HOME;
@@ -50,7 +63,11 @@ public class HomeActivity extends AppCompatActivity
     TextView mTextNumberCart;
     @BindView(R.id.ic_shopping_cart)
     RelativeLayout mRelativeShoppingCart;
-
+    @BindView(R.id.card_view_search)
+    CardView mCardSearch;
+    private TextView textName;
+    private TextView textEmail;
+    private boolean isLogin;
 
 
     @Override
@@ -64,21 +81,39 @@ public class HomeActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        isLogin = SharedPrefs.getInstance().get(Constant.Login.LOGIN_STATUS, Boolean.class);
 
         navigationView.setNavigationItemSelectedListener(this);
-        View headerView = navigationView.getHeaderView(0);
-        LinearLayout linearLogin = headerView.findViewById(R.id.linear_login);
-        linearLogin.setOnClickListener(new View.OnClickListener() {
+        mCardSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
                 startActivity(intent);
             }
         });
+        View headerView = navigationView.getHeaderView(0);
+        LinearLayout linearLogin = headerView.findViewById(R.id.linear_login);
+        textName = headerView.findViewById(R.id.text_name);
+        textEmail = headerView.findViewById(R.id.text_email);
+
+        linearLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isLogin = SharedPrefs.getInstance().get(Constant.Login.LOGIN_STATUS, Boolean.class);
+                if (isLogin) {
+                    Intent intent = new Intent(HomeActivity.this, UserInfoActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
         mRelativeShoppingCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,CartActivity.class);
+                Intent intent = new Intent(HomeActivity.this, CartActivity.class);
                 startActivity(intent);
             }
         });
@@ -93,14 +128,26 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
+    private void updateLogin(TextView textName, TextView textEmail) {
+        if (RealmUser.getUser() == null) {
+            textName.setText("Thông tin người dùng ");
+            textEmail.setText("Đăng nhập/đăng ký ");
+            return;
+        }
+        User user = RealmUser.getUser();
+        textName.setText(user.getFullName());
+        textEmail.setText(user.getEmail());
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         onUpdateCart();
+        updateLogin(textName, textEmail);
     }
 
     private void loadHomeFragment() {
-        // selecting appropriate nav menu item
+
         selectNavMenu();
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(CURRENT_TAG);
         switch (CURRENT_TAG) {
@@ -111,7 +158,7 @@ public class HomeActivity extends AppCompatActivity
                 FragmentTransactionUtils.addFragment(
                         getSupportFragmentManager(),
                         fragment, R.id.frame_home, TAG_HOME,
-                        true, -1, -1);
+                        false, -1, -1);
                 break;
             case TAG_CATEGORY:
                 if (fragment == null) {
@@ -120,6 +167,64 @@ public class HomeActivity extends AppCompatActivity
                 FragmentTransactionUtils.addFragment(
                         getSupportFragmentManager(),
                         fragment, R.id.frame_home, TAG_CATEGORY,
+                        true, -1, -1);
+                break;
+            case TAG_MANAGER_ACCOUNT:
+                if (isLogin) {
+                    Intent intent = new Intent(HomeActivity.this, UserInfoActivity.class);
+                    startActivity(intent);
+                    drawer.closeDrawers();
+                } else {
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+                break;
+            case TAG_MANAGER_ORDER:
+                if (!isLogin) {
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    drawer.closeDrawers();
+                } else {
+                    if (fragment == null) {
+                        fragment = new ManagerOrderFragment();
+                    }
+                    FragmentTransactionUtils.addFragment(
+                            getSupportFragmentManager(),
+                            fragment, R.id.frame_home, TAG_MANAGER_ORDER,
+                            true, -1, -1);
+                }
+                break;
+            case TAG_NOTIFICATIONS:
+                if (fragment == null) {
+                    fragment = new NotificationFragment();
+                }
+                FragmentTransactionUtils.addFragment(
+                        getSupportFragmentManager(),
+                        fragment, R.id.frame_home, TAG_NOTIFICATIONS,
+                        true, -1, -1);
+                break;
+            case TAG_FAVORITES:
+                if (!isLogin) {
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    drawer.closeDrawers();
+                } else {
+                    if (fragment == null) {
+                        fragment = new FavoritesFragment();
+                    }
+                    FragmentTransactionUtils.addFragment(
+                            getSupportFragmentManager(),
+                            fragment, R.id.frame_home, TAG_FAVORITES,
+                            true, -1, -1);
+                }
+                break;
+            default:
+                if (fragment == null) {
+                    fragment = new HomeFragment();
+                }
+                FragmentTransactionUtils.addFragment(
+                        getSupportFragmentManager(),
+                        fragment, R.id.frame_home, TAG_HOME,
                         true, -1, -1);
                 break;
         }
@@ -132,10 +237,8 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void setUpNavigationView() {
-        //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
-            // This method will trigger on item Click of navigation menu
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
@@ -154,24 +257,33 @@ public class HomeActivity extends AppCompatActivity
                         loadHomeFragment();
                         break;
                     case R.id.nav_order:
+                        drawer.closeDrawers();
                         navItemIndex = 2;
-                        CURRENT_TAG = TAG_MOVIES;
+                        CURRENT_TAG = TAG_MANAGER_ORDER;
+                        loadHomeFragment();
                         break;
                     case R.id.nav_favorites:
+                        drawer.closeDrawers();
                         navItemIndex = 3;
-                        CURRENT_TAG = TAG_NOTIFICATIONS;
+                        CURRENT_TAG = TAG_FAVORITES;
+                        loadHomeFragment();
                         break;
                     case R.id.nav_manage_account:
+                        drawer.closeDrawers();
                         navItemIndex = 4;
-                        CURRENT_TAG = TAG_SETTINGS;
+                        CURRENT_TAG = TAG_MANAGER_ACCOUNT;
+                        loadHomeFragment();
                         break;
                     case R.id.nav_notification:
-                        // launch new intent instead of loading fragment
-//                        startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
                         drawer.closeDrawers();
+                        navItemIndex = 5;
+                        CURRENT_TAG = TAG_NOTIFICATIONS;
+                        loadHomeFragment();
                         return true;
                     default:
                         navItemIndex = 0;
+                        CURRENT_TAG = TAG_HOME;
+                        loadHomeFragment();
                 }
 
                 //Checking if the item is in checked state or not, if not make it in checked state
@@ -211,10 +323,20 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawers();
+
+        if (navItemIndex != 0) {
+            navItemIndex = 0;
+            CURRENT_TAG = TAG_HOME;
+            loadHomeFragment();
             return;
         }
+        if (getSupportFragmentManager().findFragmentByTag(TAG_HOME) instanceof HomeFragment) {
+            finish();
+        }
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawers();
+//            return;
+//        }
 //        if (shouldLoadHomeFragOnBackPress) {
 //            if (navItemIndex != 0) {
 //                navItemIndex = 0;
@@ -241,6 +363,17 @@ public class HomeActivity extends AppCompatActivity
                         new HomeFragment(), R.id.frame_home,
                         TAG_HOME,
                         true, -1, -1);
+                break;
+            case R.id.nav_category:
+                FragmentTransactionUtils.addFragment(
+                        getSupportFragmentManager(),
+                        new CategoryFragment(), R.id.frame_home, TAG_CATEGORY,
+                        true, -1, -1);
+                break;
+            case R.id.nav_manage_account:
+                Intent intent = new Intent(HomeActivity.this, UserInfoActivity.class);
+                startActivity(intent);
+                drawer.closeDrawers();
                 break;
             default:
                 FragmentTransactionUtils.addFragment(

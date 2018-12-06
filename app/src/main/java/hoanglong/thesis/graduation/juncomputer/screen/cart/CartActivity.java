@@ -20,6 +20,7 @@ import hoanglong.thesis.graduation.juncomputer.data.model.cart.CartItem;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.cart.adapter.CartAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.home.HomeActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.payment.PaymentActivity;
 
 public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePrice, View.OnClickListener {
@@ -52,6 +53,7 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
         ButterKnife.bind(this);
         mImageBack.setOnClickListener(this);
         mRelativePayment.setOnClickListener(this);
+        mRelativeGoShopping.setOnClickListener(this);
     }
 
     @Override
@@ -110,6 +112,10 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
                 break;
             case R.id.relative_payment:
                 openPayment();
+                break;
+            case R.id.relative_go_shopping:
+                Intent intent = new Intent(CartActivity.this,HomeActivity.class);
+                startActivity(intent);
                 break;
         }
     }

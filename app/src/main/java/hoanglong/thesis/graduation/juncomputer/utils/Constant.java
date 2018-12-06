@@ -19,4 +19,8 @@ public class Constant {
         public static final String clock_type = "Đồng hồ thông minh";
         public static final String clock = "Đồng hồ";
     }
+
+    public static class Login {
+        public static final String LOGIN_STATUS = "LOGIN_STATUS";
+    }
 }

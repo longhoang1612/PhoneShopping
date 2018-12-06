@@ -34,7 +34,7 @@
         <menu>
             <item
                 android:id="@+id/nav_hot_line"
-                android:title="1800-6963 (Miễn phí)" />
+                android:title="03-6-389-1869" />
             <item
                 android:id="@+id/nav_setting"
                 android:title="Cài đặt" />

@@ -10,12 +10,12 @@
         android:layout_marginTop="@dimen/dimen_30">
 
         <EditText
+            android:textSize="@dimen/dimen_text_14"
             android:id="@+id/et_hoten"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50"
             android:layout_marginEnd="@dimen/dimen_20"
             android:layout_marginStart="@dimen/dimen_20"
-            android:backgroundTint="@color/colorPrimaryDark"
             android:hint="@string/name" />
 
     </android.support.design.widget.TextInputLayout>
@@ -27,12 +27,12 @@
         android:layout_marginTop="@dimen/dimen_30">
 
         <EditText
+            android:textSize="@dimen/dimen_text_14"
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50"
             android:layout_marginEnd="@dimen/dimen_20"
             android:layout_marginStart="@dimen/dimen_20"
-            android:backgroundTint="@color/colorPrimaryDark"
             android:hint="@string/email" />
 
     </android.support.design.widget.TextInputLayout>
@@ -44,18 +44,20 @@
         android:layout_marginTop="@dimen/dimen_30">
 
         <EditText
+            android:inputType="textPassword"
+            android:textSize="@dimen/dimen_text_14"
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50"
             android:layout_marginLeft="@dimen/dimen_20"
             android:layout_marginRight="@dimen/dimen_20"
             android:layout_marginTop="@dimen/dimen_30"
-            android:backgroundTint="@color/colorPrimaryDark"
             android:hint="@string/password" />
 
     </android.support.design.widget.TextInputLayout>
 
     <RadioGroup
+        android:id="@+id/radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_20"
@@ -63,7 +65,8 @@
         android:theme="@style/MyRadioButton">
 
         <RadioButton
-            android:id="@+id/radioButton_easy"
+            android:textSize="@dimen/dimen_text_14"
+            android:id="@+id/radioButton_male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dimen_20"
@@ -72,7 +75,8 @@
             android:theme="@style/MyRadioButton" />
 
         <RadioButton
-            android:id="@+id/radioButton_medium"
+            android:textSize="@dimen/dimen_text_14"
+            android:id="@+id/radioButton_female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/female"
@@ -80,13 +84,16 @@
     </RadioGroup>
 
     <Button
+        android:id="@+id/button_sign_in"
+        android:textSize="@dimen/dimen_text_14"
+        android:fontFamily="@font/sanfranciscodisplay_semibold"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_45dp"
+        android:layout_height="@dimen/dimen_40"
         android:layout_marginEnd="@dimen/dimen_20"
         android:layout_marginStart="@dimen/dimen_20"
         android:layout_marginTop="@dimen/dimen_40"
         android:background="@drawable/custom_button1"
-        android:text="@string/log_in"
+        android:text="@string/sign_in"
         android:textColor="@android:color/white" />
 
     <LinearLayout
@@ -97,11 +104,15 @@
         android:orientation="horizontal">
 
         <TextView
+            android:fontFamily="@font/sanfranciscodisplay_regular"
+            android:textSize="@dimen/dimen_text_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/khi_ng_k_l_b_n_ch_p_nh_n" />
 
         <TextView
+            android:fontFamily="@font/sanfranciscodisplay_regular"
+            android:textSize="@dimen/dimen_text_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/i_u_kho_n_s_d_ng"

@@ -8,15 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:backgroundTint="@color/colorPrimaryDark">
+        >
 
         <EditText
+            android:textSize="@dimen/dimen_text_14"
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:backgroundTint="@color/colorPrimaryDark"
             android:hint="@string/email" />
 
     </android.support.design.widget.TextInputLayout>
@@ -28,17 +28,18 @@
         android:layout_marginTop="20dp">
 
         <EditText
+            android:textSize="@dimen/dimen_text_14"
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:backgroundTint="@color/colorPrimaryDark"
             android:hint="@string/password" />
 
     </android.support.design.widget.TextInputLayout>
 
     <Button
+        android:id="@+id/button_login"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginEnd="@dimen/dimen_20"
@@ -57,6 +58,7 @@
         android:textColor="@color/color_blue_700" />
 
     <TextView
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -64,6 +66,7 @@
         android:text="@string/with_login" />
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_40"
         android:layout_marginEnd="@dimen/dimen_20"

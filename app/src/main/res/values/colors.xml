@@ -14,4 +14,5 @@
     <color name="color_blue_gray_300">#e0e0e0</color>
     <color name="color_yellow_600">#fdd835</color>
     <color name="color_bg">#eeeeee</color>
+    <color name="color_underline">#eeeeee</color>
 </resources>
