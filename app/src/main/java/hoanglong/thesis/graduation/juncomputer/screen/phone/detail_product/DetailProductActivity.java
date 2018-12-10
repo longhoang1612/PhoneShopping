@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,9 @@ import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.DetailCo
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ListParameter;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.PhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.user.Favorites;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
+import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmFavorites;
 import hoanglong.thesis.graduation.juncomputer.screen.bottomsheet.AddCartBottomDialogFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.home.HomeActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.home.UpdateCart;
@@ -84,7 +87,7 @@ public class DetailProductActivity extends AppCompatActivity
     FloatingActionButton mFABCart;
     @BindView(R.id.tv_number_cart)
     TextView mTextNumberCart;
-//    @BindView(R.id.ic_shopping)
+    //    @BindView(R.id.ic_shopping)
 //    ImageView mImageShopping;
     @BindView(R.id.progress_detail)
     ProgressBar mProgressDetail;
@@ -94,11 +97,14 @@ public class DetailProductActivity extends AppCompatActivity
     RelativeLayout mRelativeSale;
     @BindView(R.id.ic_back)
     ImageView mImageBack;
+    @BindView(R.id.ic_favorites)
+    ImageView mImageFavorites;
 
     private ItemPhoneProduct itemPhoneProduct;
     private List<DetailContent> mContentListHide;
     private List<ListParameter> mInfoProducts;
     private String title;
+    private boolean mIsFavorites;
 
 
     @Override
@@ -111,6 +117,7 @@ public class DetailProductActivity extends AppCompatActivity
         mRelativeComment.setOnClickListener(this);
         mImageBack.setOnClickListener(this);
         mFABCart.setOnClickListener(this);
+        mImageFavorites.setOnClickListener(this);
         mContentListHide = new ArrayList<>();
         mInfoProducts = new ArrayList<>();
         Bundle bundle = getIntent().getExtras();
@@ -159,6 +166,16 @@ public class DetailProductActivity extends AppCompatActivity
         onUpdateCart();
     }
 
+    private void onUpdateFavorites(ItemPhoneProduct itemPhoneProduct) {
+        if (RealmFavorites.getItemFavorites(itemPhoneProduct.getTitle()) != null) {
+            mImageFavorites.setImageResource(R.drawable.ic_favorite_red);
+            mIsFavorites = true;
+        } else {
+            mImageFavorites.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+            mIsFavorites = false;
+        }
+    }
+
     private void onUpdateCart() {
         if (RealmCart.getCartOffline() == null) {
             return;
@@ -170,6 +187,7 @@ public class DetailProductActivity extends AppCompatActivity
         if (itemPhoneProduct == null) {
             return;
         }
+        onUpdateFavorites(itemPhoneProduct);
         if (itemPhoneProduct.getDeal() == null || itemPhoneProduct.getDeal().equals("")) {
             mRelativeSale.setVisibility(View.GONE);
         } else {
@@ -258,6 +276,30 @@ public class DetailProductActivity extends AppCompatActivity
             case R.id.ic_back:
                 onBackPressed();
                 break;
+            case R.id.ic_favorites:
+                favoritesItem();
+                break;
+        }
+    }
+
+    private void favoritesItem() {
+        if (mIsFavorites) {
+            mIsFavorites = false;
+            Toast.makeText(this, "Xóa sản phẩm khỏi yêu thích", Toast.LENGTH_SHORT).show();
+            RealmFavorites.unFavorites(itemPhoneProduct.getTitle());
+            mImageFavorites.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+        } else {
+            mIsFavorites = true;
+            Toast.makeText(this, "Thêm sản phẩm vào yêu thích", Toast.LENGTH_SHORT).show();
+            String title = itemPhoneProduct.getTitle();
+            String image = itemPhoneProduct.getImage();
+            String price = itemPhoneProduct.getPrice();
+            int rating = itemPhoneProduct.getRating();
+            String numberRating = itemPhoneProduct.getNumberRating();
+
+            Favorites favorites = new Favorites(title, image, price, rating, numberRating);
+            RealmFavorites.favorites(favorites);
+            mImageFavorites.setImageResource(R.drawable.ic_favorite_red);
         }
     }
 

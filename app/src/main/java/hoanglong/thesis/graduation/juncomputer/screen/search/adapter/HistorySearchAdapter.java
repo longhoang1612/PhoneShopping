@@ -69,7 +69,6 @@ public class HistorySearchAdapter extends RecyclerView.Adapter<HistorySearchAdap
                 return;
             }
             mRecentSearch = recentSearch;
-            Log.d("HISTORY", "bindData: "+ recentSearch.getHistorySearch());
             mTextSearch.setText(recentSearch.getHistorySearch());
         }
 

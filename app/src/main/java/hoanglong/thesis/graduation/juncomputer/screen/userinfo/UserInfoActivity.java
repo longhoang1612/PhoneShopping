@@ -1,6 +1,7 @@
 package hoanglong.thesis.graduation.juncomputer.screen.userinfo;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
@@ -8,6 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
@@ -67,10 +71,14 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void updateInfo() {
-        if (RealmUser.getUser() == null) {
+        Gson gson = new Gson();
+        String json = SharedPrefs.getInstance().get("MyObject", String.class);
+        user = gson.fromJson(json, User.class);
+
+        if (user == null) {
             return;
         }
-        user = RealmUser.getUser();
+//        user = RealmUser.getUser();
         mTextNameUser.setText(user.getFullName());
         mTextEmailUser.setText(user.getEmail());
         mTextDateJoinUser.setText(String.format("Thành viên từ %s", user.getDateJoin()));
@@ -100,8 +108,13 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                     @Override
                     public void run() {
                         hideProgress();
-                        SharedPrefs.getInstance().clear();
-                        RealmUser.signOut(user);
+                        //RealmUser.signOut(user);
+
+                        SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+                        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                        prefsEditor.clear();
+                        prefsEditor.apply();
+
                         finish();
                     }
                 }, 500);

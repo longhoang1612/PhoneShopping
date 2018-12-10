@@ -4,9 +4,11 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class Favorites extends RealmObject {
 
+    @PrimaryKey
     @SerializedName("titleFav")
     @Expose
     private String mTitleFav;
@@ -72,5 +74,16 @@ public class Favorites extends RealmObject {
         mPriceFav = priceFav;
         mRatingFav = ratingFav;
         mCountRatingFav = countRatingFav;
+    }
+
+    @Override
+    public String toString() {
+        return "Favorites{" +
+                "mTitleFav='" + mTitleFav + '\'' +
+                ", mImageFav='" + mImageFav + '\'' +
+                ", mPriceFav='" + mPriceFav + '\'' +
+                ", mRatingFav=" + mRatingFav +
+                ", mCountRatingFav='" + mCountRatingFav + '\'' +
+                '}';
     }
 }

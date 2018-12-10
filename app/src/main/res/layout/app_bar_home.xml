@@ -120,4 +120,10 @@
         tools:context=".screen.home.HomeActivity"
         tools:showIn="@layout/app_bar_home" />
 
+    <FrameLayout
+        android:id="@+id/frame_full_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
+
 </android.support.design.widget.CoordinatorLayout>

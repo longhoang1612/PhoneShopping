@@ -37,7 +37,8 @@
         <activity android:name=".screen.phone.detail_product.InfoDetailActivity" />
         <activity android:name=".screen.cart.CartActivity" />
         <activity android:name=".screen.userinfo.UserInfoActivity" />
-        <activity android:name=".screen.search.SearchActivity"></activity>
+        <activity android:name=".screen.search.SearchActivity"/>
+        <activity android:name=".screen.payment.PaymentActivity"/>
     </application>
 
 </manifest>

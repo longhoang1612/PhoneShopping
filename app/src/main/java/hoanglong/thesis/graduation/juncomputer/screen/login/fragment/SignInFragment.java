@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,6 +31,8 @@ import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class SignInFragment extends BaseFragment implements View.OnClickListener {
 
@@ -103,7 +107,15 @@ public class SignInFragment extends BaseFragment implements View.OnClickListener
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 hideProgress();
-                RealmUser.saveUser(user);
+
+                //RealmUser.saveUser(user);
+
+//                SharedPreferences mPrefs = getActivity().getPreferences(MODE_PRIVATE);
+//                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(response.body());
+                SharedPrefs.getInstance().put("MyObject", json);
+
                 SharedPrefs.getInstance().put(Constant.Login.LOGIN_STATUS, true);
                 Toast.makeText(getContext(), "REGISTER SUCCESS", Toast.LENGTH_SHORT).show();
                 showProgressSuccess();

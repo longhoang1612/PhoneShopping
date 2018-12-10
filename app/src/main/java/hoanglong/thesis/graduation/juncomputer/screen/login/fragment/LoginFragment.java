@@ -2,6 +2,7 @@ package hoanglong.thesis.graduation.juncomputer.screen.login.fragment;
 
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +27,8 @@ import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class LoginFragment extends BaseFragment {
 
@@ -75,7 +80,14 @@ public class LoginFragment extends BaseFragment {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 hideProgress();
-                RealmUser.saveUser(response.body());
+//                RealmUser.saveUser(response.body());
+
+
+                Gson gson = new Gson();
+                String json = gson.toJson(response.body());
+                SharedPrefs.getInstance().put("MyObject",json);
+
+
                 SharedPrefs.getInstance().put(Constant.Login.LOGIN_STATUS, true);
                 Toast.makeText(getContext(), "LOGIN SUCCESS", Toast.LENGTH_SHORT).show();
                 showProgressSuccess();

@@ -9,7 +9,8 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class User extends RealmObject {
+public class User{
+
     @SerializedName("email")
     @Expose
     private String mEmail;
@@ -22,7 +23,6 @@ public class User extends RealmObject {
     @SerializedName("fullname")
     @Expose
     private String mFullName;
-    @PrimaryKey
     @SerializedName("_id")
     @Expose
     private String mId;
@@ -31,10 +31,10 @@ public class User extends RealmObject {
     private String mDateJoin;
     @SerializedName("favorites")
     @Expose
-    private RealmList<Favorites> mFavorites = null;
+    private List<Favorites> mFavorites = null;
     @SerializedName("address")
     @Expose
-    private RealmList<AddressUser> mAddress = null;
+    private List<AddressUser> mAddress = null;
 
     public User() {
     }
@@ -44,12 +44,26 @@ public class User extends RealmObject {
         mPassword = password;
     }
 
-    public User(String email, String password, String sex, String fullName,String dateJoin) {
+    public User(String email, String password, String sex, String fullName, String dateJoin, List<Favorites> favorites, List<AddressUser> address) {
         mEmail = email;
         mPassword = password;
         mSex = sex;
         mFullName = fullName;
         mDateJoin = dateJoin;
+        mFavorites = favorites;
+        mAddress = address;
+    }
+
+    public User(String email, String password, String sex, String fullName, String dateJoin) {
+        mEmail = email;
+        mPassword = password;
+        mSex = sex;
+        mFullName = fullName;
+        mDateJoin = dateJoin;
+    }
+
+    public User(List<Favorites> favorites) {
+        mFavorites = favorites;
     }
 
     public String getEmail() {
@@ -92,19 +106,19 @@ public class User extends RealmObject {
         mId = id;
     }
 
-    public RealmList<Favorites> getFavorites() {
+    public List<Favorites> getFavorites() {
         return mFavorites;
     }
 
-    public void setFavorites(RealmList<Favorites> favorites) {
+    public void setFavorites(List<Favorites> favorites) {
         mFavorites = favorites;
     }
 
-    public RealmList<AddressUser> getAddress() {
+    public List<AddressUser> getAddress() {
         return mAddress;
     }
 
-    public void setAddress(RealmList<AddressUser> address) {
+    public void setAddress(List<AddressUser> address) {
         mAddress = address;
     }
 

@@ -46,5 +46,6 @@ dependencies {
     annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.kofigyan.stateprogressbar:stateprogressbar:1.0.0'
 }

@@ -20,6 +20,7 @@
             android:src="@drawable/ic_arrow_back_black_24dp" />
 
         <ImageView
+            android:id="@+id/ic_favorites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

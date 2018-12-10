@@ -1,6 +1,7 @@
 package hoanglong.thesis.graduation.juncomputer.screen.home;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -16,6 +17,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -129,12 +132,15 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void updateLogin(TextView textName, TextView textEmail) {
-        if (RealmUser.getUser() == null) {
+        Gson gson = new Gson();
+        String json = SharedPrefs.getInstance().get("MyObject", String.class);
+        User user = gson.fromJson(json, User.class);
+
+        if (user == null) {
             textName.setText("Thông tin người dùng ");
             textEmail.setText("Đăng nhập/đăng ký ");
             return;
         }
-        User user = RealmUser.getUser();
         textName.setText(user.getFullName());
         textEmail.setText(user.getEmail());
     }
@@ -214,7 +220,7 @@ public class HomeActivity extends AppCompatActivity
                     }
                     FragmentTransactionUtils.addFragment(
                             getSupportFragmentManager(),
-                            fragment, R.id.frame_home, TAG_FAVORITES,
+                            fragment, R.id.frame_full_home, TAG_FAVORITES,
                             true, -1, -1);
                 }
                 break;
