@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class AddressUser extends RealmObject {
+public class AddressUser {
     @SerializedName("phoneNumber")
     @Expose
     private String mPhoneNumber;

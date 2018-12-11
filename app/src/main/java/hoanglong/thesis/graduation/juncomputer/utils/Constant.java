@@ -22,5 +22,6 @@ public class Constant {
 
     public static class Login {
         public static final String LOGIN_STATUS = "LOGIN_STATUS";
+        public static final String OBJECT_USER_LOGIN = "MyObject";
     }
 }

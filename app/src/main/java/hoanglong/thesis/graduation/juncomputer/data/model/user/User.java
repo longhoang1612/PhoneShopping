@@ -1,5 +1,7 @@
 package hoanglong.thesis.graduation.juncomputer.data.model.user;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -42,6 +44,17 @@ public class User{
     public User(String email, String password) {
         mEmail = email;
         mPassword = password;
+    }
+
+    public User(String email, String password, String sex, String fullName, String id, String dateJoin, List<Favorites> favorites, List<AddressUser> address) {
+        mEmail = email;
+        mPassword = password;
+        mSex = sex;
+        mFullName = fullName;
+        mId = id;
+        mDateJoin = dateJoin;
+        mFavorites = favorites;
+        mAddress = address;
     }
 
     public User(String email, String password, String sex, String fullName, String dateJoin, List<Favorites> favorites, List<AddressUser> address) {
@@ -130,6 +143,7 @@ public class User{
         mDateJoin = dateJoin;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "User{" +
