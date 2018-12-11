@@ -3,11 +3,13 @@ package hoanglong.thesis.graduation.juncomputer.screen.payment.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -70,7 +72,7 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.Delive
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.radio_address:
+                case R.id.radio_type:
                     mOnClickDeliveryListener.chooseDelivery(mDelivery);
                     mLastSelectedPosition = mPosition;
                     notifyDataSetChanged();

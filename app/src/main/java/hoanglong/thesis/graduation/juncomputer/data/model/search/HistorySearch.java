@@ -21,4 +21,11 @@ public class HistorySearch extends RealmObject {
     public void setHistorySearch(String historySearch) {
         mHistorySearch = historySearch;
     }
+
+    @Override
+    public String toString() {
+        return "HistorySearch{" +
+                "mHistorySearch='" + mHistorySearch + '\'' +
+                '}';
+    }
 }

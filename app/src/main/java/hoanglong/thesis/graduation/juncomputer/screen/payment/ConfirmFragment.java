@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +29,7 @@ import hoanglong.thesis.graduation.juncomputer.screen.payment.adapter.CartConfir
 
 import static hoanglong.thesis.graduation.juncomputer.screen.payment.NewAddressFragment.BUNDLE_ADDRESS;
 
-public class ConfirmFragment extends BaseFragment implements CartConfirmAdapter.OnUpdatePrice {
+public class ConfirmFragment extends BaseFragment implements CartConfirmAdapter.OnUpdatePrice, View.OnClickListener {
 
     public static final String TAG = ConfirmFragment.class.getName();
     private static final String BUNDLE_PAYMENT = "BUNDLE_PAYMENT";
@@ -47,7 +51,12 @@ public class ConfirmFragment extends BaseFragment implements CartConfirmAdapter.
     TextView mTextPayment;
     @BindView(R.id.recycler_order_confirm)
     RecyclerView mRecyclerOrderConfirm;
+    @BindView(R.id.text_confirm_price)
+    TextView mTextConfirmPrice;
+    @BindView(R.id.relative_confirm_order)
+    RelativeLayout mRelativeConfirm;
     private List<CartItem> mCartItems;
+    private int total;
 
 
     @Override
@@ -85,6 +94,7 @@ public class ConfirmFragment extends BaseFragment implements CartConfirmAdapter.
     @Override
     protected void initComponent(View view) {
         ButterKnife.bind(this, view);
+        mRelativeConfirm.setOnClickListener(this);
     }
 
     @Override
@@ -101,6 +111,7 @@ public class ConfirmFragment extends BaseFragment implements CartConfirmAdapter.
     }
 
     private void initRecyclerView() {
+        onUpdatePrice();
         mCartItems = new ArrayList<>();
         mCartItems.addAll(RealmCart.getCartOffline());
         CartConfirmAdapter cartAdapter = new CartConfirmAdapter(mCartItems, this);
@@ -116,11 +127,28 @@ public class ConfirmFragment extends BaseFragment implements CartConfirmAdapter.
 
     @Override
     public void onUpdatePrice() {
+        total = 0;
+        for (CartItem cartItem : RealmCart.getCartOffline()
+                ) {
+            String a = cartItem.getPrice().split("₫")[0];
+            String b = a.replaceAll("\\.", "");
+            total += Integer.parseInt(b) * cartItem.getQuantity();
+        }
 
+        NumberFormat fmt = NumberFormat.getCurrencyInstance();
+        mTextConfirmPrice.setText(fmt.format(total));
     }
 
     @Override
-    public void updateCart() {
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.relative_confirm_order:
+                uploadOrder();
+                break;
+        }
+    }
+
+    private void uploadOrder() {
 
     }
 }

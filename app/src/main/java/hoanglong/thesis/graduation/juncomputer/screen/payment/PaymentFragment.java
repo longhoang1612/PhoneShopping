@@ -5,8 +5,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +67,7 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
             case R.id.relative_continue:
                 if (getFragmentManager() != null) {
                     mUpdateStep.updateStep3();
+                    Log.d(TAG, "onClick: " + mAddressUser + ":"+mPayment+":"+mDelivery);
                     FragmentTransactionUtils.addFragment(getFragmentManager(),
                             ConfirmFragment.newInstance(mAddressUser, mPayment, mDelivery),
                             R.id.frame_step,
@@ -126,6 +129,7 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void chooseDelivery(String delivery) {
         mDelivery = delivery;
+        Toast.makeText(getContext(), mDelivery, Toast.LENGTH_SHORT).show();
         checkChoose();
     }
 
@@ -142,6 +146,7 @@ public class PaymentFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void choosePayment(String payment) {
         mPayment = payment;
+        Toast.makeText(getContext(), mPayment, Toast.LENGTH_SHORT).show();
         checkChoose();
     }
 }

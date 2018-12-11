@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -18,6 +19,9 @@ import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.User;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmUser;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseActivity;
+import hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment.AddressUserFragment;
+import hoanglong.thesis.graduation.juncomputer.utils.Constant;
+import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
 import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
 
 public class UserInfoActivity extends BaseActivity implements View.OnClickListener {
@@ -72,13 +76,12 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
 
     private void updateInfo() {
         Gson gson = new Gson();
-        String json = SharedPrefs.getInstance().get("MyObject", String.class);
+        String json = SharedPrefs.getInstance().get(Constant.Login.OBJECT_USER_LOGIN, String.class);
         user = gson.fromJson(json, User.class);
 
         if (user == null) {
             return;
         }
-//        user = RealmUser.getUser();
         mTextNameUser.setText(user.getFullName());
         mTextEmailUser.setText(user.getEmail());
         mTextDateJoinUser.setText(String.format("Thành viên từ %s", user.getDateJoin()));
@@ -88,6 +91,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.relative_manage_address:
+                openFragment(new AddressUserFragment(), AddressUserFragment.TAG);
                 break;
             case R.id.relative_manager_order:
                 break;
@@ -136,5 +140,12 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
             return;
         dialogProgress.dismiss();
         dialogProgress = null;
+    }
+
+    public void openFragment(Fragment fragment, String tag) {
+        FragmentTransactionUtils.addFragment(
+                getSupportFragmentManager(),
+                fragment, R.id.frame_user_info, tag,
+                false, -1, -1);
     }
 }

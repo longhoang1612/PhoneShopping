@@ -56,11 +56,9 @@ public class CartConfirmAdapter extends RecyclerView.Adapter<CartConfirmAdapter.
 
     public interface OnUpdatePrice {
         void onUpdatePrice();
-
-        void updateCart();
     }
 
-    class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class CartViewHolder extends RecyclerView.ViewHolder{
 
         private Context mContext;
         @BindView(R.id.image_item_cart)
@@ -90,14 +88,8 @@ public class CartConfirmAdapter extends RecyclerView.Adapter<CartConfirmAdapter.
             Glide.with(mContext).load(cartItem.getImage()).into(mImageItemCart);
             mTextNameItem.setText(cartItem.getName());
             mTextPriceItem.setText(cartItem.getPrice());
-            mTextQuantity.setText("x"+String.valueOf(cartItem.getQuantity()));
+            mTextQuantity.setText("x" + String.valueOf(cartItem.getQuantity()));
             number = cartItem.getQuantity();
-        }
-
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-            }
         }
     }
 }

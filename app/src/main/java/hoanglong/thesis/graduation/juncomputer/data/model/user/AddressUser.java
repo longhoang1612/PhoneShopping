@@ -135,4 +135,14 @@ public class AddressUser extends RealmObject implements Parcelable {
             return new AddressUser(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "AddressUser{" +
+                "mId=" + mId +
+                ", mPhoneNumber='" + mPhoneNumber + '\'' +
+                ", mAddressOrder='" + mAddressOrder + '\'' +
+                ", mUserNameOrder='" + mUserNameOrder + '\'' +
+                '}';
+    }
 }

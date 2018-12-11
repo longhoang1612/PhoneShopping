@@ -70,7 +70,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.Delivery
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.radio_address:
+                case R.id.radio_type:
                     mOnClickDeliveryListener.choosePayment(mDelivery);
                     mLastSelectedPosition = mPosition;
                     notifyDataSetChanged();

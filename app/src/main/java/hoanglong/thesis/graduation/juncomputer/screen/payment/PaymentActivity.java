@@ -3,6 +3,7 @@ package hoanglong.thesis.graduation.juncomputer.screen.payment;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -37,6 +38,8 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
     RecyclerView mRecyclerAddress;
     private List<AddressUser> mAddressUsers;
     private AddressUser mAddressChoose;
+    @BindView(R.id.ic_back)
+    ImageView mImageBack;
 
     @Override
     protected int getLayoutResources() {
@@ -48,6 +51,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         ButterKnife.bind(this);
         mRelativeAddNewLocation.setOnClickListener(this);
         mRelativeContinue.setOnClickListener(this);
+        mImageBack.setOnClickListener(this);
     }
 
     @Override
@@ -80,6 +84,9 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
                     mRelativeContinue.setClickable(false);
                     mRelativeContinue.setBackgroundResource(R.drawable.custom_button4);
                 }
+                break;
+            case R.id.ic_back:
+                onBackPressed();
                 break;
         }
     }
@@ -141,5 +148,13 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
                 NewAddressFragment.newInstance(addressUser),
                 R.id.frame_add_address,
                 NewAddressFragment.TAG, true, -1, -1);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        }
     }
 }

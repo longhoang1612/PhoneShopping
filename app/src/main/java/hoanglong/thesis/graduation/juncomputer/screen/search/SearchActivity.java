@@ -78,13 +78,13 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private void setDataSuggest() {
         mSuggestSearch = new ArrayList<>();
         mSuggestSearch.add("Iphone Xs max");
-        mSuggestSearch.add("Iphone Xs max");
-        mSuggestSearch.add("Iphone Xs max");
-        mSuggestSearch.add("Iphone Xs max");
-        mSuggestSearch.add("Iphone Xs max");
-        mSuggestSearch.add("Iphone Xs max");
-        mSuggestSearch.add("Iphone Xs max");
-        mSuggestSearch.add("Iphone Xs max");
+        mSuggestSearch.add("Samsung galaxy s9");
+        mSuggestSearch.add("Oppo find X");
+        mSuggestSearch.add("Iphone Xr");
+        mSuggestSearch.add("Nokia");
+        mSuggestSearch.add("BPhone 3");
+        mSuggestSearch.add("Samsung Note 9");
+        mSuggestSearch.add("Huawei mate 20 pro");
     }
 
     @Override
@@ -129,7 +129,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         if (mCountDownTimer != null) {
             mCountDownTimer.cancel();
         }
-        mSearchKey = mEditSearch.toString().trim();
+        mSearchKey = mEditSearch.getText().toString().trim();
         if (!mSearchKey.isEmpty()) {
             mCountDownTimer.start();
         } else {
@@ -151,7 +151,8 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onItemClickSuggestListener(String keySuggest) {
-
+        mSearchKey = keySuggest;
+        mEditSearch.setText(keySuggest);
     }
 
     @Override
