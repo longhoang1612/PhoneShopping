@@ -114,7 +114,7 @@ public class SignInFragment extends BaseFragment implements View.OnClickListener
 //                SharedPreferences.Editor prefsEditor = mPrefs.edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(response.body());
-                SharedPrefs.getInstance().put("MyObject", json);
+                SharedPrefs.getInstance().put(Constant.Login.OBJECT_USER_LOGIN, json);
 
                 SharedPrefs.getInstance().put(Constant.Login.LOGIN_STATUS, true);
                 Toast.makeText(getContext(), "REGISTER SUCCESS", Toast.LENGTH_SHORT).show();

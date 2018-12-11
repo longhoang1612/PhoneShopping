@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraint_address"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RadioButton
+        android:id="@+id/radio_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ic_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_10"
+        android:src="@drawable/ic_cancel_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_name_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_name_user" />
+
+    <TextView
+        android:id="@+id/text_name_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:fontFamily="@font/sanfranciscodisplay_medium"
+        android:text="Trần Hoàng Long"
+        android:textColor="#000000"
+        android:textSize="@dimen/dimen_18sp"
+        app:layout_constraintStart_toEndOf="@+id/radio_address"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:fontFamily="@font/sanfranciscodisplay_regular"
+        android:text="Ngách 95 ngõ 197 Hoàng Mai, Phường Hoàng Văn Thụ, Quận Hoàng Mai, Hà Nội"
+        android:textColor="#4D4d4d"
+        android:textSize="@dimen/dimen_text_16"
+        app:layout_constraintEnd_toStartOf="@+id/ic_delete"
+        app:layout_constraintStart_toEndOf="@+id/radio_address"
+        app:layout_constraintTop_toBottomOf="@+id/text_name_user" />
+
+    <TextView
+        android:id="@+id/text_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:layout_marginBottom="@dimen/dimen_10"
+        android:text="0363891869"
+        android:textSize="@dimen/dimen_text_16"
+        app:layout_constraintBottom_toTopOf="@+id/view_underline"
+        app:layout_constraintStart_toEndOf="@+id/radio_address"
+        app:layout_constraintTop_toBottomOf="@+id/text_address" />
+
+    <View
+        android:id="@+id/view_underline"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@color/color_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_phone" />
+
+</android.support.constraint.ConstraintLayout>

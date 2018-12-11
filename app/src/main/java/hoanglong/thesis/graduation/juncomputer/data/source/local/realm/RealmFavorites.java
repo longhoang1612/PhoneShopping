@@ -4,7 +4,6 @@ import java.util.List;
 
 import hoanglong.thesis.graduation.juncomputer.data.model.user.Favorites;
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
 
@@ -33,13 +32,4 @@ public class RealmFavorites {
     public static List<Favorites> getFavorites() {
         return realm.where(Favorites.class).findAll();
     }
-
-    public static RealmList<Favorites> getPlaylist(){
-        realm.beginTransaction();
-        RealmList<Favorites> realmResults = new RealmList<>();
-        realmResults.addAll(realm.where(Favorites.class).findAll());
-        realm.commitTransaction();
-        return realmResults;
-    }
-
 }

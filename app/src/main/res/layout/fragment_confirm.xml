@@ -1,17 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_bg"
     android:clickable="true"
     android:focusable="true"
-    android:background="@color/color_blue_grey_900"
     tools:context=".screen.payment.ConfirmFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginBottom="@dimen/dimen_120dp"
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_regular"
+                        android:text="Địa chỉ người nhận"
+                        android:textColor="@color/color_black" />
+
+                    <TextView
+                        android:id="@+id/text_name_confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_regular"
+                        android:text="Tran Hoang Long"
+                        android:textColor="@color/color_black" />
+
+                    <TextView
+                        android:id="@+id/text_phone_confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_10"
+                        android:layout_marginTop="@dimen/dimen_5"
+                        android:fontFamily="@font/sanfranciscodisplay_regular"
+                        android:text="0363891869" />
+
+                    <TextView
+                        android:id="@+id/text_address_confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_10"
+                        android:layout_marginTop="@dimen/dimen_5"
+                        android:layout_marginEnd="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_regular"
+                        android:text="Ngach 95 ngo 197 Hoang Mai, phuong Hoang van thu, quan hoan mai, ha noi" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_regular"
+                        android:text="Hình thức giao hàng"
+                        android:textColor="@color/color_black" />
+
+                    <TextView
+                        android:id="@+id/text_delivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_regular"
+                        android:text="Giao hang 2h ( du kien truoc 18:00 hom nay )" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_regular"
+                        android:text="Hình thức thanh toán"
+                        android:textColor="@color/color_black" />
+
+                    <TextView
+                        android:id="@+id/text_payment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_regular"
+                        android:text="Giao hang 2h ( du kien truoc 18:00 hom nay )" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:background="@color/colorWhite">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/relative_type_delivery"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color_bg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen_10"
+                            android:fontFamily="@font/sanfranciscodisplay_semibold"
+                            android:text="Thông tin đơn hàng"
+                            android:textColor="@color/color_blue_grey_900"
+                            android:textSize="@dimen/dimen_text_16"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_order_confirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_100"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_20"
+            android:fontFamily="@font/sanfranciscodisplay_regular"
+            android:text="Thành tiền"
+            android:textSize="@dimen/dimen_text_14"
+            app:layout_constraintBottom_toTopOf="@+id/relative_confirm_order"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_confirm_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:layout_marginEnd="@dimen/dimen_20"
+            android:fontFamily="@font/sanfranciscodisplay_semibold"
+            android:text="11.372.000 đ"
+            android:textSize="@dimen/dimen_18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/dimen_20"
+            android:text="Đã bao gồm VAT"
+            android:textSize="9sp"
+            app:layout_constraintBottom_toTopOf="@+id/relative_confirm_order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_confirm_price" />
+
+        <RelativeLayout
+            android:id="@+id/relative_confirm_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_20"
+            android:layout_marginEnd="@dimen/dimen_20"
+            android:layout_marginBottom="@dimen/dimen_10"
+            android:background="@drawable/custom_button1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/dimen_5"
+                android:fontFamily="@font/sanfranciscodisplay_semibold"
+                android:text="TIẾN HÀNH ĐẶT HÀNG"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/dimen_text_14" />
+        </RelativeLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

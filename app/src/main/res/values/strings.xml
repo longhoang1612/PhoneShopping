@@ -79,4 +79,13 @@
     <string name="type_delivery">Hình thức giao hàng</string>
     <string name="type_payment">Hình thức thanh toán</string>
     <string name="sign_in">Đăng ký</string>
+    <string name="delete_address">Bạn muốn xóa địa chỉ này?</string>
+    <string name="title_alert">Thông báo</string>
+    <string name="title_yes">Có</string>
+    <string name="title_no">Không</string>
+    <string name="title_address_order">Địa chỉ nhận hàng</string>
+    <string name="title_confirm">Xác nhận</string>
+    <string name="title_payment">Thanh toán</string>
+    <string name="format_date">dd-MM-yyyy</string>
+    <string name="format_hour">HH:mm</string>
 </resources>
