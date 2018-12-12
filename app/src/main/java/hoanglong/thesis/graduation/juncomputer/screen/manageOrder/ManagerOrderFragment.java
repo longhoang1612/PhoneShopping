@@ -10,6 +10,17 @@ import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
 
 public class ManagerOrderFragment extends BaseFragment {
 
+    public static final String TAG = ManagerOrderFragment.class.getName();
+
+    public static ManagerOrderFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        ManagerOrderFragment fragment = new ManagerOrderFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     protected int getLayoutResources() {
         return R.layout.fragment_manager_order;

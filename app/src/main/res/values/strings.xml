@@ -88,4 +88,9 @@
     <string name="title_payment">Thanh toán</string>
     <string name="format_date">dd-MM-yyyy</string>
     <string name="format_hour">HH:mm</string>
+    <string name="info_user">Thông tin người dùng</string>
+    <string name="log_in_sign_in">Đăng nhập/đăng ký</string>
+    <string name="title_time_user">Thành viên từ %s</string>
+    <string name="alert_sign_out">Đăng xuất...</string>
+    <string name="title_birth_day">Ngày sinh</string>
 </resources>

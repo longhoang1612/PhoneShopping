@@ -35,6 +35,7 @@ import retrofit2.Response;
 public class FavoritesFragment extends BaseFragment implements View.OnClickListener,
         FavoritesAdapter.OnClickFavoritesListener, SwipeRefreshLayout.OnRefreshListener {
 
+    public static final String TAG = FavoritesFragment.class.getName();
     @BindView(R.id.recycler_favorites)
     RecyclerView mRecyclerFavorites;
     @BindView(R.id.ic_back)
@@ -46,6 +47,13 @@ public class FavoritesFragment extends BaseFragment implements View.OnClickListe
     @BindView(R.id.up_load)
     ImageView mImageUpload;
     private List<Favorites> mFavorites;
+
+    public static FavoritesFragment newInstance() {
+        Bundle args = new Bundle();
+        FavoritesFragment fragment = new FavoritesFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected int getLayoutResources() {
@@ -118,7 +126,7 @@ public class FavoritesFragment extends BaseFragment implements View.OnClickListe
         String json = SharedPrefs.getInstance().get(Constant.Login.OBJECT_USER_LOGIN, String.class);
         User user = gson.fromJson(json, User.class);
 
-        if (user == null) {
+        if (user == null || mFavorites==null) {
             return;
         }
 

@@ -1,25 +1,38 @@
 package hoanglong.thesis.graduation.juncomputer.screen.payment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 import hoanglong.thesis.graduation.juncomputer.R;
+import hoanglong.thesis.graduation.juncomputer.data.model.user.AddressUpload;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.AddressUser;
+import hoanglong.thesis.graduation.juncomputer.data.model.user.User;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmAddress;
 import hoanglong.thesis.graduation.juncomputer.listener.UpdateStep;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.payment.adapter.AddressAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.payment.listener.OnListenerPayment;
+import hoanglong.thesis.graduation.juncomputer.service.BaseService;
+import hoanglong.thesis.graduation.juncomputer.utils.Constant;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
+import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PaymentActivity extends BaseActivity implements View.OnClickListener,
         UpdateStep, OnListenerPayment, AddressAdapter.OnClickAddressListener {
@@ -40,6 +53,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
     private AddressUser mAddressChoose;
     @BindView(R.id.ic_back)
     ImageView mImageBack;
+    private User mUser;
 
     @Override
     protected int getLayoutResources() {
@@ -56,6 +70,12 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void initData(Bundle savedInstanceState) {
+        Gson gson = new Gson();
+        String json = SharedPrefs.getInstance().get(Constant.Login.OBJECT_USER_LOGIN, String.class);
+        mUser = gson.fromJson(json, User.class);
+        if (mUser == null) {
+            return;
+        }
         mAddressUsers = new ArrayList<>();
         updateAddress();
         mTextTitle.setText(getString(R.string.title_address_order));
@@ -119,6 +139,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
     public void updateAddress() {
         mAddressUsers.clear();
         mAddressUsers.addAll(RealmAddress.getListAddress());
+        uploadAddressToServer();
         if (mAddressChoose == null) {
             mRelativeContinue.setClickable(false);
             mRelativeContinue.setBackgroundResource(R.drawable.custom_button4);
@@ -128,6 +149,34 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         }
         AddressAdapter addressAdapter = new AddressAdapter(mAddressUsers, this);
         mRecyclerAddress.setAdapter(addressAdapter);
+    }
+
+    private void uploadAddressToServer() {
+        Toasty.info(getApplicationContext(), "Lấy thông tin địa chỉ thành công").show();
+        List<AddressUser> addressUserList = new ArrayList<>();
+        for (int i = 0; i < mAddressUsers.size(); i++) {
+            AddressUser addressUser = mAddressUsers.get(i);
+            AddressUser addressUpload = new AddressUser(
+                    addressUser.getPhoneNumber(),
+                    addressUser.getAddressOrder(),
+                    addressUser.getUserNameOrder());
+            addressUserList.add(addressUpload);
+        }
+
+        AddressUpload addressUpload = new AddressUpload(addressUserList);
+
+        Call<User> call = BaseService.getService().updateAddress(mUser.getEmail(), addressUpload);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                Toasty.success(getApplicationContext(), "Lấy thông tin địa chỉ").show();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                Toasty.success(getApplicationContext(), "Lỗi cập nhật địa chỉ").show();
+            }
+        });
     }
 
     @Override

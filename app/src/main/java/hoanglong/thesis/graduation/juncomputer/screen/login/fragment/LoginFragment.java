@@ -2,11 +2,9 @@ package hoanglong.thesis.graduation.juncomputer.screen.login.fragment;
 
 
 import android.app.ProgressDialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,19 +14,16 @@ import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.User;
-import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmUser;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
-import hoanglong.thesis.graduation.juncomputer.screen.userinfo.UserInfoActivity;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import hoanglong.thesis.graduation.juncomputer.utils.Constant;
 import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class LoginFragment extends BaseFragment {
 
@@ -39,7 +34,6 @@ public class LoginFragment extends BaseFragment {
     @BindView(R.id.button_login)
     Button mButtonLogin;
     private ProgressDialog dialogProgress;
-    private User user;
 
     @Override
     protected int getLayoutResources() {
@@ -74,27 +68,31 @@ public class LoginFragment extends BaseFragment {
     private void loginUser() {
         String email = mEditEmail.getText().toString();
         String password = mEditPassword.getText().toString();
-        user = new User(email, password);
+        User user = new User(email, password);
+
         Call<User> call = BaseService.getService().login(user);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 hideProgress();
-//                RealmUser.saveUser(response.body());
-
-
                 Gson gson = new Gson();
                 String json = gson.toJson(response.body());
-                SharedPrefs.getInstance().put("MyObject",json);
+                SharedPrefs.getInstance().put(Constant.Login.OBJECT_USER_LOGIN, json);
 
 
                 SharedPrefs.getInstance().put(Constant.Login.LOGIN_STATUS, true);
-                Toast.makeText(getContext(), "LOGIN SUCCESS", Toast.LENGTH_SHORT).show();
+                if (getContext() == null) {
+                    return;
+                }
+                Toasty.info(getContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT, true).show();
                 showProgressSuccess();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         hideProgress();
+                        if (getActivity() == null) {
+                            return;
+                        }
                         getActivity().finish();
                     }
                 }, 1000);

@@ -1,7 +1,6 @@
 package hoanglong.thesis.graduation.juncomputer.screen.home;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -22,19 +21,18 @@ import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hoanglong.thesis.graduation.juncomputer.screen.search.SearchActivity;
-import hoanglong.thesis.graduation.juncomputer.screen.favorites.FavoritesFragment;
-import hoanglong.thesis.graduation.juncomputer.screen.manageOrder.ManagerOrderFragment;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.User;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
-import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmUser;
 import hoanglong.thesis.graduation.juncomputer.listener.UpdateCart;
 import hoanglong.thesis.graduation.juncomputer.screen.cart.CartActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.category.CategoryFragment;
+import hoanglong.thesis.graduation.juncomputer.screen.favorites.FavoritesFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.home.homefragment.HomeFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.login.LoginActivity;
+import hoanglong.thesis.graduation.juncomputer.screen.manageOrder.ManagerOrderFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.notification.NotificationFragment;
+import hoanglong.thesis.graduation.juncomputer.screen.search.SearchActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.userinfo.UserInfoActivity;
 import hoanglong.thesis.graduation.juncomputer.utils.Constant;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
@@ -46,7 +44,6 @@ public class HomeActivity extends AppCompatActivity
     // tags used to attach the fragments
 
     private static final String TAG_HOME = "TAG_HOME";
-    private static final String TAG_LOGIN = "TAG_LOGIN";
     private static final String TAG_CATEGORY = "TAG_CATEGORY";
     private static final String TAG_MANAGER_ORDER = "TAG_MANAGER_ORDER";
     private static final String TAG_NOTIFICATIONS = "TAG_NOTIFICATIONS";
@@ -133,12 +130,11 @@ public class HomeActivity extends AppCompatActivity
 
     private void updateLogin(TextView textName, TextView textEmail) {
         Gson gson = new Gson();
-        String json = SharedPrefs.getInstance().get("MyObject", String.class);
+        String json = SharedPrefs.getInstance().get(Constant.Login.OBJECT_USER_LOGIN, String.class);
         User user = gson.fromJson(json, User.class);
-
         if (user == null) {
-            textName.setText("Thông tin người dùng ");
-            textEmail.setText("Đăng nhập/đăng ký ");
+            textName.setText(getString(R.string.info_user));
+            textEmail.setText(getString(R.string.log_in_sign_in));
             return;
         }
         textName.setText(user.getFullName());
@@ -148,6 +144,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        isLogin = SharedPrefs.getInstance().get(Constant.Login.LOGIN_STATUS, Boolean.class);
         onUpdateCart();
         updateLogin(textName, textEmail);
     }

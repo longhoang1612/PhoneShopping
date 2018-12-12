@@ -33,6 +33,12 @@ public class AddressUser extends RealmObject implements Parcelable {
         mUserNameOrder = userNameOrder;
     }
 
+    public AddressUser(String phoneNumber, String addressOrder, String userNameOrder) {
+        mPhoneNumber = phoneNumber;
+        mAddressOrder = addressOrder;
+        mUserNameOrder = userNameOrder;
+    }
+
     private AddressUser(Parcel in) {
         mId = in.readInt();
         mPhoneNumber = in.readString();

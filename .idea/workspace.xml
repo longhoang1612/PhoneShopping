@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="HISTORY" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="initData" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -17,8 +17,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c6c82e2-f516-4ffa-b404-d72a5b0516e8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/AddressUserFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_address_user.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/adapter/AddressAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/ChangeInfoUserFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/ProductBuyFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/SeenFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_change_info_user.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_product_buy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_seen.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterDir="false" />
@@ -27,21 +32,22 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/search/HistorySearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/search/HistorySearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/AddressUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/AddressUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/ConfirmFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/ConfirmFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/favorites/FavoritesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/favorites/FavoritesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/home/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/home/HomeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/login/fragment/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/login/fragment/LoginFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/manageOrder/ManagerOrderFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/manageOrder/ManagerOrderFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/adapter/CartConfirmAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/adapter/CartConfirmAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/adapter/DeliveryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/adapter/DeliveryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/adapter/PaymentAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/adapter/PaymentAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/search/SearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/search/SearchActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/UserInfoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/UserInfoActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_user_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_user_info.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_confirm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_confirm.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/AddressUserFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/AddressUserFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/service/IApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/service/IApiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_address_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_address_user.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_favorites.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_favorites.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,20 +70,73 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserInfoActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/UserInfoActivity.java">
+      <file leaf-file-name="PaymentActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+            <state relative-caret-position="233">
+              <caret line="90" column="62" lean-forward="true" selection-start-line="87" selection-start-column="16" selection-end-line="90" selection-end-column="62" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3066#3105#0" expanded="true" />
+                <element signature="e#3858#3891#0" expanded="true" />
+                <element signature="e#4692#4731#0" expanded="true" />
+                <element signature="e#4881#4914#0" expanded="true" />
+                <element signature="e#4995#5028#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_user_info.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_info.xml">
+      <file leaf-file-name="AddressUserFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/AddressUserFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="355" column="40" selection-start-line="355" selection-start-column="40" selection-end-line="355" selection-end-column="40" />
+            <state relative-caret-position="595">
+              <caret line="50" column="56" lean-forward="true" selection-start-line="50" selection-start-column="56" selection-end-line="50" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddressAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/adapter/AddressAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_address_user.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_address_user.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="508">
+              <caret line="51" column="45" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="45" />
+              <folding>
+                <element signature="e#1032#1049#0" expanded="true" />
+                <element signature="e#1533#1552#0" expanded="true" />
+                <element signature="e#2137#2154#0" expanded="true" />
+                <element signature="e#2304#2321#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewAddressFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/NewAddressFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="612">
+              <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_new_address.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_new_address.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="38" column="21" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="38" selection-end-column="21" />
             </state>
           </provider>
           <provider editor-type-id="android-designer2">
@@ -2147,27 +2206,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_suggest_search.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/suggest_search_button.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/search/adapter/HistorySearchAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_product.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/phone/detail_product/DetailProductActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/app_bar_home.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_product_favorites.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/favorites/FavoritesAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_settings_backup_restore_black_24dp.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_favorites.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/source/local/realm/RealmUser.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/login/fragment/LoginFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/home/HomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/Favorites.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/FavoritesObject.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/service/IApiService.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/utils/Constant.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/favorites/FavoritesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/source/local/realm/RealmFavorites.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/listener/OnListenerPayment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_payment.xml" />
@@ -2184,20 +2227,36 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_cart_confirm.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/adapter/CartConfirmAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_confirm.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/AddressUser.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/adapter/DeliveryAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/adapter/PaymentAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/ConfirmFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/search/HistorySearch.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/search/SearchActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/UserInfoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/AddressUserFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/AddressUserFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/AddressUserFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_user_info.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/home/HomeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/login/fragment/LoginFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_product_buy.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/ProductBuyFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_seen.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/SeenFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/manageOrder/ManagerOrderFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/favorites/FavoritesFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_favorites.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/ChangeInfoUserFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/UserInfoActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/dialog/DatePickerFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_change_info_user.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/ChangeInfoUserFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/AddressUpload.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/AddressUser.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/service/IApiService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_address_user.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/AddressUserFragment.java" />
       </list>
     </option>
   </component>
@@ -2215,8 +2274,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
@@ -2249,30 +2306,6 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="juncomputer" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="screen" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="juncomputer" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="screen" type="462c0819:PsiDirectoryNode" />
-              <item name="manageOrder" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="juncomputer" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="screen" type="462c0819:PsiDirectoryNode" />
-              <item name="search" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="juncomputer" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="screen" type="462c0819:PsiDirectoryNode" />
               <item name="userinfo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -2286,16 +2319,23 @@
             </path>
             <path>
               <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DEBUGGABLE_DEVICE" value="samsung-sm_g930u-0d05f7df" />
+    <property name="DEBUGGABLE_DEVICE" value="sony-e6683-BH901YMV55" />
     <property name="DEBUGGABLE_PROCESS" value="hoanglong.thesis.graduation.juncomputer" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
@@ -2308,10 +2348,14 @@
     <property name="show.do.not.ask.upgrade.gradle.plugin" value="3.1.3" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="hoanglong.thesis.graduation.juncomputer.screen.userinfo" />
+    </key>
     <key name="android.template.packageName">
       <recent name="hoanglong.thesis.graduation.juncomputer" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="hoanglong.thesis.graduation.juncomputer.data.model.user" />
       <recent name="hoanglong.thesis.graduation.juncomputer.screen.payment.adapter" />
       <recent name="hoanglong.thesis.graduation.juncomputer.screen.search.adapter" />
     </key>
@@ -2447,32 +2491,41 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1922" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3297414" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Build Variants" order="2" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="10" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="right" id="Preview" order="12" visible="true" weight="0.32977587" />
+      <window_info anchor="right" id="Preview" order="12" weight="0.32977587" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3265086" />
-      <window_info anchor="bottom" id="Logcat" order="7" weight="0.41056034" />
+      <window_info anchor="bottom" id="Logcat" order="7" weight="0.40948275" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2497332" />
-      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.3297414" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21024546" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.3297414" />
       <window_info anchor="right" id="Gradle" order="11" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39978448" />
       <window_info anchor="right" id="Device File Explorer" order="8" side_tool="true" weight="0.32977587" />
       <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39978448" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -2499,7 +2552,6 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="right" id="Preview" order="8" weight="0.32977587" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
       <window_info anchor="right" id="Device File Explorer" order="4" side_tool="true" weight="0.32977587" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.41056034" />
       <window_info anchor="bottom" id="Version Control" order="11" />
@@ -2512,6 +2564,7 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39978448" />
     </layout-to-restore>
   </component>
@@ -2520,7 +2573,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="20" />
+      <option name="time" value="27" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -2543,210 +2596,10 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/listener/OnListenerPayment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="25" lean-forward="true" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/cart/adapter/CartAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="148" column="9" lean-forward="true" selection-start-line="128" selection-start-column="8" selection-end-line="148" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-818">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="35" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/phone_product/ItemPhoneProduct.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="109" column="53" lean-forward="true" selection-start-line="107" selection-start-column="8" selection-end-line="109" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/base/BaseFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/source/local/realm/RealmCart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" column="45" selection-start-line="14" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/source/local/realm/RealmAddress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_new_address.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="156" column="25" lean-forward="true" selection-start-line="156" selection-start-column="25" selection-end-line="156" selection-end-column="25" />
-          <folding>
-            <element signature="e#442#1574#0" />
-            <element signature="e#2134#2151#0" expanded="true" />
-            <element signature="e#2556#2578#0" expanded="true" />
-            <element signature="e#2903#2920#0" expanded="true" />
-            <element signature="e#3379#3401#0" expanded="true" />
-            <element signature="e#3728#3745#0" expanded="true" />
-            <element signature="e#4157#4179#0" expanded="true" />
-            <element signature="e#4696#4713#0" expanded="true" />
-            <element signature="e#5200#5222#0" expanded="true" />
-            <element signature="e#5563#5580#0" expanded="true" />
-            <element signature="e#6068#6090#0" expanded="true" />
-            <element signature="e#6451#6468#0" expanded="true" />
-            <element signature="e#6877#6899#0" expanded="true" />
-            <element signature="e#7198#7215#0" expanded="true" />
-            <element signature="e#7257#7275#0" expanded="true" />
-            <element signature="e#7626#7643#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/NewAddressFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="137" column="35" selection-start-line="137" selection-start-column="35" selection-end-line="137" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="45" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/custom_button1.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-v24/custom_button2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/custom_button3.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/custom_button4.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/custom_button.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/circle_2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/circle_1.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_address.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="59" column="29" selection-start-line="59" selection-end-line="60" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/login/fragment/SignInFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="98" column="8" selection-start-line="98" selection-start-column="8" selection-end-line="100" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_delivery.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-28.0.0.aar/16ad22a43bd46799e2115f181fe10fc7/jars/classes.jar!/android/support/v7/widget/RecyclerView.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="633" column="16" selection-start-line="633" selection-start-column="16" selection-end-line="633" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_payment.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="24" column="64" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="64" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/utils/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="64" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="89" column="36" selection-start-line="89" selection-start-column="31" selection-end-line="89" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/utils/FormatDate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="28" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_payment.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="740">
           <caret line="59" column="49" selection-start-line="21" selection-start-column="12" selection-end-line="59" selection-end-column="49" />
-          <folding>
-            <element signature="e#3030#3046#0" expanded="true" />
-          </folding>
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -2787,21 +2640,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/AddressUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="139" column="18" selection-start-line="139" selection-start-column="18" selection-end-line="139" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="131" column="46" selection-start-line="131" selection-start-column="46" selection-end-line="131" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#onAttach#0;class#PaymentFragment#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2809,9 +2651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-340">
           <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2819,9 +2658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="75" selection-start-line="75" selection-end-line="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2859,13 +2695,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_suggest_search.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -2880,10 +2709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-          <folding>
-            <element signature="e#322#323#0" expanded="true" />
-            <element signature="e#368#369#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2908,10 +2733,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="842">
           <caret line="154" column="38" selection-start-line="154" selection-start-column="38" selection-end-line="154" selection-end-column="38" />
-          <folding>
-            <element signature="method#setDataSuggest#0;class#SearchActivity#0" />
-            <element signature="method#onClick#0;class#SearchActivity#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2923,55 +2744,278 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/manageOrder/ManagerOrderFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/base/BaseFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+        <state relative-caret-position="425">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_address_user.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/login/fragment/SignInFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
+        <state relative-caret-position="111">
+          <caret line="98" column="8" selection-start-line="98" selection-start-column="8" selection-end-line="100" selection-end-column="42" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/AddressUserFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/source/local/realm/RealmUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#532#533#0" expanded="true" />
-            <element signature="e#556#557#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/utils/SharedPrefs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-304">
+          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/login/fragment/LoginFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1207">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/login/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-290">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/home/HomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2074">
-          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+        <state relative-caret-position="-770">
+          <caret line="267" column="44" lean-forward="true" selection-start-line="267" selection-start-column="44" selection-end-line="267" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_product_buy.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_seen.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="27" selection-end-line="16" selection-end-column="14" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/manageOrder/ManagerOrderFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="12" column="73" selection-start-line="12" selection-start-column="73" selection-end-line="12" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/favorites/FavoritesFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="140" column="48" lean-forward="true" selection-start-line="140" selection-start-column="48" selection-end-line="140" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_favorites.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_info.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="39" column="21" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="39" selection-end-column="21" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_sign_in.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="83" column="17" lean-forward="true" selection-start-line="58" selection-start-column="4" selection-end-line="83" selection-end-column="17" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/ProductBuyFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/SeenFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/dialog/DatePickerFragment.java" />
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_change_info_user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1615">
+          <caret line="95" column="55" selection-start-line="95" selection-start-column="45" selection-end-line="95" selection-end-column="55" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/ChangeInfoUserFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="115" column="13" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="38" column="46" selection-start-line="36" selection-start-column="4" selection-end-line="38" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/FavoritesUpload.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/AddressUpload.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#357#358#0" expanded="true" />
+            <element signature="e#391#392#0" expanded="true" />
+            <element signature="e#436#437#0" expanded="true" />
+            <element signature="e#467#468#0" expanded="true" />
+            <element signature="e#524#525#0" expanded="true" />
+            <element signature="e#558#559#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/UserInfoActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+        <state relative-caret-position="1003">
+          <caret line="88" column="9" selection-start-line="83" selection-start-column="8" selection-end-line="88" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_info.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/AddressUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="355" column="40" selection-start-line="355" selection-start-column="40" selection-end-line="355" selection-end-column="40" />
+        <state relative-caret-position="459">
+          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/service/IApiService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="44" column="91" selection-start-line="44" selection-start-column="78" selection-end-line="44" selection-end-column="91" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/NewAddressFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_new_address.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="21" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="38" selection-end-column="21" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/adapter/AddressAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_address_user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="51" column="45" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="45" />
+          <folding>
+            <element signature="e#1032#1049#0" expanded="true" />
+            <element signature="e#1533#1552#0" expanded="true" />
+            <element signature="e#2137#2154#0" expanded="true" />
+            <element signature="e#2304#2321#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="90" column="62" lean-forward="true" selection-start-line="87" selection-start-column="16" selection-end-line="90" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3066#3105#0" expanded="true" />
+            <element signature="e#3858#3891#0" expanded="true" />
+            <element signature="e#4692#4731#0" expanded="true" />
+            <element signature="e#4881#4914#0" expanded="true" />
+            <element signature="e#4995#5028#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/AddressUserFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="50" column="56" lean-forward="true" selection-start-line="50" selection-start-column="56" selection-end-line="50" selection-end-column="56" />
+        </state>
       </provider>
     </entry>
   </component>

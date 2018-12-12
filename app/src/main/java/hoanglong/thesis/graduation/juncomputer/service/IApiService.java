@@ -1,17 +1,13 @@
 package hoanglong.thesis.graduation.juncomputer.service;
 
-import java.util.List;
-
 import hoanglong.thesis.graduation.juncomputer.data.model.category.PhoneCategory;
 import hoanglong.thesis.graduation.juncomputer.data.model.home.Home;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.PhoneProduct;
-import hoanglong.thesis.graduation.juncomputer.data.model.user.Favorites;
+import hoanglong.thesis.graduation.juncomputer.data.model.user.AddressUpload;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.FavoritesUpload;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.User;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -42,10 +38,9 @@ public interface IApiService {
     @POST("/login")
     Call<User> login(@Body User user);
 
-    @FormUrlEncoded
     @PUT("/updateFavorites/{email}")
-    Call<User> updateFavorites(@Path("email") String email, @Field("favorites") List<Favorites> favorites);
+    Call<User> updateFavorites(@Path("email") String email, @Body FavoritesUpload favoritesUpload);
 
-    @PUT("/updateFavorites/{email}")
-    Call<User> updateFavorites(@Path("email") String email,@Body FavoritesUpload favoritesUpload);
+    @PUT("/updateAddressUser/{email}")
+    Call<User> updateAddress(@Path("email") String email, @Body AddressUpload addressUpload);
 }
