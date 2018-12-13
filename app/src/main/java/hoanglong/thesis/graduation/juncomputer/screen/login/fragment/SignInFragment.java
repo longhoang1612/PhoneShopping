@@ -2,11 +2,9 @@ package hoanglong.thesis.graduation.juncomputer.screen.login.fragment;
 
 
 import android.app.ProgressDialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +21,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.User;
-import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmUser;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import hoanglong.thesis.graduation.juncomputer.utils.Constant;
@@ -31,8 +28,6 @@ import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class SignInFragment extends BaseFragment implements View.OnClickListener {
 
@@ -118,6 +113,8 @@ public class SignInFragment extends BaseFragment implements View.OnClickListener
                     @Override
                     public void run() {
                         hideProgress();
+                        if (getActivity() == null)
+                            return;
                         getActivity().finish();
                     }
                 }, 2000);

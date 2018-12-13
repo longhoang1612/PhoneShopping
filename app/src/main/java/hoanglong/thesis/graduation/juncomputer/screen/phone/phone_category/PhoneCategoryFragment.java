@@ -3,9 +3,7 @@ package hoanglong.thesis.graduation.juncomputer.screen.phone.phone_category;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -28,7 +26,6 @@ import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.AccessoriesCategoryAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneCategoryAdapter;
-import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneSeenAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.all_phone.AllPhoneFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.all_phone.PhoneFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
@@ -39,8 +36,7 @@ public class PhoneCategoryFragment extends BaseFragment implements
         PhoneCategoryContract.View,
         PhoneAdapter.OnClickProductListener,
         PhoneCategoryAdapter.OnClickPhoneCategoryListener,
-        View.OnClickListener, AccessoriesCategoryAdapter.OnClickPhoneCategoryListener,
-        PhoneSeenAdapter.OnClickProductListener {
+        View.OnClickListener, AccessoriesCategoryAdapter.OnClickPhoneCategoryListener {
 
     public static final String TAG = PhoneCategoryFragment.class.getName();
     public static final String BUNDLE_CATEGORY = "BUNDLE_CATEGORY";
@@ -55,8 +51,6 @@ public class PhoneCategoryFragment extends BaseFragment implements
     ProgressBar mProgressHighlight;
     @BindView(R.id.button_see_more)
     Button mButtonSeeMore;
-    @BindView(R.id.card_no_item)
-    CardView mCardNoItem;
     @BindView(R.id.recycler_phone_recent)
     RecyclerView mRecyclerPhoneRecent;
     private PhoneCategoryPresenter mPresenter;
@@ -104,29 +98,6 @@ public class PhoneCategoryFragment extends BaseFragment implements
         mPresenter.setView(this);
         loadDataCategory();
         loadDataHighLight();
-        loadDataSeen();
-    }
-
-    private void loadDataSeen() {
-        if (RealmSeen.getListScreen() == null || RealmSeen.getListScreen().size() == 0) {
-            mRecyclerPhoneRecent.setVisibility(View.GONE);
-            mCardNoItem.setVisibility(View.VISIBLE);
-        } else {
-            mRecyclerPhoneRecent.setVisibility(View.VISIBLE);
-            mCardNoItem.setVisibility(View.GONE);
-            List<ItemSeen> itemSeens = new ArrayList<>();
-            for (ItemSeen itemSeen : RealmSeen.getListScreen()) {
-                if (itemSeen.getTypeCategory().equals(mCategory.getType())) {
-                    itemSeens.add(itemSeen);
-                }
-            }
-            if(itemSeens.size()==0){
-                mRecyclerPhoneRecent.setVisibility(View.GONE);
-                mCardNoItem.setVisibility(View.VISIBLE);
-            }
-            PhoneSeenAdapter phoneAdapter = new PhoneSeenAdapter(itemSeens, this);
-            mRecyclerPhoneRecent.setAdapter(phoneAdapter);
-        }
     }
 
     private void loadDataHighLight() {
@@ -238,24 +209,5 @@ public class PhoneCategoryFragment extends BaseFragment implements
                 }
                 break;
         }
-    }
-
-    @Override
-    public void onClickItemSeenProduct(ItemSeen itemPhoneProduct) {
-        ItemSeen itemSeen = new ItemSeen(itemPhoneProduct.getId(),
-                itemPhoneProduct.getType(),
-                itemPhoneProduct.getTitle(),
-                itemPhoneProduct.getTypeCategory(),
-                itemPhoneProduct.getPrice(),
-                itemPhoneProduct.getDeal(),
-                itemPhoneProduct.getImage(),
-                itemPhoneProduct.getRating(),
-                itemPhoneProduct.getNumberRating());
-
-        RealmSeen.addSeenItem(itemSeen);
-
-        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
-        intent.putExtra("BUNDLE_ITEM_PRODUCT", itemPhoneProduct.getTitle());
-        startActivity(intent);
     }
 }

@@ -3,11 +3,11 @@ package hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -24,9 +24,7 @@ import hoanglong.thesis.graduation.juncomputer.data.model.user.User;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmAddress;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.payment.NewAddressFragment;
-import hoanglong.thesis.graduation.juncomputer.screen.payment.listener.OnListenerPayment;
 import hoanglong.thesis.graduation.juncomputer.screen.userinfo.adapter.AddressAdapter;
-import hoanglong.thesis.graduation.juncomputer.screen.userinfo.listener.UpdateAddressListener;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import hoanglong.thesis.graduation.juncomputer.utils.Constant;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
@@ -99,7 +97,6 @@ public class AddressUserFragment extends BaseFragment implements View.OnClickLis
 
     public void onUpdateAddress() {
         uploadAddressToServer();
-        getUserProfile();
     }
 
     private void getUserProfile() {
@@ -151,6 +148,7 @@ public class AddressUserFragment extends BaseFragment implements View.OnClickLis
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 if(getContext()==null) return;
+                getUserProfile();
                 Toasty.success(getContext(), "Lấy thông tin địa chỉ thành công").show();
             }
 

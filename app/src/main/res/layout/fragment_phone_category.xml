@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite">
@@ -29,7 +28,7 @@
             android:id="@+id/progress_phone_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/title_seen"
+            app:layout_constraintBottom_toTopOf="@+id/title_noibat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_category_phone" />
@@ -47,21 +46,6 @@
             app:layout_constraintTop_toBottomOf="@+id/text_category_phone"
             app:spanCount="2" />
 
-        <TextView
-            android:id="@+id/title_seen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/san_pham_da_xem"
-            android:textSize="@dimen/dimen_text_16"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/text_category_phone"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_category_phone" />
-
-        <include
-            layout="@layout/card_no_item"
-            app:layout_constraintBottom_toTopOf="@+id/button_see_more"
-            app:layout_constraintTop_toBottomOf="@+id/title_seen" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_phone_recent"
@@ -74,7 +58,7 @@
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_seen"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_category_phone"
             app:spanCount="2" />
 
         <TextView

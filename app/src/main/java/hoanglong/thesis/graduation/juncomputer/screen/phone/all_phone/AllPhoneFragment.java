@@ -17,9 +17,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemSeen;
+import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmSeen;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
+import hoanglong.thesis.graduation.juncomputer.utils.Utils;
 
 public class AllPhoneFragment extends BaseFragment implements PhoneAdapter.OnClickProductListener{
 
@@ -74,6 +77,7 @@ public class AllPhoneFragment extends BaseFragment implements PhoneAdapter.OnCli
 
     @Override
     public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
+        Utils.addSeen(itemPhoneProduct);
         Intent intent = new Intent(getActivity(), DetailProductActivity.class);
         intent.putExtra("BUNDLE_ITEM_PRODUCT", itemPhoneProduct.getTitle());
         startActivity(intent);

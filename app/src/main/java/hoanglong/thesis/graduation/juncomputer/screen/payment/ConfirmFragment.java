@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +34,7 @@ import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import hoanglong.thesis.graduation.juncomputer.utils.Constant;
 import hoanglong.thesis.graduation.juncomputer.utils.FormatDate;
 import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
+import hoanglong.thesis.graduation.juncomputer.utils.UploadCart;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -188,8 +188,6 @@ public class ConfirmFragment extends BaseFragment implements CartConfirmAdapter.
 
         Order order = new Order(idUser, typeOrder, dateOrder, statusOrder, nameUser, phoneNumber, typePayment, cartItems, addressUser);
 
-        Log.d(TAG, "uploadOrder: " + order.toString());
-
         Call<Order> callOrder = BaseService.getService().createOrder(order);
         callOrder.enqueue(new Callback<Order>() {
             @Override
@@ -198,7 +196,8 @@ public class ConfirmFragment extends BaseFragment implements CartConfirmAdapter.
                 if (getContext() == null) return;
                 Toasty.success(getContext(), "Đặt hàng thành công", Toast.LENGTH_SHORT, true).show();
                 RealmCart.deleteAll();
-                if(getActivity()==null) return;
+                UploadCart.uploadCart();
+                if (getActivity() == null) return;
                 getActivity().finish();
             }
 

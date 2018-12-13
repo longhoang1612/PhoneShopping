@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -20,10 +19,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import es.dmoral.toasty.Toasty;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.cart.CartItem;
-import hoanglong.thesis.graduation.juncomputer.data.model.user.CartUpload;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.User;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseActivity;
@@ -56,7 +53,6 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
     ImageView mImageBack;
     @BindView(R.id.progress_cart)
     ProgressBar mProgressCart;
-    private List<CartItem> mCartItemsRealm;
     private boolean mIsLogin;
     private User mUser;
     private List<CartItem> mCartItems;
@@ -80,33 +76,30 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
     @Override
     protected void initData(Bundle savedInstanceState) {
         mIsLogin = SharedPrefs.getInstance().get(Constant.Login.LOGIN_STATUS, Boolean.class);
-        mCartItemsRealm = new ArrayList<>();
+        List<CartItem> cartItemsRealm;
         mCartItems = new ArrayList<>();
-        if (mIsLogin) {
-            Gson gson = new Gson();
-            String json = SharedPrefs.getInstance().get(Constant.Login.OBJECT_USER_LOGIN, String.class);
-            mUser = gson.fromJson(json, User.class);
-            if (mUser == null) {
-                return;
-            }
-            if (RealmCart.getCartOffline().size() == 0) {
-                getUserInfo();
-                //uploadCartCurrent();
-            } else {
-                //uploadCartCurrent();
-                getUserInfo();
-            }
-        } else {
-            mCartItemsRealm = RealmCart.getCartOffline();
-            if (mCartItemsRealm == null || mCartItemsRealm.size() == 0) {
-                mGroup.setVisibility(View.VISIBLE);
-                mGroupCart.setVisibility(View.GONE);
-            } else {
+
+        cartItemsRealm = RealmCart.getCartOffline();
+        if (cartItemsRealm == null || cartItemsRealm.size() == 0) {
+            if (mIsLogin) {
+                Gson gson = new Gson();
+                String json = SharedPrefs.getInstance().get(Constant.Login.OBJECT_USER_LOGIN, String.class);
+                mUser = gson.fromJson(json, User.class);
+                if (mUser == null) {
+                    return;
+                }
                 mGroup.setVisibility(View.GONE);
                 mGroupCart.setVisibility(View.VISIBLE);
-                setUpCart(mCartItemsRealm);
-                onUpdatePrice(mCartItemsRealm);
+                getUserInfo();
+            } else {
+                mGroup.setVisibility(View.VISIBLE);
+                mGroupCart.setVisibility(View.GONE);
             }
+        } else {
+            mGroup.setVisibility(View.GONE);
+            mGroupCart.setVisibility(View.VISIBLE);
+            setUpCart(cartItemsRealm);
+            onUpdatePrice(cartItemsRealm);
         }
     }
 
@@ -118,13 +111,13 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
     @Override
     public void onUpdatePrice(List<CartItem> cartItems) {
         int total = 0;
-        for (CartItem cartItem : RealmCart.getCartOffline()
+        for (CartItem cartItem : cartItems
                 ) {
             String a = cartItem.getPrice().split("₫")[0];
             String b = a.replaceAll("\\.", "");
             int quantity = cartItem.getQuantity();
             int price = Integer.parseInt(b);
-            total += price + quantity;
+            total += price * quantity;
         }
 
         NumberFormat fmt = NumberFormat.getCurrencyInstance();
@@ -170,32 +163,6 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
         startActivity(intent);
     }
 
-    public void uploadCartCurrent() {
-        List<CartItem> cartItems = new ArrayList<>();
-        mCartItemsRealm = RealmCart.getCartOffline();
-
-        for (int i = 0; i < mCartItemsRealm.size(); i++) {
-            CartItem cartItem = mCartItemsRealm.get(i);
-            CartItem cartUpload = new CartItem(cartItem.getName(), cartItem.getPrice(), cartItem.getQuantity(), cartItem.getImage());
-            cartItems.add(cartUpload);
-        }
-
-        CartUpload cartUpload = new CartUpload(cartItems);
-        Call<User> call = BaseService.getService().updateCartCurrent(mUser.getEmail(), cartUpload);
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-                getUserInfo();
-                Toasty.success(getApplicationContext(), "Cập nhật giỏ hàng thành công", Toast.LENGTH_SHORT, true).show();
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
-                Toasty.success(getApplicationContext(), "Cập nhật giỏ hàng thất bại", Toast.LENGTH_SHORT, true).show();
-            }
-        });
-    }
-
     public void getUserInfo() {
         Call<User> call = BaseService.getService().getProfileUser(mUser.getEmail());
         call.enqueue(new Callback<User>() {
@@ -213,6 +180,11 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
                         setUpCart(mCartItems);
                         onUpdatePrice(mCartItems);
                     }
+                    if (RealmCart.getCartOffline().size() == 0) {
+                        for (int i = 0; i < mCartItems.size(); i++) {
+                            RealmCart.addToCart(mCartItems.get(i));
+                        }
+                    }
                 }
             }
 
@@ -221,13 +193,5 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
 
             }
         });
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mUser == null)
-            return;
-        //uploadCartCurrent();
     }
 }

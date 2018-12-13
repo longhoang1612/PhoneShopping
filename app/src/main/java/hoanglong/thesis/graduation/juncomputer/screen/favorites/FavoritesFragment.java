@@ -19,6 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemSeen;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.Favorites;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.FavoritesUpload;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.User;

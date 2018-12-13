@@ -22,6 +22,7 @@ import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.PhonePro
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
+import hoanglong.thesis.graduation.juncomputer.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -98,6 +99,7 @@ public class PhoneFragment extends Fragment implements PhoneAdapter.OnClickProdu
 
     @Override
     public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
+        Utils.addSeen(itemPhoneProduct);
         Intent intent = new Intent(getActivity(), DetailProductActivity.class);
         intent.putExtra("BUNDLE_ITEM_PRODUCT", itemPhoneProduct.getTitle());
         startActivity(intent);
