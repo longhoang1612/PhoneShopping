@@ -138,10 +138,9 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void updateAddress() {
-        mAddressUsersRealm.clear();
-        mAddressUsersRealm.addAll(RealmAddress.getListAddress());
-        uploadAddressToServer();
         getUserProfile();
+        mAddressUsersRealm = RealmAddress.getListAddress();
+        uploadAddressToServer();
         if (mAddressChoose == null) {
             mRelativeContinue.setClickable(false);
             mRelativeContinue.setBackgroundResource(R.drawable.custom_button4);
@@ -169,6 +168,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 if (getApplicationContext() == null) return;
+                getUserProfile();
                 Toasty.success(getApplicationContext(), "Lấy thông tin địa chỉ thành công").show();
             }
 

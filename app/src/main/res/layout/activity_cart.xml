@@ -7,6 +7,15 @@
     android:background="@color/color_bg"
     tools:context=".screen.cart.CartActivity">
 
+    <ProgressBar
+        android:id="@+id/progress_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_cart" />
+
     <ImageView
         android:id="@+id/ic_back"
         android:layout_width="wrap_content"
@@ -17,6 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/title_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sanfranciscodisplay_bold"
@@ -27,11 +37,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ic_back" />
 
-    <ImageView
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dimen_20"
+        android:background="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_cart"
         android:id="@+id/image_empty_cart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/empty_cart" />
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/empty_cart" />
+        
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/relative_go_shopping"
@@ -60,7 +82,6 @@
         app:constraint_referenced_ids="image_empty_cart,relative_go_shopping" />
 
     <android.support.v7.widget.RecyclerView
-        android:paddingBottom="@dimen/dimen_130dp"
         android:id="@+id/recycler_cart"
         android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
@@ -68,6 +89,7 @@
         android:layout_marginTop="@dimen/dimen_10"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
+        android:paddingBottom="@dimen/dimen_130dp"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

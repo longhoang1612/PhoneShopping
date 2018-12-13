@@ -11,13 +11,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.cart.CartItem;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
+import hoanglong.thesis.graduation.juncomputer.utils.Constant;
+import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
+import hoanglong.thesis.graduation.juncomputer.utils.UploadCart;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
@@ -77,11 +83,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         private int number;
         private CartItem mCartItem;
         private OnUpdatePrice mOnUpdatePrice;
+        private boolean mIsLogin;
 
         CartViewHolder(@NonNull View itemView, Context context, OnUpdatePrice onUpdatePrice) {
             super(itemView);
             mContext = context;
             mOnUpdatePrice = onUpdatePrice;
+            mIsLogin = SharedPrefs.getInstance().get(Constant.Login.LOGIN_STATUS, Boolean.class);
             ButterKnife.bind(this, itemView);
             mImageCloseItem.setOnClickListener(this);
             mRelativeAdd.setOnClickListener(this);
@@ -108,6 +116,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     mTextQuantity.setText(String.valueOf(number));
                     RealmCart.addToCart(mCartItem);
                     mOnUpdatePrice.onUpdatePrice(mCartItems);
+                    if (mIsLogin) {
+                        UploadCart.uploadCart();
+                    }
                     break;
                 case R.id.relative_minus:
                     if (number != 0) {
@@ -118,6 +129,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     } else {
                         RealmCart.deleteItemFromCart(mCartItem);
                         mOnUpdatePrice.updateCart(mCartItems);
+                    }
+                    if (mIsLogin) {
+                        UploadCart.uploadCart();
                     }
                     break;
                 case R.id.ic_close:

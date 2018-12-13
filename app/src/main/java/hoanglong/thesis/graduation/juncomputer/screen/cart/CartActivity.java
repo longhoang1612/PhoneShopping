@@ -7,6 +7,7 @@ import android.support.constraint.Group;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +54,8 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
     RelativeLayout mRelativeGoShopping;
     @BindView(R.id.ic_back)
     ImageView mImageBack;
+    @BindView(R.id.progress_cart)
+    ProgressBar mProgressCart;
     private List<CartItem> mCartItemsRealm;
     private boolean mIsLogin;
     private User mUser;
@@ -66,6 +69,9 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
     @Override
     protected void initComponent() {
         ButterKnife.bind(this);
+        mProgressCart.setVisibility(View.VISIBLE);
+        mGroup.setVisibility(View.GONE);
+        mGroupCart.setVisibility(View.GONE);
         mImageBack.setOnClickListener(this);
         mRelativePayment.setOnClickListener(this);
         mRelativeGoShopping.setOnClickListener(this);
@@ -83,8 +89,13 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
             if (mUser == null) {
                 return;
             }
-            getUserInfo();
-            uploadCartCurrent();
+            if (RealmCart.getCartOffline().size() == 0) {
+                getUserInfo();
+                //uploadCartCurrent();
+            } else {
+                //uploadCartCurrent();
+                getUserInfo();
+            }
         } else {
             mCartItemsRealm = RealmCart.getCartOffline();
             if (mCartItemsRealm == null || mCartItemsRealm.size() == 0) {
@@ -161,8 +172,6 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
 
     public void uploadCartCurrent() {
         List<CartItem> cartItems = new ArrayList<>();
-
-        mCartItemsRealm.clear();
         mCartItemsRealm = RealmCart.getCartOffline();
 
         for (int i = 0; i < mCartItemsRealm.size(); i++) {
@@ -193,6 +202,7 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 if (response.body() != null) {
+                    mProgressCart.setVisibility(View.GONE);
                     mCartItems = response.body().getCartItems();
                     if (mCartItems == null || mCartItems.size() == 0) {
                         mGroup.setVisibility(View.VISIBLE);
@@ -214,8 +224,10 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
     }
 
     @Override
-    protected void onStop() {
-        uploadCartCurrent();
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
+        if (mUser == null)
+            return;
+        //uploadCartCurrent();
     }
 }

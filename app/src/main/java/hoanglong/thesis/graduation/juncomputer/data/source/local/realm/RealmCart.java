@@ -52,6 +52,13 @@ public class RealmCart {
         realm.commitTransaction();
     }
 
+    public static void addAll() {
+        RealmResults<CartItem> carts = realm.where(CartItem.class).findAll();
+        realm.beginTransaction();
+        carts.deleteAllFromRealm();
+        realm.commitTransaction();
+    }
+
     public static List<CartItem> getCartOffline() {
         return realm.where(CartItem.class).findAll();
     }

@@ -39,7 +39,10 @@ import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ExtraProduct
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.InfoAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.SaleAdapter;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
+import hoanglong.thesis.graduation.juncomputer.utils.Constant;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
+import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
+import hoanglong.thesis.graduation.juncomputer.utils.UploadCart;
 import hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager;
 import me.relex.circleindicator.CircleIndicator;
 import retrofit2.Call;
@@ -105,6 +108,7 @@ public class DetailProductActivity extends AppCompatActivity
     private List<ListParameter> mInfoProducts;
     private String title;
     private boolean mIsFavorites;
+    private boolean mIsLogin;
 
 
     @Override
@@ -112,6 +116,7 @@ public class DetailProductActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_product);
         ButterKnife.bind(this);
+        mIsLogin = SharedPrefs.getInstance().get(Constant.Login.LOGIN_STATUS, Boolean.class);
         mRLAllContent.setOnClickListener(this);
         textSeeDetail.setOnClickListener(this);
         mRelativeComment.setOnClickListener(this);
@@ -266,6 +271,9 @@ public class DetailProductActivity extends AppCompatActivity
                         itemPhoneProduct.getId()
                 );
                 RealmCart.addToCart(cartItem);
+                if (mIsLogin) {
+                    UploadCart.uploadCart();
+                }
                 onUpdateCart();
 
                 AddCartBottomDialogFragment addCartFragment =
