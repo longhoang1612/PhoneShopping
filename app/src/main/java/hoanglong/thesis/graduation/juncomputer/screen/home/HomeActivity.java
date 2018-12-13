@@ -193,7 +193,7 @@ public class HomeActivity extends AppCompatActivity
                     }
                     FragmentTransactionUtils.addFragment(
                             getSupportFragmentManager(),
-                            fragment, R.id.frame_home, TAG_MANAGER_ORDER,
+                            fragment, R.id.frame_full_home, TAG_MANAGER_ORDER,
                             true, -1, -1);
                 }
                 break;

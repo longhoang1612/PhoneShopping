@@ -107,11 +107,6 @@ public class SignInFragment extends BaseFragment implements View.OnClickListener
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 hideProgress();
-
-                //RealmUser.saveUser(user);
-
-//                SharedPreferences mPrefs = getActivity().getPreferences(MODE_PRIVATE);
-//                SharedPreferences.Editor prefsEditor = mPrefs.edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(response.body());
                 SharedPrefs.getInstance().put(Constant.Login.OBJECT_USER_LOGIN, json);

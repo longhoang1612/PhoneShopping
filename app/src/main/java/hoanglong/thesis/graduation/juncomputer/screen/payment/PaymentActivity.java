@@ -3,7 +3,6 @@ package hoanglong.thesis.graduation.juncomputer.screen.payment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -49,11 +48,12 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
     RelativeLayout mRelativeStep3;
     @BindView(R.id.recycler_address)
     RecyclerView mRecyclerAddress;
-    private List<AddressUser> mAddressUsers;
+    private List<AddressUser> mAddressUsersRealm;
     private AddressUser mAddressChoose;
     @BindView(R.id.ic_back)
     ImageView mImageBack;
     private User mUser;
+    private List<AddressUser> mAddressUserList;
 
     @Override
     protected int getLayoutResources() {
@@ -76,7 +76,8 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         if (mUser == null) {
             return;
         }
-        mAddressUsers = new ArrayList<>();
+        mAddressUserList = new ArrayList<>();
+        mAddressUsersRealm = new ArrayList<>();
         updateAddress();
         mTextTitle.setText(getString(R.string.title_address_order));
     }
@@ -137,9 +138,10 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void updateAddress() {
-        mAddressUsers.clear();
-        mAddressUsers.addAll(RealmAddress.getListAddress());
+        mAddressUsersRealm.clear();
+        mAddressUsersRealm.addAll(RealmAddress.getListAddress());
         uploadAddressToServer();
+        getUserProfile();
         if (mAddressChoose == null) {
             mRelativeContinue.setClickable(false);
             mRelativeContinue.setBackgroundResource(R.drawable.custom_button4);
@@ -147,15 +149,12 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
             mRelativeContinue.setClickable(true);
             mRelativeContinue.setBackgroundResource(R.drawable.custom_button1);
         }
-        AddressAdapter addressAdapter = new AddressAdapter(mAddressUsers, this);
-        mRecyclerAddress.setAdapter(addressAdapter);
     }
 
     private void uploadAddressToServer() {
-        Toasty.info(getApplicationContext(), "Lấy thông tin địa chỉ thành công").show();
         List<AddressUser> addressUserList = new ArrayList<>();
-        for (int i = 0; i < mAddressUsers.size(); i++) {
-            AddressUser addressUser = mAddressUsers.get(i);
+        for (int i = 0; i < mAddressUsersRealm.size(); i++) {
+            AddressUser addressUser = mAddressUsersRealm.get(i);
             AddressUser addressUpload = new AddressUser(
                     addressUser.getPhoneNumber(),
                     addressUser.getAddressOrder(),
@@ -169,11 +168,13 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-                Toasty.success(getApplicationContext(), "Lấy thông tin địa chỉ").show();
+                if (getApplicationContext() == null) return;
+                Toasty.success(getApplicationContext(), "Lấy thông tin địa chỉ thành công").show();
             }
 
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                if (getApplicationContext() == null) return;
                 Toasty.success(getApplicationContext(), "Lỗi cập nhật địa chỉ").show();
             }
         });
@@ -205,5 +206,25 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
         }
+    }
+
+    private void getUserProfile() {
+        Call<User> call = BaseService.getService().getProfileUser(mUser.getEmail());
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                if (response.body() != null) {
+                    mRecyclerAddress.setVisibility(View.VISIBLE);
+                    mAddressUserList = response.body().getAddress();
+                    mRecyclerAddress.setAdapter(new AddressAdapter(mAddressUserList,
+                            PaymentActivity.this));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+            }
+        });
+
     }
 }

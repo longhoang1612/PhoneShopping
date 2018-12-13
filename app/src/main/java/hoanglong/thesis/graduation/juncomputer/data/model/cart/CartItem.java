@@ -1,16 +1,33 @@
 package hoanglong.thesis.graduation.juncomputer.data.model.cart;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class CartItem extends RealmObject {
-
+    @SerializedName("titleItem")
+    @Expose
     private String mName;
+    @SerializedName("priceItem")
+    @Expose
     private String mPrice;
+    @SerializedName("quantityItem")
+    @Expose
     private int mQuantity;
+    @SerializedName("imageItem")
+    @Expose
     private String mImage;
     @PrimaryKey
     private String mId;
+
+    public CartItem(String name, String price, int quantity, String image) {
+        mName = name;
+        mPrice = price;
+        mQuantity = quantity;
+        mImage = image;
+    }
 
     public CartItem(String name, String price, int quantity, String image, String id) {
         mName = name;

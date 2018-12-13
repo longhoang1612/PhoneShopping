@@ -1,16 +1,19 @@
 package hoanglong.thesis.graduation.juncomputer.screen.payment;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -18,14 +21,23 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.cart.CartItem;
+import hoanglong.thesis.graduation.juncomputer.data.model.order.Order;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.AddressUser;
+import hoanglong.thesis.graduation.juncomputer.data.model.user.User;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
 import hoanglong.thesis.graduation.juncomputer.listener.UpdateStep;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
-import hoanglong.thesis.graduation.juncomputer.screen.cart.adapter.CartAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.payment.adapter.CartConfirmAdapter;
+import hoanglong.thesis.graduation.juncomputer.service.BaseService;
+import hoanglong.thesis.graduation.juncomputer.utils.Constant;
+import hoanglong.thesis.graduation.juncomputer.utils.FormatDate;
+import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static hoanglong.thesis.graduation.juncomputer.screen.payment.NewAddressFragment.BUNDLE_ADDRESS;
 
@@ -57,7 +69,8 @@ public class ConfirmFragment extends BaseFragment implements CartConfirmAdapter.
     RelativeLayout mRelativeConfirm;
     private List<CartItem> mCartItems;
     private int total;
-
+    private ProgressDialog dialogProgress;
+    private User mUser;
 
     @Override
     public void onAttach(Context context) {
@@ -100,6 +113,12 @@ public class ConfirmFragment extends BaseFragment implements CartConfirmAdapter.
     @Override
     protected void initData(Bundle saveInstanceState) {
         initRecyclerView();
+        Gson gson = new Gson();
+        String json = SharedPrefs.getInstance().get(Constant.Login.OBJECT_USER_LOGIN, String.class);
+        mUser = gson.fromJson(json, User.class);
+        if (mUser == null) {
+            return;
+        }
         if (mAddressUser == null || mDelivery == null || mPayment == null) {
             return;
         }
@@ -149,6 +168,62 @@ public class ConfirmFragment extends BaseFragment implements CartConfirmAdapter.
     }
 
     private void uploadOrder() {
+        showProgress();
 
+        String idUser = mUser.getId();
+        String typeOrder = mDelivery;
+        String dateOrder = FormatDate.getCurrentDateWithHour();
+        String statusOrder = "Đang xác nhận";
+        String nameUser = mAddressUser.getUserNameOrder();
+        String phoneNumber = mAddressUser.getPhoneNumber();
+        String typePayment = mPayment;
+        String addressUser = mAddressUser.getAddressOrder();
+        List<CartItem> cartItems = new ArrayList<>();
+
+        for (int i = 0; i < mCartItems.size(); i++) {
+            CartItem cartItem = mCartItems.get(i);
+            CartItem cartUpload = new CartItem(cartItem.getName(), cartItem.getPrice(), cartItem.getQuantity(), cartItem.getImage());
+            cartItems.add(cartUpload);
+        }
+
+        Order order = new Order(idUser, typeOrder, dateOrder, statusOrder, nameUser, phoneNumber, typePayment, cartItems, addressUser);
+
+        Log.d(TAG, "uploadOrder: " + order.toString());
+
+        Call<Order> callOrder = BaseService.getService().createOrder(order);
+        callOrder.enqueue(new Callback<Order>() {
+            @Override
+            public void onResponse(@NonNull Call<Order> call, @NonNull Response<Order> response) {
+                hideProgress();
+                if (getContext() == null) return;
+                Toasty.success(getContext(), "Đặt hàng thành công", Toast.LENGTH_SHORT, true).show();
+                RealmCart.deleteAll();
+                if(getActivity()==null) return;
+                getActivity().finish();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Order> call, @NonNull Throwable t) {
+                hideProgress();
+                if (getContext() == null) return;
+                Toasty.success(getContext(), "Đặt hàng thất bại", Toast.LENGTH_SHORT, true).show();
+            }
+        });
+    }
+
+    public void showProgress() {
+        if (dialogProgress != null) {
+            return;
+        }
+        dialogProgress = new ProgressDialog(getContext());
+        dialogProgress.setMessage("Xác nhận đơn hàng...");
+        dialogProgress.show();
+    }
+
+    public void hideProgress() {
+        if (dialogProgress == null)
+            return;
+        dialogProgress.dismiss();
+        dialogProgress = null;
     }
 }

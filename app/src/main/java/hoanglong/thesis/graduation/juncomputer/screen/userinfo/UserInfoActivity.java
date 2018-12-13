@@ -14,6 +14,8 @@ import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hoanglong.thesis.graduation.juncomputer.screen.payment.listener.OnListenerPayment;
+import hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment.AddAddressFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment.ChangeInfoUserFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment.ProductBuyFragment;
 import hoanglong.thesis.graduation.juncomputer.R;
@@ -23,11 +25,12 @@ import hoanglong.thesis.graduation.juncomputer.screen.base.BaseActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.favorites.FavoritesFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.manageOrder.ManagerOrderFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment.AddressUserFragment;
+import hoanglong.thesis.graduation.juncomputer.screen.userinfo.listener.UpdateAddressListener;
 import hoanglong.thesis.graduation.juncomputer.utils.Constant;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
 import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
 
-public class UserInfoActivity extends BaseActivity implements View.OnClickListener {
+public class UserInfoActivity extends BaseActivity implements View.OnClickListener, UpdateAddressListener {
 
     @BindView(R.id.relative_manager_order)
     RelativeLayout mRelativeOrder;
@@ -52,6 +55,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     @BindView(R.id.relative_log_out)
     RelativeLayout mRelativeLogOut;
     private ProgressDialog mDialogProgress;
+    private Fragment mFragment;
 
     @Override
     protected int getLayoutResources() {
@@ -96,10 +100,11 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.relative_manage_address:
-                openFragment(new AddressUserFragment(), AddressUserFragment.TAG);
+                mFragment = new AddressUserFragment();
+                openFragment(mFragment, AddressUserFragment.TAG);
                 break;
             case R.id.relative_manager_order:
-                openFragment(ManagerOrderFragment.newInstance(), ManagerOrderFragment.TAG);
+                openFragment(new ManagerOrderFragment(), ManagerOrderFragment.TAG);
                 break;
             case R.id.relative_manage_seen:
                 openFragment(SeenFragment.newInstance(), SeenFragment.TAG);
@@ -151,5 +156,12 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                 getSupportFragmentManager(),
                 fragment, R.id.frame_user_info, tag,
                 true, -1, -1);
+    }
+
+    @Override
+    public void onUpdateAddress() {
+        if (mFragment instanceof AddressUserFragment) {
+            ((AddressUserFragment) mFragment).onUpdateAddress();
+        }
     }
 }

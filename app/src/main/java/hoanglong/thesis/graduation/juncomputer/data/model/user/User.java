@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import hoanglong.thesis.graduation.juncomputer.data.model.cart.CartItem;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -37,6 +38,9 @@ public class User{
     @SerializedName("address")
     @Expose
     private List<AddressUser> mAddress = null;
+    @SerializedName("cartCurrent")
+    @Expose
+    private List<CartItem> mCartItems = null;
 
     public User() {
     }
@@ -46,7 +50,7 @@ public class User{
         mPassword = password;
     }
 
-    public User(String email, String password, String sex, String fullName, String id, String dateJoin, List<Favorites> favorites, List<AddressUser> address) {
+    public User(String email, String password, String sex, String fullName, String id, String dateJoin, List<Favorites> favorites, List<AddressUser> address, List<CartItem> cartItems) {
         mEmail = email;
         mPassword = password;
         mSex = sex;
@@ -55,6 +59,7 @@ public class User{
         mDateJoin = dateJoin;
         mFavorites = favorites;
         mAddress = address;
+        mCartItems = cartItems;
     }
 
     public User(String email, String password, String sex, String fullName, String dateJoin, List<Favorites> favorites, List<AddressUser> address) {

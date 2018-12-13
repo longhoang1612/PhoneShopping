@@ -29,4 +29,11 @@ public class FormatDate {
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         return df.format(c);
     }
+
+    public static String getCurrentDateWithHour() {
+        Calendar cal = Calendar.getInstance();
+        Date c = cal.getTime();
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm dd-MM-yyyy");
+        return df.format(c);
+    }
 }

@@ -14,10 +14,10 @@ public class RealmCart {
     public static void addToCart(CartItem cartItem) {
         RealmObject realmObject = realm.where(CartItem.class).equalTo(PRIMARY_KEY_CART, cartItem.getId()).findFirst();
         realm.beginTransaction();
-        if(realmObject==null){
+        if (realmObject == null) {
             realm.copyToRealmOrUpdate(cartItem);
-        }else{
-            ((CartItem) realmObject).setQuantity(((CartItem) realmObject).getQuantity()+1);
+        } else {
+            ((CartItem) realmObject).setQuantity(((CartItem) realmObject).getQuantity() + 1);
         }
         realm.commitTransaction();
     }
@@ -25,10 +25,10 @@ public class RealmCart {
     public static void removeInCart(CartItem cartItem) {
         RealmObject realmObject = realm.where(CartItem.class).equalTo(PRIMARY_KEY_CART, cartItem.getId()).findFirst();
         realm.beginTransaction();
-        if(realmObject==null){
+        if (realmObject == null) {
             realm.copyToRealmOrUpdate(cartItem);
-        }else{
-            ((CartItem) realmObject).setQuantity(((CartItem) realmObject).getQuantity()-1);
+        } else {
+            ((CartItem) realmObject).setQuantity(((CartItem) realmObject).getQuantity() - 1);
         }
         realm.commitTransaction();
     }
@@ -42,6 +42,13 @@ public class RealmCart {
         RealmResults<CartItem> carts = realm.where(CartItem.class).equalTo(PRIMARY_KEY_CART, cartItem.getId()).findAll();
         realm.beginTransaction();
         carts.deleteFromRealm(0);
+        realm.commitTransaction();
+    }
+
+    public static void deleteAll() {
+        RealmResults<CartItem> carts = realm.where(CartItem.class).findAll();
+        realm.beginTransaction();
+        carts.deleteAllFromRealm();
         realm.commitTransaction();
     }
 

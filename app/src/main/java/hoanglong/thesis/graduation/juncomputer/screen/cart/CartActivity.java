@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.Group;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -21,7 +22,10 @@ import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.cart.adapter.CartAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.home.HomeActivity;
+import hoanglong.thesis.graduation.juncomputer.screen.login.LoginActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.payment.PaymentActivity;
+import hoanglong.thesis.graduation.juncomputer.utils.Constant;
+import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
 
 public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePrice, View.OnClickListener {
 
@@ -41,7 +45,7 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
     ImageView mImageBack;
     private List<CartItem> mCartItems;
     private int total;
-
+    private boolean mIsLogin;
 
     @Override
     protected int getLayoutResources() {
@@ -58,6 +62,7 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
 
     @Override
     protected void initData(Bundle savedInstanceState) {
+        mIsLogin = SharedPrefs.getInstance().get(Constant.Login.LOGIN_STATUS, Boolean.class);
         if (RealmCart.getCartOffline() == null || RealmCart.getCartOffline().size() == 0) {
             mGroup.setVisibility(View.VISIBLE);
             mGroupCart.setVisibility(View.GONE);
@@ -84,7 +89,9 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
                 ) {
             String a = cartItem.getPrice().split("₫")[0];
             String b = a.replaceAll("\\.", "");
-            total += Integer.parseInt(b) * cartItem.getQuantity();
+            int quantity = cartItem.getQuantity();
+            int price = Integer.parseInt(b);
+            total += price + quantity;
         }
 
         NumberFormat fmt = NumberFormat.getCurrencyInstance();
@@ -111,10 +118,15 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
                 onBackPressed();
                 break;
             case R.id.relative_payment:
-                openPayment();
+                if (mIsLogin) {
+                    openPayment();
+                } else {
+                    Intent intent = new Intent(CartActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.relative_go_shopping:
-                Intent intent = new Intent(CartActivity.this,HomeActivity.class);
+                Intent intent = new Intent(CartActivity.this, HomeActivity.class);
                 startActivity(intent);
                 break;
         }
