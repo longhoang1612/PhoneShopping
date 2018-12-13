@@ -6,6 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="onResponse" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -16,16 +17,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c6c82e2-f516-4ffa-b404-d72a5b0516e8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/DetailOrderFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/order/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/order/OrderUpload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/adapter/OrderManagerAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/AddAddressFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/listener/UpdateAddressListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_filter_tilt_shift_black_24dp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_detail_order.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_address_user_info.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_manager_order.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterDir="false" />
@@ -34,106 +25,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_common_1_1_1_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_common_1_1_1_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_extensions_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_runtime_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_viewmodel_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_persistence_db_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_persistence_db_framework_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_persistence_room_common_1_1_1_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_persistence_room_runtime_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_persistence_room_rxjava2_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_animated_vector_drawable_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cardview_v7_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_collections_28_0_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_solver_1_1_3_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_coordinatorlayout_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cursoradapter_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_design_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_documentfile_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_drawerlayout_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_interpolator_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_loader_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_localbroadcastmanager_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_print_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_recyclerview_v7_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_slidingpanelayout_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_annotations_28_0_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_compat_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_ui_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_utils_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_fragment_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_media_compat_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_v4_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_swiperefreshlayout_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_1_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_transition_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_viewpager_28_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_getkeepsafe_relinker_relinker_1_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_GrenderG_Toasty_1_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_annotations_4_8_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_disklrucache_4_8_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_8_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_8_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_chrisbanes_PhotoView_2_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_9_0_0_rc1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_annotations_9_0_0_rc1_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_runtime_9_0_0_rc1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_kofigyan_stateprogressbar_stateprogressbar_1_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_8_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp_okhttp_2_7_2_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_13_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_converter_gson_2_3_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_3_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_reactivex_rxjava2_rxandroid_2_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_reactivex_rxjava2_rxjava_2_2_2_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_realm_realm_android_library_4_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_realm_realm_annotations_4_3_1_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__me_relex_circleindicator_1_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sf_kxml_kxml2_2_3_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_reactivestreams_reactive_streams_1_0_2_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/cart/CartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/cart/CartItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/source/local/realm/RealmCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/source/local/realm/RealmCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/base/BaseFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/base/BaseFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/cart/CartActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/cart/CartActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/home/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/home/HomeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/login/fragment/SignInFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/login/fragment/SignInFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/manageOrder/ManagerOrderFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/manageOrder/ManagerOrderFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/ConfirmFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/ConfirmFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/UserInfoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/UserInfoActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/adapter/AddressAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/adapter/AddressAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/AddressUserFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/AddressUserFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/cart/adapter/CartAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/cart/adapter/CartAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/service/IApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/service/IApiService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/utils/FormatDate.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/utils/FormatDate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_payment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_payment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_address_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_address_user.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_confirm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_confirm.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_manager_order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_manager_order.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_cart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_cart.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_cart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_cart.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -155,25 +55,28 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="CartActivity.java" pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="CartActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/cart/CartActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="791">
-              <caret line="135" column="65" selection-start-line="135" selection-start-column="65" selection-end-line="135" selection-end-column="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IApiService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/service/IApiService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="808">
-              <caret line="58" column="89" selection-start-line="58" selection-start-column="89" selection-end-line="58" selection-end-column="89" />
+            <state relative-caret-position="555">
+              <caret line="200" column="56" selection-start-line="200" selection-start-column="56" selection-end-line="200" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_cart.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_cart.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1054">
+              <caret line="62" column="49" selection-start-line="62" selection-start-column="49" selection-end-line="62" selection-end-column="49" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
@@ -2239,11 +2142,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/adapter/CartConfirmAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/adapter/DeliveryAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/adapter/PaymentAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/search/HistorySearch.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/search/SearchActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/AddressUserFragment.java" />
@@ -2275,7 +2173,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_confirm.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/source/local/realm/RealmCart.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/ConfirmFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/cart/CartActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/payment/PaymentActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/UserInfoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_filter_tilt_shift_black_24dp.xml" />
@@ -2289,7 +2186,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/manageOrder/ManagerOrderFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/DetailOrderFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_detail_order.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/CartUpload.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/cart/adapter/CartAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/service/IApiService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_cart.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_cart.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/cart/CartActivity.java" />
       </list>
     </option>
   </component>
@@ -2307,64 +2210,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
-            <path>
-              <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="juncomputer" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="juncomputer" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="juncomputer" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="juncomputer" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="juncomputer" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="screen" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="juncomputer" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
             <path>
               <item name="PhoneShopping" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
@@ -2373,7 +2221,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2556,12 +2406,12 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3297414" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32580644" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32543105" />
       <window_info anchor="bottom" id="Logcat" order="7" weight="0.40948275" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21024546" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21024546" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.3297414" />
       <window_info anchor="right" id="Gradle" order="11" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -2595,7 +2445,6 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="right" id="Preview" order="8" weight="0.32977587" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
       <window_info anchor="right" id="Device File Explorer" order="4" side_tool="true" weight="0.32977587" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.41056034" />
       <window_info anchor="bottom" id="Version Control" order="11" />
@@ -2608,6 +2457,7 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39978448" />
     </layout-to-restore>
   </component>
@@ -2639,31 +2489,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_sign_in.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="83" column="17" lean-forward="true" selection-start-line="58" selection-start-column="4" selection-end-line="83" selection-end-column="17" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/ProductBuyFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/SeenFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/dialog/DatePickerFragment.java" />
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state />
@@ -2688,13 +2513,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1496">
           <caret line="115" column="13" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="38" column="46" selection-start-line="36" selection-start-column="4" selection-end-line="38" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -2822,13 +2640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/cart/CartItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="31" column="87" selection-start-line="31" selection-start-column="87" selection-end-line="31" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/fragment/AddressUserFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="700">
@@ -2840,10 +2651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2812">
           <caret line="26" column="84" selection-start-line="26" selection-start-column="84" selection-end-line="26" selection-end-column="84" />
-          <folding>
-            <element signature="e#5381#5382#0" expanded="true" />
-            <element signature="e#5412#5413#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2957,9 +2764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
           <caret line="119" column="9" selection-start-line="119" selection-start-column="9" selection-end-line="119" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2974,9 +2778,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1804">
           <caret line="157" column="53" selection-start-line="148" selection-start-column="8" selection-end-line="157" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2984,13 +2785,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
           <caret line="1702" selection-start-line="1702" selection-end-line="1702" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/UserInfoActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="61" column="32" lean-forward="true" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -3021,17 +2815,72 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/cart/CartActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/CartUpload.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="791">
-          <caret line="135" column="65" selection-start-line="135" selection-start-column="65" selection-end-line="135" selection-end-column="65" />
+        <state relative-caret-position="459">
+          <caret line="27" column="18" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/userinfo/UserInfoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="92" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/cart/CartItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/cart/adapter/CartAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="53" column="36" lean-forward="true" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/data/model/user/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="159" column="18" selection-start-line="159" selection-start-column="18" selection-end-line="159" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/service/IApiService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="808">
-          <caret line="58" column="89" selection-start-line="58" selection-start-column="89" selection-end-line="58" selection-end-column="89" />
+        <state relative-caret-position="740">
+          <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_cart.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="42" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_cart.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="62" column="49" selection-start-line="62" selection-start-column="49" selection-end-line="62" selection-end-column="49" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/hoanglong/thesis/graduation/juncomputer/screen/cart/CartActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="200" column="56" selection-start-line="200" selection-start-column="56" selection-end-line="200" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

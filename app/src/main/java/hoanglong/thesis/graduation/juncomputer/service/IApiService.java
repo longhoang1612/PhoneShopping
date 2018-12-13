@@ -56,6 +56,6 @@ public interface IApiService {
     @GET("/getOrder/{idUser}")
     Call<OrderUpload> getOrderByUser(@Path("idUser") String idUser);
 
-    @PUT("/updateCartCurrent/{email}")
+    @PUT("/cartUpload/{email}")
     Call<User> updateCartCurrent(@Path("email") String email, @Body CartUpload cartUpload);
 }

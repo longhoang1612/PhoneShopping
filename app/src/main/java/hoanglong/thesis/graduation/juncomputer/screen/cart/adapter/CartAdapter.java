@@ -52,9 +52,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
     public interface OnUpdatePrice {
-        void onUpdatePrice();
+        void onUpdatePrice(List<CartItem> cartItems);
 
-        void updateCart();
+        void updateCart(List<CartItem> cartItems);
     }
 
     class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -107,17 +107,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     number += 1;
                     mTextQuantity.setText(String.valueOf(number));
                     RealmCart.addToCart(mCartItem);
-                    mOnUpdatePrice.onUpdatePrice();
+                    mOnUpdatePrice.onUpdatePrice(mCartItems);
                     break;
                 case R.id.relative_minus:
                     if (number != 0) {
                         number--;
                         mTextQuantity.setText(String.valueOf(number));
                         RealmCart.removeInCart(mCartItem);
-                        mOnUpdatePrice.onUpdatePrice();
+                        mOnUpdatePrice.onUpdatePrice(mCartItems);
                     } else {
                         RealmCart.deleteItemFromCart(mCartItem);
-                        mOnUpdatePrice.updateCart();
+                        mOnUpdatePrice.updateCart(mCartItems);
                     }
                     break;
                 case R.id.ic_close:
@@ -134,7 +134,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     RealmCart.deleteItemFromCart(mCartItem);
-                    mOnUpdatePrice.updateCart();
+                    mOnUpdatePrice.updateCart(mCartItems);
                 }
             });
             b.setNegativeButton("Không", new DialogInterface.OnClickListener() {

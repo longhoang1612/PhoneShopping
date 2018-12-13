@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView app:cardCornerRadius="@dimen/dimen_10"
-    android:layout_margin="@dimen/dimen_15"
+    android:layout_margin="@dimen/dimen_10"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dimen_150dp"
@@ -23,7 +23,7 @@
             android:layout_margin="@dimen/dimen_5"
             android:layout_width="@dimen/dimen_24"
             android:layout_height="@dimen/dimen_24"
-            android:src="@drawable/ic_close"/>
+            android:src="@drawable/ic_cancel_black_24dp"/>
 
         <TextView
             android:fontFamily="@font/sanfranciscodisplay_bold"

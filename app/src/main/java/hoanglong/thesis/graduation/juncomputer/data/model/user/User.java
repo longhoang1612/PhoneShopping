@@ -80,6 +80,14 @@ public class User{
         mDateJoin = dateJoin;
     }
 
+    public List<CartItem> getCartItems() {
+        return mCartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        mCartItems = cartItems;
+    }
+
     public User(List<Favorites> favorites) {
         mFavorites = favorites;
     }
@@ -148,7 +156,6 @@ public class User{
         mDateJoin = dateJoin;
     }
 
-    @NonNull
     @Override
     public String toString() {
         return "User{" +
@@ -160,6 +167,7 @@ public class User{
                 ", mDateJoin='" + mDateJoin + '\'' +
                 ", mFavorites=" + mFavorites +
                 ", mAddress=" + mAddress +
+                ", mCartItems=" + mCartItems +
                 '}';
     }
 }
