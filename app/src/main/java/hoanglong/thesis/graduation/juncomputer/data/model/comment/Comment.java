@@ -1,9 +1,12 @@
 package hoanglong.thesis.graduation.juncomputer.data.model.comment;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Comment {
+public class Comment implements Parcelable {
 
     @SerializedName("date")
     @Expose
@@ -40,6 +43,29 @@ public class Comment {
         mComment = comment;
         mRating = rating;
     }
+
+    protected Comment(Parcel in) {
+        mDate = in.readString();
+        mIdProduct = in.readString();
+        mNameProduct = in.readString();
+        mNameUser = in.readString();
+        mImageComment = in.readString();
+        mTitleComment = in.readString();
+        mComment = in.readString();
+        mRating = in.readFloat();
+    }
+
+    public static final Creator<Comment> CREATOR = new Creator<Comment>() {
+        @Override
+        public Comment createFromParcel(Parcel in) {
+            return new Comment(in);
+        }
+
+        @Override
+        public Comment[] newArray(int size) {
+            return new Comment[size];
+        }
+    };
 
     public String getDate() {
         return mDate;
@@ -117,5 +143,22 @@ public class Comment {
                 ", mComment='" + mComment + '\'' +
                 ", mRating=" + mRating +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mDate);
+        dest.writeString(mIdProduct);
+        dest.writeString(mNameProduct);
+        dest.writeString(mNameUser);
+        dest.writeString(mImageComment);
+        dest.writeString(mTitleComment);
+        dest.writeString(mComment);
+        dest.writeFloat(mRating);
     }
 }

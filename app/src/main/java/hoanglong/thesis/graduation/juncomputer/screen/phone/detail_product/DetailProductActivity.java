@@ -8,7 +8,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -22,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hoanglong.thesis.graduation.juncomputer.DetailCommentFragment;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.cart.CartItem;
 import hoanglong.thesis.graduation.juncomputer.data.model.comment.Comment;
@@ -53,7 +53,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DetailProductActivity extends AppCompatActivity
-        implements View.OnClickListener, SamplePagerAdapter.ClickSliderListener, Listener {
+        implements View.OnClickListener, SamplePagerAdapter.ClickSliderListener, Listener
+        , CommentAdapter.OnClickCommentListener {
 
     @BindView(R.id.text_sale)
     TextView mTextSale;
@@ -176,7 +177,7 @@ public class DetailProductActivity extends AppCompatActivity
             public void onResponse(@NonNull Call<CommentUpload> call, @NonNull Response<CommentUpload> response) {
                 if (response.body() != null) {
                     List<Comment> comments = response.body().getComment();
-                    mRecyclerComment.setAdapter(new CommentAdapter(comments));
+                    mRecyclerComment.setAdapter(new CommentAdapter(comments, DetailProductActivity.this));
 
                     updateViewComment(comments);
                 }
@@ -190,7 +191,7 @@ public class DetailProductActivity extends AppCompatActivity
     }
 
     private void updateViewComment(List<Comment> comments) {
-        if(comments.size() == 0) return;
+        if (comments.size() == 0) return;
         float ratingAvg = 0;
         int rating1 = 0;
         int rating2 = 0;
@@ -275,7 +276,6 @@ public class DetailProductActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        //mImageShopping.setVisibility(View.VISIBLE);
         onUpdateCart();
     }
 
@@ -434,7 +434,17 @@ public class DetailProductActivity extends AppCompatActivity
     }
 
     @Override
-    public void onHideButtonCart(int visibility) {
-        //mImageShopping.setVisibility(View.GONE);
+    public void onUpdateComment() {
+        setData();
+    }
+
+    @Override
+    public void onClickComment(Comment comment) {
+        FragmentTransactionUtils.addFragment(
+                getSupportFragmentManager(),
+                DetailCommentFragment.newInstance(comment),
+                R.id.frame_full, SliderImageFragment.TAG,
+                true, -1, -1
+        );
     }
 }

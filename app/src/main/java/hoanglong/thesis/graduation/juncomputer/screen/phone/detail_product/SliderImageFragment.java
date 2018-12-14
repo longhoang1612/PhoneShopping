@@ -1,10 +1,8 @@
 package hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -21,10 +19,6 @@ import hoanglong.thesis.graduation.juncomputer.screen.home.adapter.SamplePagerAd
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.SliderShowAdapter;
 import hoanglong.thesis.graduation.juncomputer.utils.customView.LoopViewPager;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SliderImageFragment extends BaseFragment
         implements View.OnClickListener,
         SliderShowAdapter.ClickSliderListener,
@@ -43,7 +37,6 @@ public class SliderImageFragment extends BaseFragment
 
     private int position;
     private List<String> mListImage;
-    private Listener hideCartListener;
 
     public static SliderImageFragment newInstance(List<String> sliders, int position) {
 
@@ -53,12 +46,6 @@ public class SliderImageFragment extends BaseFragment
         SliderImageFragment fragment = new SliderImageFragment();
         fragment.setArguments(bundle);
         return fragment;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        hideCartListener = (Listener) context;
     }
 
     @Override
@@ -80,7 +67,6 @@ public class SliderImageFragment extends BaseFragment
     @Override
     protected void initComponent(View view) {
         ButterKnife.bind(this, view);
-        hideCartListener.onHideButtonCart(View.GONE);
         mImageClose.setOnClickListener(this);
     }
 
@@ -133,11 +119,5 @@ public class SliderImageFragment extends BaseFragment
     @Override
     public void onClickSliderWithPosition(List<String> sliders, int position) {
         viewPager.setCurrentItem(position);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        hideCartListener.onHideButtonCart(View.VISIBLE);
     }
 }

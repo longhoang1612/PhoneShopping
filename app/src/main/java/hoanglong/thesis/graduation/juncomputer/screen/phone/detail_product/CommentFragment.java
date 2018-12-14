@@ -121,7 +121,6 @@ public class CommentFragment extends BaseFragment implements View.OnClickListene
     @Override
     protected void initComponent(View view) {
         ButterKnife.bind(this, view);
-        mListener.onHideButtonCart(View.GONE);
         mImageBack.setOnClickListener(this);
         mRelativeChooseImage.setOnClickListener(this);
         mRelativeSendComment.setOnClickListener(this);
@@ -148,12 +147,6 @@ public class CommentFragment extends BaseFragment implements View.OnClickListene
             return;
         }
         Glide.with(getContext()).load(phoneProduct.getImage()).into(mImagePhone);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener.onHideButtonCart(View.VISIBLE);
     }
 
     @Override
@@ -203,6 +196,10 @@ public class CommentFragment extends BaseFragment implements View.OnClickListene
             public void onResponse(@NonNull Call<Comment> call, @NonNull Response<Comment> response) {
                 if (response.body() != null) {
                     hideProgress();
+                    if (getFragmentManager() != null) {
+                        getFragmentManager().popBackStack();
+                        mListener.onUpdateComment();
+                    }
                 }
             }
 

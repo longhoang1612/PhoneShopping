@@ -23,9 +23,11 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
     private LayoutInflater mLayoutInflater;
     private List<Comment> mComments;
+    private OnClickCommentListener mCommentListener;
 
-    public CommentAdapter(List<Comment> comments) {
+    public CommentAdapter(List<Comment> comments, OnClickCommentListener commentListener) {
         mComments = comments;
+        mCommentListener = commentListener;
     }
 
     @NonNull
@@ -35,7 +37,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
             mLayoutInflater = LayoutInflater.from(viewGroup.getContext());
         }
         View view = mLayoutInflater.inflate(R.layout.item_comment, viewGroup, false);
-        return new CommentViewHolder(view, viewGroup.getContext());
+        return new CommentViewHolder(view, viewGroup.getContext(),mCommentListener);
     }
 
     @Override
@@ -44,12 +46,16 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         commentViewHolder.bindData(comment);
     }
 
+    public interface OnClickCommentListener{
+        void onClickComment(Comment comment);
+    }
+
     @Override
     public int getItemCount() {
         return mComments != null ? mComments.size() : 0;
     }
 
-    public class CommentViewHolder extends RecyclerView.ViewHolder {
+    public class CommentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.text_title_header)
         TextView mTextHeader;
@@ -64,17 +70,22 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         @BindView(R.id.image_comment)
         ImageView mImageComment;
         private Context mContext;
+        private OnClickCommentListener mOnClickCommentListener;
+        private Comment mComment;
 
-        CommentViewHolder(@NonNull View itemView, Context context) {
+        CommentViewHolder(@NonNull View itemView, Context context, OnClickCommentListener commentListener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = context;
+            mOnClickCommentListener = commentListener;
+            itemView.setOnClickListener(this);
         }
 
         public void bindData(Comment comment) {
             if (comment == null) {
                 return;
             }
+            mComment = comment;
             mTextHeader.setText(comment.getTitleComment());
             mRatingComment.setRating(comment.getRating());
             mTextDate.setText(comment.getDate());
@@ -86,6 +97,11 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
                 mImageComment.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(comment.getImageComment()).into(mImageComment);
             }
+        }
+
+        @Override
+        public void onClick(View v) {
+            mOnClickCommentListener.onClickComment(mComment);
         }
     }
 }
