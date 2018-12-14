@@ -74,16 +74,24 @@
 
     </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_seen"
-        android:layout_width="0dp"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_seen"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_5"
-        android:orientation="vertical"
-        app:layoutManager="android.support.v7.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relative_top"
-        app:spanCount="2" />
+        app:layout_constraintTop_toBottomOf="@+id/relative_top">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_seen"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/dimen_5"
+            android:layout_marginBottom="@dimen/dimen_10"
+            android:orientation="vertical"
+            app:layoutManager="android.support.v7.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:spanCount="2" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </android.support.constraint.ConstraintLayout>

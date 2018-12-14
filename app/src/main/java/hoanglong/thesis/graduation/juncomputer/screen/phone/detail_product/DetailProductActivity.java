@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -23,6 +24,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.cart.CartItem;
+import hoanglong.thesis.graduation.juncomputer.data.model.comment.Comment;
+import hoanglong.thesis.graduation.juncomputer.data.model.comment.CommentUpload;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.DetailContent;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ListParameter;
@@ -31,9 +34,9 @@ import hoanglong.thesis.graduation.juncomputer.data.model.user.Favorites;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmCart;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmFavorites;
 import hoanglong.thesis.graduation.juncomputer.screen.bottomsheet.AddCartBottomDialogFragment;
-import hoanglong.thesis.graduation.juncomputer.screen.home.HomeActivity;
-import hoanglong.thesis.graduation.juncomputer.screen.home.UpdateCart;
+import hoanglong.thesis.graduation.juncomputer.screen.cart.CartActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.home.adapter.SamplePagerAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.CommentAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ContentAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.ExtraProductAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.InfoAdapter;
@@ -49,11 +52,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class DetailProductActivity extends AppCompatActivity
         implements View.OnClickListener, SamplePagerAdapter.ClickSliderListener, Listener {
 
-    private static final String TAG = DetailProductActivity.class.getName();
     @BindView(R.id.text_sale)
     TextView mTextSale;
     @BindView(R.id.text_title_product)
@@ -90,8 +91,8 @@ public class DetailProductActivity extends AppCompatActivity
     FloatingActionButton mFABCart;
     @BindView(R.id.tv_number_cart)
     TextView mTextNumberCart;
-    //    @BindView(R.id.ic_shopping)
-//    ImageView mImageShopping;
+    @BindView(R.id.ic_shopping_cart)
+    RelativeLayout mImageShopping;
     @BindView(R.id.progress_detail)
     ProgressBar mProgressDetail;
     @BindView(R.id.nest_scroll_detail)
@@ -102,6 +103,39 @@ public class DetailProductActivity extends AppCompatActivity
     ImageView mImageBack;
     @BindView(R.id.ic_favorites)
     ImageView mImageFavorites;
+    @BindView(R.id.recycler_comment)
+    RecyclerView mRecyclerComment;
+    @BindView(R.id.text_rating_avg_comment)
+    TextView mTextRatingAVG;
+    @BindView(R.id.rating_avg_comment)
+    RatingBar mRatingAVG;
+    @BindView(R.id.text_total_comment)
+    TextView mTextTotalComment;
+
+    @BindView(R.id.progress_five)
+    ProgressBar mProgressFive;
+    @BindView(R.id.text_five)
+    TextView mTextFive;
+
+    @BindView(R.id.progress_one)
+    ProgressBar mProgressOne;
+    @BindView(R.id.text_one)
+    TextView mTextOne;
+
+    @BindView(R.id.progress_two)
+    ProgressBar mProgressTwo;
+    @BindView(R.id.text_two)
+    TextView mTextTwo;
+
+    @BindView(R.id.progress_four)
+    ProgressBar mProgressFour;
+    @BindView(R.id.text_four)
+    TextView mTextFour;
+
+    @BindView(R.id.progress_three)
+    ProgressBar mProgressThree;
+    @BindView(R.id.text_three)
+    TextView mTextThree;
 
     private ItemPhoneProduct itemPhoneProduct;
     private List<DetailContent> mContentListHide;
@@ -123,6 +157,7 @@ public class DetailProductActivity extends AppCompatActivity
         mImageBack.setOnClickListener(this);
         mFABCart.setOnClickListener(this);
         mImageFavorites.setOnClickListener(this);
+        mImageShopping.setOnClickListener(this);
         mContentListHide = new ArrayList<>();
         mInfoProducts = new ArrayList<>();
         Bundle bundle = getIntent().getExtras();
@@ -132,6 +167,78 @@ public class DetailProductActivity extends AppCompatActivity
         mNestedScrollView.setVisibility(View.GONE);
         mProgressDetail.setVisibility(View.VISIBLE);
         setData();
+    }
+
+    private void setDataComment(String id) {
+        Call<CommentUpload> call = BaseService.getService().getComment(id);
+        call.enqueue(new Callback<CommentUpload>() {
+            @Override
+            public void onResponse(@NonNull Call<CommentUpload> call, @NonNull Response<CommentUpload> response) {
+                if (response.body() != null) {
+                    List<Comment> comments = response.body().getComment();
+                    mRecyclerComment.setAdapter(new CommentAdapter(comments));
+
+                    updateViewComment(comments);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CommentUpload> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    private void updateViewComment(List<Comment> comments) {
+        if(comments.size() == 0) return;
+        float ratingAvg = 0;
+        int rating1 = 0;
+        int rating2 = 0;
+        int rating3 = 0;
+        int rating4 = 0;
+        int rating5 = 0;
+
+        for (int i = 0; i < comments.size(); i++) {
+            Comment comment = comments.get(i);
+            ratingAvg += comment.getRating() / comments.size();
+
+            if (comment.getRating() > 4) {
+                rating5 += 1;
+            } else if (comment.getRating() > 3 && comment.getRating() <= 4) {
+                rating4 += 1;
+            } else if (comment.getRating() > 2 && comment.getRating() <= 3) {
+                rating3 += 1;
+            } else if (comment.getRating() > 1 && comment.getRating() <= 2) {
+                rating2 += 1;
+            } else if (comment.getRating() == 1) {
+                rating1 += 1;
+            }
+        }
+
+        String progress5 = String.valueOf(rating5 / comments.size() * 100) + "%";
+        String progress4 = String.valueOf(rating4 / comments.size() * 100) + "%";
+        String progress3 = String.valueOf(rating3 / comments.size() * 100) + "%";
+        String progress2 = String.valueOf(rating2 / comments.size() * 100) + "%";
+        String progress1 = String.valueOf(rating1 / comments.size() * 100) + "%";
+
+        mTextFive.setText(progress5);
+        mTextFour.setText(progress4);
+        mTextThree.setText(progress3);
+        mTextTwo.setText(progress2);
+        mTextOne.setText(progress1);
+
+        mProgressFive.setProgress(rating5 / comments.size() * 100);
+        mProgressFour.setProgress(rating4 / comments.size() * 100);
+        mProgressThree.setProgress(rating3 / comments.size() * 100);
+        mProgressTwo.setProgress(rating2 / comments.size() * 100);
+        mProgressOne.setProgress(rating1 / comments.size() * 100);
+
+        mTextRatingAVG.setText(String.valueOf(ratingAvg));
+        mRatingAVG.setRating(ratingAvg);
+        mTextTotalComment.setText(
+                String.format("%s nhận xét",
+                        String.valueOf(comments.size())
+                ));
     }
 
     private void setData() {
@@ -145,6 +252,7 @@ public class DetailProductActivity extends AppCompatActivity
                     itemPhoneProduct = response.body().getPhoneProduct().get(0);
                     setupView(itemPhoneProduct);
                     setSlide();
+                    setDataComment(itemPhoneProduct.getId());
                 }
             }
 
@@ -286,6 +394,10 @@ public class DetailProductActivity extends AppCompatActivity
                 break;
             case R.id.ic_favorites:
                 favoritesItem();
+                break;
+            case R.id.ic_shopping_cart:
+                Intent intent1 = new Intent(DetailProductActivity.this, CartActivity.class);
+                startActivity(intent1);
                 break;
         }
     }

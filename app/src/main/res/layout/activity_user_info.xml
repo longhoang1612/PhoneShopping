@@ -207,50 +207,6 @@
             app:layout_constraintTop_toBottomOf="@+id/linear_info_user" />
 
         <RelativeLayout
-            android:id="@+id/relative_manage_product_buy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/image_manager_product_buy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_10"
-                android:layout_marginTop="@dimen/dimen_5"
-                android:layout_marginBottom="@dimen/dimen_5"
-                android:src="@drawable/ic_shopping_cart" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/dimen_15"
-                android:layout_toEndOf="@+id/image_manager_product_buy"
-                android:text="Sản phẩm đã mua "
-                android:textColor="@color/color_blue_grey_900"
-                android:textSize="@dimen/dimen_text_16" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/dimen_10"
-                android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
-
-        </RelativeLayout>
-
-        <View
-            layout="@layout/item_view"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_margin="@dimen/dimen_5"
-            android:background="@color/color_underline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linear_info_user" />
-
-        <RelativeLayout
             android:id="@+id/relative_manage_seen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

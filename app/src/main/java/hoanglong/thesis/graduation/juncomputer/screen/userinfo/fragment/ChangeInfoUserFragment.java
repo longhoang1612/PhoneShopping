@@ -1,7 +1,11 @@
 package hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -12,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -21,11 +26,16 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.User;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
+import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import hoanglong.thesis.graduation.juncomputer.utils.Constant;
 import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChangeInfoUserFragment extends BaseFragment implements View.OnClickListener, CheckBox.OnCheckedChangeListener {
 
@@ -46,13 +56,25 @@ public class ChangeInfoUserFragment extends BaseFragment implements View.OnClick
     @BindView(R.id.linear_change_password)
     LinearLayout mLinearChangePass;
     @BindView(R.id.radio_group)
-    RadioGroup mRadioGroup;
+    RadioGroup mRadioSex;
     @BindView(R.id.radioButton_male)
     RadioButton mRadioMale;
     @BindView(R.id.radioButton_female)
     RadioButton mRadioFeMale;
     @BindView(R.id.clear_name)
     ImageView mImageClearName;
+    private ProgressDialog mDialogProgress;
+    private OnUpdateInfoListener mOnUpdateInfoListener;
+
+    public interface OnUpdateInfoListener{
+        void onUpdateInfo();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mOnUpdateInfoListener = (OnUpdateInfoListener) context;
+    }
 
     final Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -102,6 +124,7 @@ public class ChangeInfoUserFragment extends BaseFragment implements View.OnClick
         }
         mEditChangeEmail.setText(mUser.getEmail());
         mEditChangeEmail.setClickable(false);
+        mEditChangeBirthday.setText(mUser.getBirthDay());
         mEditChangeName.setText(mUser.getFullName());
         switch (mUser.getSex()) {
             case "Nam":
@@ -122,7 +145,7 @@ public class ChangeInfoUserFragment extends BaseFragment implements View.OnClick
                 }
                 break;
             case R.id.relative_update_info:
-                updateInfo();
+                checkValid();
                 break;
             case R.id.et_change_birthday:
                 chooseDate();
@@ -130,6 +153,19 @@ public class ChangeInfoUserFragment extends BaseFragment implements View.OnClick
             case R.id.clear_name:
                 mEditChangeName.setText("");
                 break;
+        }
+    }
+
+    private void checkValid() {
+        if (getContext() == null) {
+            return;
+        }
+        if (mEditChangeName.getText().toString().isEmpty()) {
+            Toasty.warning(getContext(), "Bạn không được bỏ trống tên", Toast.LENGTH_SHORT, true).show();
+        } else if (mEditChangeBirthday.getText().toString().isEmpty()) {
+            Toasty.warning(getContext(), "Bạn không được bỏ trống ngày sinh", Toast.LENGTH_SHORT, true).show();
+        } else {
+            updateInfo();
         }
     }
 
@@ -143,7 +179,58 @@ public class ChangeInfoUserFragment extends BaseFragment implements View.OnClick
     }
 
     private void updateInfo() {
+        showProgress();
+        String name = mEditChangeName.getText().toString();
+        String birthday = mEditChangeBirthday.getText().toString();
+        String sex = null;
+        switch (mRadioSex.getCheckedRadioButtonId()) {
+            case R.id.radioButton_male:
+                sex = "Nam";
+                break;
+            case R.id.radioButton_female:
+                sex = "Nữ";
+                break;
+        }
+        User user = new User(sex, name, birthday);
 
+        Call<User> call = BaseService.getService().updateInfo(mUser.getEmail(), user);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                hideProgress();
+                if (response.body() != null) {
+                    Gson gson = new Gson();
+                    String json = gson.toJson(response.body());
+                    SharedPrefs.getInstance().put(Constant.Login.OBJECT_USER_LOGIN, json);
+
+                    if (getFragmentManager() != null) {
+                        mOnUpdateInfoListener.onUpdateInfo();
+                        getFragmentManager().popBackStack();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                hideProgress();
+            }
+        });
+    }
+
+    public void showProgress() {
+        if (mDialogProgress != null) {
+            return;
+        }
+        mDialogProgress = new ProgressDialog(getContext());
+        mDialogProgress.setMessage("Cập nhật thông tin");
+        mDialogProgress.show();
+    }
+
+    public void hideProgress() {
+        if (mDialogProgress == null)
+            return;
+        mDialogProgress.dismiss();
+        mDialogProgress = null;
     }
 
     @Override

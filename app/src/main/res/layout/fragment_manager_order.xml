@@ -49,16 +49,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_detail" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_manager_cart"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_order"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        android:orientation="vertical"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_detail" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_detail">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_manager_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <RelativeLayout
         android:id="@+id/relative_empty"

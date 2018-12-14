@@ -2,7 +2,9 @@ package hoanglong.thesis.graduation.juncomputer.screen.manageOrder;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -45,8 +47,11 @@ public class ManagerOrderFragment extends BaseFragment implements OrderManagerAd
     RelativeLayout mRelativeEmpty;
     @BindView(R.id.ic_back)
     ImageView mImageBack;
+    @BindView(R.id.swipe_order)
+    SwipeRefreshLayout mSwipeRefreshLayout;
     private List<Order> mOrders;
     private Context mContext;
+    private User mUser;
 
     @Override
     protected int getLayoutResources() {
@@ -66,6 +71,18 @@ public class ManagerOrderFragment extends BaseFragment implements OrderManagerAd
                 }
             }
         });
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSwipeRefreshLayout.setRefreshing(false);
+                        setData(mUser);
+                    }
+                }, 500);
+            }
+        });
     }
 
     @Override
@@ -79,10 +96,14 @@ public class ManagerOrderFragment extends BaseFragment implements OrderManagerAd
         mOrders = new ArrayList<>();
         Gson gson = new Gson();
         String json = SharedPrefs.getInstance().get(Constant.Login.OBJECT_USER_LOGIN, String.class);
-        User user = gson.fromJson(json, User.class);
-        if (user == null) {
+        mUser = gson.fromJson(json, User.class);
+        if (mUser == null) {
             return;
         }
+        setData(mUser);
+    }
+
+    private void setData(User user) {
         Call<OrderUpload> call = BaseService.getService().getOrderByUser(user.getId());
         call.enqueue(new Callback<OrderUpload>() {
             @Override

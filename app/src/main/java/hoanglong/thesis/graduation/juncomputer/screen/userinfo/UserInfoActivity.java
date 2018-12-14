@@ -14,30 +14,26 @@ import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hoanglong.thesis.graduation.juncomputer.screen.payment.listener.OnListenerPayment;
-import hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment.AddAddressFragment;
-import hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment.ChangeInfoUserFragment;
-import hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment.ProductBuyFragment;
 import hoanglong.thesis.graduation.juncomputer.R;
-import hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment.SeenFragment;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.User;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.favorites.FavoritesFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.manageOrder.ManagerOrderFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment.AddressUserFragment;
+import hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment.ChangeInfoUserFragment;
+import hoanglong.thesis.graduation.juncomputer.screen.userinfo.fragment.SeenFragment;
 import hoanglong.thesis.graduation.juncomputer.screen.userinfo.listener.UpdateAddressListener;
 import hoanglong.thesis.graduation.juncomputer.utils.Constant;
 import hoanglong.thesis.graduation.juncomputer.utils.FragmentTransactionUtils;
 import hoanglong.thesis.graduation.juncomputer.utils.SharedPrefs;
 
-public class UserInfoActivity extends BaseActivity implements View.OnClickListener, UpdateAddressListener {
+public class UserInfoActivity extends BaseActivity implements View.OnClickListener
+        , UpdateAddressListener, ChangeInfoUserFragment.OnUpdateInfoListener {
 
     @BindView(R.id.relative_manager_order)
     RelativeLayout mRelativeOrder;
     @BindView(R.id.relative_manage_address)
     RelativeLayout mRelativeAddress;
-    @BindView(R.id.relative_manage_product_buy)
-    RelativeLayout mRelativeBuy;
     @BindView(R.id.relative_manage_seen)
     RelativeLayout mRelativeSeen;
     @BindView(R.id.relative_manage_favorites)
@@ -71,7 +67,6 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     private void initListener() {
         mRelativeAddress.setOnClickListener(this);
         mRelativeOrder.setOnClickListener(this);
-        mRelativeBuy.setOnClickListener(this);
         mRelativeSeen.setOnClickListener(this);
         mRelativeFavorites.setOnClickListener(this);
         mConstraintUserInfo.setOnClickListener(this);
@@ -107,13 +102,10 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                 openFragment(new ManagerOrderFragment(), ManagerOrderFragment.TAG);
                 break;
             case R.id.relative_manage_seen:
-                openFragment(SeenFragment.newInstance(), SeenFragment.TAG);
-                break;
-            case R.id.relative_manage_product_buy:
-                openFragment(ProductBuyFragment.newInstance(), ProductBuyFragment.TAG);
+                openFragment(new SeenFragment(), SeenFragment.TAG);
                 break;
             case R.id.relative_manage_favorites:
-                openFragment(FavoritesFragment.newInstance(), FavoritesFragment.TAG);
+                openFragment(new FavoritesFragment(), FavoritesFragment.TAG);
                 break;
             case R.id.constraint_info_user:
                 openFragment(new ChangeInfoUserFragment(), ChangeInfoUserFragment.TAG);
@@ -163,5 +155,10 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         if (mFragment instanceof AddressUserFragment) {
             ((AddressUserFragment) mFragment).onUpdateAddress();
         }
+    }
+
+    @Override
+    public void onUpdateInfo() {
+        updateInfo();
     }
 }

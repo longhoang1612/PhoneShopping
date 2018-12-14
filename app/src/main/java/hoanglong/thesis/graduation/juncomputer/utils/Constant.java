@@ -24,4 +24,11 @@ public class Constant {
         public static final String LOGIN_STATUS = "LOGIN_STATUS";
         public static final String OBJECT_USER_LOGIN = "MyObject";
     }
+
+    public static class Cloudinary{
+        public static final String CLOUD_NAME = "hoanglongb";
+        public static final String API_KEY = "228499276558135";
+        public static final String SECRET_KEY = "qSDLX0OeyL1Hn25wQTGB5A1gtrY";
+        public static final String URL = "cloudinary://228499276558135:qSDLX0OeyL1Hn25wQTGB5A1gtrY@hoanglongb";
+    }
 }

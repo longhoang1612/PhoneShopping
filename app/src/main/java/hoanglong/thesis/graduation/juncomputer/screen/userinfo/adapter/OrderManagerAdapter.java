@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -13,6 +14,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.order.Order;
+
+import static hoanglong.thesis.graduation.juncomputer.data.TypeConfirmOrder.ORDER_CONFIRMED;
+import static hoanglong.thesis.graduation.juncomputer.data.TypeConfirmOrder.ORDER_DELIVERY;
+import static hoanglong.thesis.graduation.juncomputer.data.TypeConfirmOrder.ORDER_DONE;
+import static hoanglong.thesis.graduation.juncomputer.data.TypeConfirmOrder.ORDER_WAITING_CONFIRM;
 
 public class OrderManagerAdapter extends RecyclerView.Adapter<OrderManagerAdapter.OrderViewHolder> {
 
@@ -62,6 +68,8 @@ public class OrderManagerAdapter extends RecyclerView.Adapter<OrderManagerAdapte
         TextView mTextDateOrder;
         @BindView(R.id.text_status_order)
         TextView mTextStatusOrder;
+        @BindView(R.id.ic_status)
+        ImageView mImageStatus;
 
         OrderViewHolder(@NonNull View itemView, OnClickOrderListener onClickOrderListener) {
             super(itemView);
@@ -77,11 +85,23 @@ public class OrderManagerAdapter extends RecyclerView.Adapter<OrderManagerAdapte
             mOrder = order;
             String codeOrder = order.getIdOrder()
                     .substring(order.getIdOrder().length()-7,order.getIdOrder().length()-1);
-            mTextTileOrder.setText("Mã đơn hàng: " + codeOrder);
-            mTextCodeOrder.setText("Người đặt hàng: " + order.getNameUser());
-            mTextDateOrder.setText("Ngày đặt hàng: " + order.getDateOrder());
-            mTextStatusOrder.setText("Trạng thái: " + order.getStatusOrder());
-
+            mTextTileOrder.setText(String.format("Mã đơn hàng: %s", codeOrder));
+            mTextCodeOrder.setText(String.format("Người đặt hàng: %s", order.getNameUser()));
+            mTextDateOrder.setText(String.format("Ngày đặt hàng: %s", order.getDateOrder()));
+            mTextStatusOrder.setText(String.format("Trạng thái: %s", order.getStatusOrder()));
+            switch (order.getStatusOrder()) {
+                case ORDER_WAITING_CONFIRM:
+                    mImageStatus.setImageResource(R.drawable.ic_filter_tilt_shift_black_24dp);
+                    break;
+                case ORDER_CONFIRMED:
+                    mImageStatus.setImageResource(R.drawable.ic_cofirm);
+                    break;
+                case ORDER_DELIVERY:
+                    mImageStatus.setImageResource(R.drawable.ic_delivery);
+                    break;
+                case ORDER_DONE:
+                    mImageStatus.setImageResource(R.drawable.ic_done);
+            }
         }
 
         @Override

@@ -1,16 +1,11 @@
 package hoanglong.thesis.graduation.juncomputer.data.model.user;
 
-import android.support.annotation.NonNull;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 import hoanglong.thesis.graduation.juncomputer.data.model.cart.CartItem;
-import io.realm.RealmList;
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
 public class User{
 
@@ -41,6 +36,9 @@ public class User{
     @SerializedName("cartCurrent")
     @Expose
     private List<CartItem> mCartItems = null;
+    @SerializedName("birthday")
+    @Expose
+    private String mBirthDay;
 
     public User() {
     }
@@ -62,6 +60,19 @@ public class User{
         mCartItems = cartItems;
     }
 
+    public User(String email, String password, String sex, String fullName, String id, String dateJoin, List<Favorites> favorites, List<AddressUser> address, List<CartItem> cartItems, String birthDay) {
+        mEmail = email;
+        mPassword = password;
+        mSex = sex;
+        mFullName = fullName;
+        mId = id;
+        mDateJoin = dateJoin;
+        mFavorites = favorites;
+        mAddress = address;
+        mCartItems = cartItems;
+        mBirthDay = birthDay;
+    }
+
     public User(String email, String password, String sex, String fullName, String dateJoin, List<Favorites> favorites, List<AddressUser> address) {
         mEmail = email;
         mPassword = password;
@@ -78,6 +89,12 @@ public class User{
         mSex = sex;
         mFullName = fullName;
         mDateJoin = dateJoin;
+    }
+
+    public User(String sex, String fullName, String birthDay) {
+        mSex = sex;
+        mFullName = fullName;
+        mBirthDay = birthDay;
     }
 
     public List<CartItem> getCartItems() {
@@ -154,6 +171,14 @@ public class User{
 
     public void setDateJoin(String dateJoin) {
         mDateJoin = dateJoin;
+    }
+
+    public String getBirthDay() {
+        return mBirthDay;
+    }
+
+    public void setBirthDay(String birthDay) {
+        mBirthDay = birthDay;
     }
 
     @Override

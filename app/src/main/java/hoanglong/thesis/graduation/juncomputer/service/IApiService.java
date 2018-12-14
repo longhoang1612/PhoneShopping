@@ -1,6 +1,8 @@
 package hoanglong.thesis.graduation.juncomputer.service;
 
 import hoanglong.thesis.graduation.juncomputer.data.model.category.PhoneCategory;
+import hoanglong.thesis.graduation.juncomputer.data.model.comment.Comment;
+import hoanglong.thesis.graduation.juncomputer.data.model.comment.CommentUpload;
 import hoanglong.thesis.graduation.juncomputer.data.model.home.Home;
 import hoanglong.thesis.graduation.juncomputer.data.model.order.Order;
 import hoanglong.thesis.graduation.juncomputer.data.model.order.OrderUpload;
@@ -58,4 +60,13 @@ public interface IApiService {
 
     @PUT("/cartUpload/{email}")
     Call<User> updateCartCurrent(@Path("email") String email, @Body CartUpload cartUpload);
+
+    @PUT("/updateInfo/{email}")
+    Call<User> updateInfo(@Path("email") String email, @Body User user);
+
+    @POST("/createComment")
+    Call<Comment> createComment(@Body Comment comment);
+
+    @GET("/getComment/{idProduct}")
+    Call<CommentUpload> getComment(@Path("idProduct") String idProduct);
 }

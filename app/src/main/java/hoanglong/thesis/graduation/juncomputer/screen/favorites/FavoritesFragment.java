@@ -49,13 +49,6 @@ public class FavoritesFragment extends BaseFragment implements View.OnClickListe
     ImageView mImageUpload;
     private List<Favorites> mFavorites;
 
-    public static FavoritesFragment newInstance() {
-        Bundle args = new Bundle();
-        FavoritesFragment fragment = new FavoritesFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     protected int getLayoutResources() {
         return R.layout.fragment_favorites;
