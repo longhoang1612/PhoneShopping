@@ -49,6 +49,30 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/text_user_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10"
+            android:fontFamily="@font/sanfranciscodisplay_regular"
+            android:text="Tran Hoang Long"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rating_comment" />
+
+        <TextView
+            android:id="@+id/text_date_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_20"
+            android:fontFamily="@font/sanfranciscodisplay_regular"
+            android:text="14-12/2018"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/dimen_12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/rating_comment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rating_comment" />
+
+        <TextView
             android:id="@+id/text_title_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,7 +95,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_title_comment" />
+            app:layout_constraintTop_toBottomOf="@+id/text_user_comment" />
 
     </android.support.constraint.ConstraintLayout>
 

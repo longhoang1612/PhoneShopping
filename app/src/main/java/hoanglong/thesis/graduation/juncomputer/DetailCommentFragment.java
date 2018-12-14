@@ -28,6 +28,10 @@ public class DetailCommentFragment extends BaseFragment implements View.OnClickL
     TextView mTextComment;
     @BindView(R.id.ic_back)
     ImageView mImageBack;
+    @BindView(R.id.text_date_comment)
+    TextView mTextDate;
+    @BindView(R.id.text_user_comment)
+    TextView mTextUser;
 
     public static DetailCommentFragment newInstance(Comment comment) {
         Bundle args = new Bundle();
@@ -67,6 +71,8 @@ public class DetailCommentFragment extends BaseFragment implements View.OnClickL
         mRatingComment.setRating(mComment.getRating());
         mTextTitleComment.setText(mComment.getTitleComment());
         mTextComment.setText(mComment.getComment());
+        mTextDate.setText(mComment.getDate());
+        mTextUser.setText(mComment.getNameUser());
     }
 
     @Override
