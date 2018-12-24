@@ -44,7 +44,6 @@
                     android:src="@raw/qr_code" />
 
                 <EditText
-                    android:inputType="text"
                     android:id="@+id/edit_search"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -55,6 +54,7 @@
                     android:background="@color/colorWhite"
                     android:fontFamily="@font/sanfranciscodisplay_regular"
                     android:hint="Tìm kiếm sản phẩm ở đây"
+                    android:inputType="text"
                     android:padding="@dimen/dimen_5"
                     android:textColor="@color/color_blue_grey_900"
                     android:textColorHint="@color/colorRadioNormal"
@@ -66,125 +66,144 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="0dp"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_search"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_bar">
 
-        <RelativeLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_search"
-                android:layout_margin="@dimen/dimen_5"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/constraint_trending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite">
-
-                <ImageView
-                    android:id="@+id/ic_tang"
-                    android:layout_width="@dimen/dimen_24"
-                    android:layout_height="@dimen/dimen_24"
-                    android:layout_margin="@dimen/dimen_10"
-                    android:src="@drawable/ic_tang"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_5"
-                    android:fontFamily="@font/sanfranciscodisplay_semibold"
-                    android:text="Từ khóa hot"
-                    android:textColor="@color/color_blue_grey_900"
-                    android:textSize="@dimen/dimen_text_16"
-                    app:layout_constraintBottom_toBottomOf="@+id/ic_tang"
-                    app:layout_constraintStart_toEndOf="@+id/ic_tang"
-                    app:layout_constraintTop_toTopOf="@+id/ic_tang" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dimen_80">
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_trending"
-                    app:spanCount="3"
-                    app:layoutManager="android.support.v7.widget.StaggeredGridLayoutManager"
-                    android:layout_width="0dp"
+                    android:id="@+id/recycler_search"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_10"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ic_tang" />
+                    android:layout_margin="@dimen/dimen_5"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                    app:spanCount="2" />
 
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/constraint_history"
-                android:layout_below="@+id/constraint_trending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_10"
-                android:background="@color/colorWhite">
-
-                <ImageView
-                    android:id="@+id/ic_history"
-                    android:layout_width="@dimen/dimen_24"
-                    android:layout_height="@dimen/dimen_24"
-                    android:layout_margin="@dimen/dimen_10"
-                    android:src="@drawable/ic_tang"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="0dp"
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraint_trending"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_5"
-                    android:fontFamily="@font/sanfranciscodisplay_semibold"
-                    android:text="Lịch sử tìm kiếm"
-                    android:textColor="@color/color_blue_grey_900"
-                    android:textSize="@dimen/dimen_text_16"
-                    app:layout_constraintBottom_toBottomOf="@+id/ic_history"
-                    app:layout_constraintEnd_toStartOf="@+id/ic_delete"
-                    app:layout_constraintStart_toEndOf="@+id/ic_history"
-                    app:layout_constraintTop_toTopOf="@+id/ic_history" />
+                    android:background="@color/colorWhite">
 
-                <TextView
-                    android:id="@+id/ic_delete"
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/ic_tang"
+                        android:layout_width="@dimen/dimen_24"
+                        android:layout_height="@dimen/dimen_24"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:src="@drawable/ic_tang"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_5"
+                        android:fontFamily="@font/sanfranciscodisplay_semibold"
+                        android:text="Từ khóa hot"
+                        android:textColor="@color/color_blue_grey_900"
+                        android:textSize="@dimen/dimen_text_16"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_tang"
+                        app:layout_constraintStart_toEndOf="@+id/ic_tang"
+                        app:layout_constraintTop_toTopOf="@+id/ic_tang" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_trending"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        app:layoutManager="android.support.v7.widget.StaggeredGridLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ic_tang"
+                        app:spanCount="3" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraint_history"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/dimen_10"
-                    android:fontFamily="@font/sanfranciscodisplay_semibold"
-                    android:text="Xóa"
-                    android:textAllCaps="true"
-                    android:textColor="@color/color_blue_700"
-                    app:layout_constraintBottom_toBottomOf="@+id/ic_history"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/ic_history" />
+                    android:layout_below="@+id/constraint_trending"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:background="@color/colorWhite">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_history"
-                    android:orientation="vertical"
-                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_10"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ic_history" />
+                    <ImageView
+                        android:id="@+id/ic_history"
+                        android:layout_width="@dimen/dimen_24"
+                        android:layout_height="@dimen/dimen_24"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:src="@drawable/ic_tang"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </android.support.constraint.ConstraintLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_5"
+                        android:fontFamily="@font/sanfranciscodisplay_semibold"
+                        android:text="Lịch sử tìm kiếm"
+                        android:textColor="@color/color_blue_grey_900"
+                        android:textSize="@dimen/dimen_text_16"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_history"
+                        app:layout_constraintEnd_toStartOf="@+id/ic_delete"
+                        app:layout_constraintStart_toEndOf="@+id/ic_history"
+                        app:layout_constraintTop_toTopOf="@+id/ic_history" />
 
-        </RelativeLayout>
+                    <TextView
+                        android:id="@+id/ic_delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_semibold"
+                        android:text="Xóa"
+                        android:textAllCaps="true"
+                        android:textColor="@color/color_blue_700"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_history"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/ic_history" />
 
-    </android.support.v4.widget.NestedScrollView>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_history"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:orientation="vertical"
+                        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ic_history" />
+
+                </android.support.constraint.ConstraintLayout>
+
+            </RelativeLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar" />
 
 </android.support.constraint.ConstraintLayout>

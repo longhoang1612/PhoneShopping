@@ -7,6 +7,7 @@ import hoanglong.thesis.graduation.juncomputer.data.model.home.Home;
 import hoanglong.thesis.graduation.juncomputer.data.model.order.Order;
 import hoanglong.thesis.graduation.juncomputer.data.model.order.OrderUpload;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.PhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.search.KeySearch;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.AddressUpload;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.CartUpload;
 import hoanglong.thesis.graduation.juncomputer.data.model.user.FavoritesUpload;
@@ -69,4 +70,7 @@ public interface IApiService {
 
     @GET("/getComment/{idProduct}")
     Call<CommentUpload> getComment(@Path("idProduct") String idProduct);
+
+    @POST("/searchItems")
+    Call<PhoneProduct> getSearch(@Body KeySearch keySearch);
 }

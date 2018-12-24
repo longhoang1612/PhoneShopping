@@ -89,7 +89,9 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ItemPhoneVie
             }
             mItemPhoneProduct = itemPhoneProduct;
             Glide.with(mContext).load(itemPhoneProduct.getImage()).into(mImageView);
-            if (itemPhoneProduct.getDeal().equals("")) {
+            if (itemPhoneProduct.getDeal() == null) {
+                mRelativeSale.setVisibility(View.GONE);
+            } else if (itemPhoneProduct.getDeal().equals("")) {
                 mRelativeSale.setVisibility(View.GONE);
             } else {
                 mRelativeSale.setVisibility(View.VISIBLE);

@@ -2,7 +2,10 @@ package hoanglong.thesis.graduation.juncomputer.screen.search;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,14 +22,24 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.PhoneProduct;
 import hoanglong.thesis.graduation.juncomputer.data.model.search.HistorySearch;
+import hoanglong.thesis.graduation.juncomputer.data.model.search.KeySearch;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmHistorySearch;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseActivity;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.search.adapter.HistorySearchAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.search.adapter.SuggestAdapter;
+import hoanglong.thesis.graduation.juncomputer.service.BaseService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.http.Body;
 
 public class SearchActivity extends BaseActivity implements View.OnClickListener, TextWatcher,
-        SuggestAdapter.OnItemClickListener, HistorySearchAdapter.OnItemClickListener {
+        SuggestAdapter.OnItemClickListener, HistorySearchAdapter.OnItemClickListener
+        ,PhoneAdapter.OnClickProductListener,SwipeRefreshLayout.OnRefreshListener {
 
     private static final int WAITING_TIME = 1000;
     @BindView(R.id.constraint_history)
@@ -44,6 +58,10 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     ImageView mImageBack;
     @BindView(R.id.edit_search)
     EditText mEditSearch;
+    @BindView(R.id.progress_search)
+    ProgressBar mProgressSearch;
+    @BindView(R.id.swipe_search)
+    SwipeRefreshLayout mSwipeSearch;
     private String mSearchKey;
     private List<String> mSuggestSearch;
 
@@ -62,6 +80,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         mImageBack.setOnClickListener(this);
         mTextDelete.setOnClickListener(this);
         mEditSearch.addTextChangedListener(this);
+        mSwipeSearch.setOnRefreshListener(this);
     }
 
     @Override
@@ -112,6 +131,26 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         visibilityView(false);
         HistorySearch historySearch = new HistorySearch(mSearchKey);
         RealmHistorySearch.addHistorySearch(historySearch);
+
+        KeySearch keySearch = new KeySearch(mSearchKey);
+        Call<PhoneProduct> call = BaseService.getService().getSearch(keySearch);
+        call.enqueue(new Callback<PhoneProduct>() {
+            @Override
+            public void onResponse(@NonNull Call<PhoneProduct> call, @NonNull Response<PhoneProduct> response) {
+                if (response.body() != null) {
+                    mProgressSearch.setVisibility(View.GONE);
+                    PhoneAdapter phoneAdapter = new PhoneAdapter(
+                            response.body().getPhoneProduct(),
+                            SearchActivity.this);
+                    mRecyclerSearch.setAdapter(phoneAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<PhoneProduct> call, @NonNull Throwable t) {
+                mProgressSearch.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
@@ -142,10 +181,12 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             mConstraintTrending.setVisibility(View.VISIBLE);
             mConstraintHistory.setVisibility(View.VISIBLE);
             mRecyclerSearch.setVisibility(View.GONE);
+            mProgressSearch.setVisibility(View.GONE);
         } else {
             mConstraintTrending.setVisibility(View.GONE);
             mConstraintHistory.setVisibility(View.GONE);
             mRecyclerSearch.setVisibility(View.VISIBLE);
+            mProgressSearch.setVisibility(View.VISIBLE);
         }
     }
 
@@ -158,5 +199,21 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onItemClickHistorySearchListener(HistorySearch historySearch) {
         mEditSearch.setText(historySearch.getHistorySearch());
+    }
+
+    @Override
+    public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
+
+    }
+
+    @Override
+    public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeSearch.setRefreshing(false);
+                loadDataSearch();
+            }
+        }, 1000);
     }
 }
