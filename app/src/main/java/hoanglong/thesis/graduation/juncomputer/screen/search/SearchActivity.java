@@ -1,5 +1,6 @@
 package hoanglong.thesis.graduation.juncomputer.screen.search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -9,7 +10,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,13 +29,13 @@ import hoanglong.thesis.graduation.juncomputer.data.model.search.KeySearch;
 import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmHistorySearch;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
 import hoanglong.thesis.graduation.juncomputer.screen.search.adapter.HistorySearchAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.search.adapter.SuggestAdapter;
 import hoanglong.thesis.graduation.juncomputer.service.BaseService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Body;
 
 public class SearchActivity extends BaseActivity implements View.OnClickListener, TextWatcher,
         SuggestAdapter.OnItemClickListener, HistorySearchAdapter.OnItemClickListener
@@ -203,7 +203,9 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
-
+        Intent intent = new Intent(SearchActivity.this,DetailProductActivity.class);
+        intent.putExtra("BUNDLE_ITEM_PRODUCT", itemPhoneProduct.getTitle());
+        startActivity(intent);
     }
 
     @Override
