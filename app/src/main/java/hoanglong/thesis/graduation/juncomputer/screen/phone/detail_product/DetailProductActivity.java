@@ -1,10 +1,14 @@
 package hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.FileProvider;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -16,11 +20,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hoanglong.thesis.graduation.juncomputer.BuildConfig;
 import hoanglong.thesis.graduation.juncomputer.DetailCommentFragment;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.cart.CartItem;
@@ -137,6 +148,8 @@ public class DetailProductActivity extends AppCompatActivity
     ProgressBar mProgressThree;
     @BindView(R.id.text_three)
     TextView mTextThree;
+    @BindView(R.id.image_share)
+    ImageView mImageShare;
 
     private ItemPhoneProduct itemPhoneProduct;
     private List<DetailContent> mContentListHide;
@@ -159,6 +172,7 @@ public class DetailProductActivity extends AppCompatActivity
         mFABCart.setOnClickListener(this);
         mImageFavorites.setOnClickListener(this);
         mImageShopping.setOnClickListener(this);
+        mImageShare.setOnClickListener(this);
         mContentListHide = new ArrayList<>();
         mInfoProducts = new ArrayList<>();
         Bundle bundle = getIntent().getExtras();
@@ -395,11 +409,78 @@ public class DetailProductActivity extends AppCompatActivity
             case R.id.ic_favorites:
                 favoritesItem();
                 break;
+            case R.id.image_share:
+                shareProduct();
+//                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//                sharingIntent.setType("text/plain");
+//                String shareBody = "Here is the share content body";
+//                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+//                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+//                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                break;
             case R.id.ic_shopping_cart:
                 Intent intent1 = new Intent(DetailProductActivity.this, CartActivity.class);
                 startActivity(intent1);
                 break;
         }
+    }
+
+    private void shareProduct() {
+        Picasso.get().load(itemPhoneProduct.getImage()).into(target);
+    }
+
+    private Target target = new Target() {
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            shareImage(bitmap);
+        }
+
+        @Override
+        public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+        }
+    };
+
+
+    private void shareImage(Bitmap bitmap) {
+        // save bitmap to cache directory
+        try {
+            File cachePath = new File(this.getCacheDir(), "images");
+            cachePath.mkdirs(); // don't forget to make the directory
+            FileOutputStream stream = new FileOutputStream(cachePath + "/image.png"); // overwrites this image every time
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            stream.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        File imagePath = new File(this.getCacheDir(), "images");
+        File newFile = new File(imagePath, "image.png");
+        Uri contentUri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".fileprovider", newFile);
+
+        if (contentUri != null) {
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // temp permission for receiving app to read this file
+            shareIntent.setDataAndType(contentUri, getContentResolver().getType(contentUri));
+            shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
+            shareIntent.setType("image/png/");
+            shareIntent.setType("text/plain");
+            String shareBody = "Mua ngay sản phẩm tại ứng dụng MayBE: https://play.google.com/store/apps/developer?id=May+BE&hl=vi";
+            shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, itemPhoneProduct.getTitle());
+            shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(shareIntent, "Choose an app"));
+        }
+    }
+
+    @Override
+    public void onDestroy() {  // could be in onPause or onStop
+        Picasso.get().cancelRequest(target);
+        super.onDestroy();
     }
 
     private void favoritesItem() {

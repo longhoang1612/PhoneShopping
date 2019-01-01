@@ -34,14 +34,14 @@
                     android:src="@drawable/ic_arrow_back_black" />
 
                 <ImageView
-                    android:id="@+id/ic_shopping_cart"
-                    android:layout_width="@dimen/dimen_30"
-                    android:layout_height="@dimen/dimen_30"
+                    android:id="@+id/ic_search_voice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/dimen_16"
                     android:layout_marginRight="@dimen/dimen_16"
-                    android:src="@raw/qr_code" />
+                    android:src="@drawable/ic_keyboard_voice_black_24dp" />
 
                 <EditText
                     android:id="@+id/edit_search"
@@ -49,7 +49,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/dimen_7"
                     android:layout_marginBottom="@dimen/dimen_7"
-                    android:layout_toStartOf="@+id/ic_shopping_cart"
+                    android:layout_toStartOf="@+id/ic_search_voice"
                     android:layout_toEndOf="@+id/ic_back"
                     android:background="@color/colorWhite"
                     android:fontFamily="@font/sanfranciscodisplay_regular"

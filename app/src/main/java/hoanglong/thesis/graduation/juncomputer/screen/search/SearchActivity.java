@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -39,9 +40,10 @@ import retrofit2.Response;
 
 public class SearchActivity extends BaseActivity implements View.OnClickListener, TextWatcher,
         SuggestAdapter.OnItemClickListener, HistorySearchAdapter.OnItemClickListener
-        ,PhoneAdapter.OnClickProductListener,SwipeRefreshLayout.OnRefreshListener {
+        , PhoneAdapter.OnClickProductListener, SwipeRefreshLayout.OnRefreshListener {
 
     private static final int WAITING_TIME = 1000;
+    private static final int REQUEST_CODE = 1234;
     @BindView(R.id.constraint_history)
     ConstraintLayout mConstraintHistory;
     @BindView(R.id.constraint_trending)
@@ -62,6 +64,8 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     ProgressBar mProgressSearch;
     @BindView(R.id.swipe_search)
     SwipeRefreshLayout mSwipeSearch;
+    @BindView(R.id.ic_search_voice)
+    ImageView mImageSearchVoice;
     private String mSearchKey;
     private List<String> mSuggestSearch;
 
@@ -81,6 +85,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         mTextDelete.setOnClickListener(this);
         mEditSearch.addTextChangedListener(this);
         mSwipeSearch.setOnRefreshListener(this);
+        mImageSearchVoice.setOnClickListener(this);
     }
 
     @Override
@@ -114,7 +119,25 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.ic_delete:
                 break;
+            case R.id.ic_search_voice:
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Tìm kiếm bằng giọng nói...");
+                startActivityForResult(intent, REQUEST_CODE);
+                break;
         }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            // Populate the wordsList with the String values the recognition engine thought it heard
+            final ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (!matches.isEmpty()) {
+                String Query = matches.get(0);
+                mEditSearch.setText(Query);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private CountDownTimer mCountDownTimer = new CountDownTimer(WAITING_TIME, WAITING_TIME) {
@@ -203,7 +226,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClickItemProduct(ItemPhoneProduct itemPhoneProduct) {
-        Intent intent = new Intent(SearchActivity.this,DetailProductActivity.class);
+        Intent intent = new Intent(SearchActivity.this, DetailProductActivity.class);
         intent.putExtra("BUNDLE_ITEM_PRODUCT", itemPhoneProduct.getTitle());
         startActivity(intent);
     }
