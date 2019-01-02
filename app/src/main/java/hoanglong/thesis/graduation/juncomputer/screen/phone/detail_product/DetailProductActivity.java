@@ -411,12 +411,6 @@ public class DetailProductActivity extends AppCompatActivity
                 break;
             case R.id.image_share:
                 shareProduct();
-//                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-//                sharingIntent.setType("text/plain");
-//                String shareBody = "Here is the share content body";
-//                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
-//                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-//                startActivity(Intent.createChooser(sharingIntent, "Share via"));
                 break;
             case R.id.ic_shopping_cart:
                 Intent intent1 = new Intent(DetailProductActivity.this, CartActivity.class);
@@ -478,7 +472,7 @@ public class DetailProductActivity extends AppCompatActivity
     }
 
     @Override
-    public void onDestroy() {  // could be in onPause or onStop
+    public void onDestroy() {
         Picasso.get().cancelRequest(target);
         super.onDestroy();
     }
