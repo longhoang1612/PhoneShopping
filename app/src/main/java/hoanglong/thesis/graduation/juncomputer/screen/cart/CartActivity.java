@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.Group;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -110,13 +111,19 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnUpdatePr
 
     @Override
     public void onUpdatePrice(List<CartItem> cartItems) {
-        int total = 0;
+        long total = 0;
         for (CartItem cartItem : cartItems
                 ) {
-            String a = cartItem.getPrice().split("₫")[0];
-            String b = a.replaceAll("\\.", "");
+            String[] a = cartItem.getPrice().split("₫");
+            StringBuilder gia = new StringBuilder();
+            for (String priceItem : a) {
+                String temp = priceItem.replaceAll("\\.", "");
+                String temp2 = temp.replaceAll("\\s", "");
+                gia.append(temp2);
+            }
+
             int quantity = cartItem.getQuantity();
-            int price = Integer.parseInt(b);
+            long price = Long.parseLong(gia.toString());
             total += price * quantity;
         }
 
