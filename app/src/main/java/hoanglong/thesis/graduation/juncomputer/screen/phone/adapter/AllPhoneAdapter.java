@@ -17,16 +17,15 @@ import java.util.List;
 
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.all_phone.AllPhoneFragment;
 
 public class AllPhoneAdapter extends RecyclerView.Adapter<AllPhoneAdapter.ItemPhoneViewHolder> {
 
     private List<ItemPhoneProduct> mPhoneProducts;
     private LayoutInflater mLayoutInflater;
     private OnClickProductListener mOnClickProductListener;
-    private boolean mIsChangeView;
 
-    public AllPhoneAdapter(boolean isChangeView, List<ItemPhoneProduct> phoneProducts, OnClickProductListener onClickProductListener) {
-        mIsChangeView = isChangeView;
+    public AllPhoneAdapter(List<ItemPhoneProduct> phoneProducts, OnClickProductListener onClickProductListener) {
         mPhoneProducts = phoneProducts;
         mOnClickProductListener = onClickProductListener;
     }
@@ -37,7 +36,7 @@ public class AllPhoneAdapter extends RecyclerView.Adapter<AllPhoneAdapter.ItemPh
         if (mLayoutInflater == null) {
             mLayoutInflater = LayoutInflater.from(viewGroup.getContext());
         }
-        View view = mLayoutInflater.inflate(mIsChangeView ? R.layout.item_product_list : R.layout.item_product, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(AllPhoneFragment.mIsViewWithCatalog ? R.layout.item_product_list : R.layout.item_product, viewGroup, false);
         return new ItemPhoneViewHolder(view, viewGroup.getContext(), mOnClickProductListener);
     }
 

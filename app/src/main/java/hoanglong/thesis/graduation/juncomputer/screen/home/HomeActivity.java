@@ -333,9 +333,9 @@ public class HomeActivity extends AppCompatActivity
             loadHomeFragment();
             return;
         }
-        if (getSupportFragmentManager().findFragmentByTag(TAG_HOME) instanceof HomeFragment) {
-            finish();
-        }
+//        if (getSupportFragmentManager().findFragmentByTag(TAG_HOME) instanceof HomeFragment) {
+//            getSupportFragmentManager().popBackStack();
+//        }
 //        if (drawer.isDrawerOpen(GravityCompat.START)) {
 //            drawer.closeDrawers();
 //            return;

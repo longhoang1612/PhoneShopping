@@ -1,10 +1,12 @@
 package hoanglong.thesis.graduation.juncomputer.screen.phone.all_phone;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,8 +14,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
@@ -23,7 +29,8 @@ import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.AllPhoneAdap
 import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
 import hoanglong.thesis.graduation.juncomputer.utils.Utils;
 
-public class AllPhoneFragment extends BaseFragment implements AllPhoneAdapter.OnClickProductListener {
+public class AllPhoneFragment extends BaseFragment implements AllPhoneAdapter.OnClickProductListener,
+        View.OnClickListener {
 
     public static final String TAG = AllPhoneFragment.class.getName();
     public static final String BUNDLE_ALL_PRODUCT = "BUNDLE_ALL_PRODUCT";
@@ -36,7 +43,9 @@ public class AllPhoneFragment extends BaseFragment implements AllPhoneAdapter.On
     ProgressBar mProgressBar;
     @BindView(R.id.ic_grid)
     ImageView mImageGrid;
-    private boolean mIsViewWithCatalog = true;
+    @BindView(R.id.ic_sort)
+    ImageView mImageSort;
+    public static boolean mIsViewWithCatalog = false;
     private AllPhoneAdapter mAllPhoneAdapter;
 
     public static AllPhoneFragment newInstance(List<ItemPhoneProduct> phoneProducts) {
@@ -55,6 +64,7 @@ public class AllPhoneFragment extends BaseFragment implements AllPhoneAdapter.On
         Bundle bundle = getArguments();
         if (bundle != null) {
             mPhoneProducts = bundle.getParcelableArrayList(BUNDLE_ALL_PRODUCT);
+            bundle.clear();
         }
     }
 
@@ -66,31 +76,20 @@ public class AllPhoneFragment extends BaseFragment implements AllPhoneAdapter.On
     @Override
     protected void initComponent(View view) {
         ButterKnife.bind(this, view);
-        if(mIsViewWithCatalog){
+        if (mIsViewWithCatalog) {
             mImageGrid.setImageResource(R.drawable.ic_format_list_bulleted_black_24dp);
-        }else{
+        } else {
             mImageGrid.setImageResource(R.drawable.ic_view_module_black_24dp);
         }
-        mImageGrid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mIsViewWithCatalog){
-                    mImageGrid.setImageResource(R.drawable.ic_view_module_black_24dp);
-                }else{
-                    mImageGrid.setImageResource(R.drawable.ic_format_list_bulleted_black_24dp);
-                }
-                mIsViewWithCatalog = !mIsViewWithCatalog;
-                mRecyclerPhone.setLayoutManager(mIsViewWithCatalog ? new LinearLayoutManager(getContext()) : new GridLayoutManager(getContext(), 2));
-                mRecyclerPhone.setAdapter(mAllPhoneAdapter);
-            }
-        });
+        mImageGrid.setOnClickListener(this);
+        mImageSort.setOnClickListener(this);
     }
 
     @Override
     protected void initData(Bundle saveInstanceState) {
         mProgressBar.setVisibility(View.GONE);
         mTextResult.setText(String.format(getString(R.string.finded_product), mPhoneProducts.size()));
-        mAllPhoneAdapter = new AllPhoneAdapter(mIsViewWithCatalog, mPhoneProducts, this);
+        mAllPhoneAdapter = new AllPhoneAdapter(mPhoneProducts, this);
         mRecyclerPhone.setLayoutManager(mIsViewWithCatalog ? new LinearLayoutManager(getContext()) : new GridLayoutManager(getContext(), 2));
         mRecyclerPhone.setAdapter(mAllPhoneAdapter);
     }
@@ -101,5 +100,65 @@ public class AllPhoneFragment extends BaseFragment implements AllPhoneAdapter.On
         Intent intent = new Intent(getActivity(), DetailProductActivity.class);
         intent.putExtra("BUNDLE_ITEM_PRODUCT", itemPhoneProduct.getTitle());
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ic_sort:
+                final String[] listItems = getResources().getStringArray(R.array.shopping_item);
+                if (getContext() == null) return;
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
+                mBuilder.setTitle("Sắp xếp");
+                mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (listItems[i]) {
+                            case "Sắp xếp theo tên":
+                                Collections.sort(mPhoneProducts, new Comparator<ItemPhoneProduct>() {
+                                    @Override
+                                    public int compare(ItemPhoneProduct one, ItemPhoneProduct other) {
+                                        return one.getTitle().compareToIgnoreCase(other.getTitle());
+                                    }
+                                });
+                                mAllPhoneAdapter.notifyDataSetChanged();
+                                break;
+                            case "Sắp xếp theo giá":
+                                Collections.sort(mPhoneProducts, new Comparator<ItemPhoneProduct>() {
+                                    @Override
+                                    public int compare(ItemPhoneProduct one, ItemPhoneProduct other) {
+                                        return one.getPrice().compareToIgnoreCase(other.getPrice());
+                                    }
+                                });
+                                mAllPhoneAdapter.notifyDataSetChanged();
+                                break;
+                            case "Sắp xếp theo đánh giá":
+                                Collections.sort(mPhoneProducts, new Comparator<ItemPhoneProduct>() {
+                                    @Override
+                                    public int compare(ItemPhoneProduct one, ItemPhoneProduct other) {
+                                        return String.valueOf(one.getRating()).compareToIgnoreCase(String.valueOf(other.getRating()));
+                                    }
+                                });
+                                mAllPhoneAdapter.notifyDataSetChanged();
+                                break;
+                        }
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                AlertDialog mDialog = mBuilder.create();
+                mDialog.show();
+                break;
+            case R.id.ic_grid:
+                if (mIsViewWithCatalog) {
+                    mImageGrid.setImageResource(R.drawable.ic_view_module_black_24dp);
+                } else {
+                    mImageGrid.setImageResource(R.drawable.ic_format_list_bulleted_black_24dp);
+                }
+                mIsViewWithCatalog = !mIsViewWithCatalog;
+                mRecyclerPhone.setLayoutManager(mIsViewWithCatalog ? new LinearLayoutManager(getContext()) : new GridLayoutManager(getContext(), 2));
+                mRecyclerPhone.setAdapter(mAllPhoneAdapter);
+                break;
+        }
     }
 }

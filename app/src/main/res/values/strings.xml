@@ -95,4 +95,10 @@
     <string name="title_birth_day">Ngày sinh</string>
     <string name="finded_product">Tìm thấy %d sản phẩm</string>
     <string name="no_rating">Chưa có đánh giá</string>
+
+    <string-array name="shopping_item">
+        <item>Sắp xếp theo tên</item>
+        <item>Sắp xếp theo giá</item>
+        <item>Sắp xếp theo đánh giá</item>
+    </string-array>
 </resources>
