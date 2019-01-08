@@ -93,4 +93,6 @@
     <string name="title_time_user">Thành viên từ %s</string>
     <string name="alert_sign_out">Đăng xuất...</string>
     <string name="title_birth_day">Ngày sinh</string>
+    <string name="finded_product">Tìm thấy %d sản phẩm</string>
+    <string name="no_rating">Chưa có đánh giá</string>
 </resources>

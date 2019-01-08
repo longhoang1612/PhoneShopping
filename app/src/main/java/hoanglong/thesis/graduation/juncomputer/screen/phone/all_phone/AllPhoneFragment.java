@@ -5,26 +5,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hoanglong.thesis.graduation.juncomputer.R;
 import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemPhoneProduct;
-import hoanglong.thesis.graduation.juncomputer.data.model.phone_product.ItemSeen;
-import hoanglong.thesis.graduation.juncomputer.data.source.local.realm.RealmSeen;
 import hoanglong.thesis.graduation.juncomputer.screen.base.BaseFragment;
-import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.PhoneAdapter;
+import hoanglong.thesis.graduation.juncomputer.screen.phone.adapter.AllPhoneAdapter;
 import hoanglong.thesis.graduation.juncomputer.screen.phone.detail_product.DetailProductActivity;
 import hoanglong.thesis.graduation.juncomputer.utils.Utils;
 
-public class AllPhoneFragment extends BaseFragment implements PhoneAdapter.OnClickProductListener{
+public class AllPhoneFragment extends BaseFragment implements AllPhoneAdapter.OnClickProductListener {
 
     public static final String TAG = AllPhoneFragment.class.getName();
     public static final String BUNDLE_ALL_PRODUCT = "BUNDLE_ALL_PRODUCT";
@@ -35,6 +34,10 @@ public class AllPhoneFragment extends BaseFragment implements PhoneAdapter.OnCli
     TextView mTextResult;
     @BindView(R.id.progress_phone)
     ProgressBar mProgressBar;
+    @BindView(R.id.ic_grid)
+    ImageView mImageGrid;
+    private boolean mIsViewWithCatalog = true;
+    private AllPhoneAdapter mAllPhoneAdapter;
 
     public static AllPhoneFragment newInstance(List<ItemPhoneProduct> phoneProducts) {
 
@@ -62,17 +65,34 @@ public class AllPhoneFragment extends BaseFragment implements PhoneAdapter.OnCli
 
     @Override
     protected void initComponent(View view) {
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
+        if(mIsViewWithCatalog){
+            mImageGrid.setImageResource(R.drawable.ic_format_list_bulleted_black_24dp);
+        }else{
+            mImageGrid.setImageResource(R.drawable.ic_view_module_black_24dp);
+        }
+        mImageGrid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mIsViewWithCatalog){
+                    mImageGrid.setImageResource(R.drawable.ic_view_module_black_24dp);
+                }else{
+                    mImageGrid.setImageResource(R.drawable.ic_format_list_bulleted_black_24dp);
+                }
+                mIsViewWithCatalog = !mIsViewWithCatalog;
+                mRecyclerPhone.setLayoutManager(mIsViewWithCatalog ? new LinearLayoutManager(getContext()) : new GridLayoutManager(getContext(), 2));
+                mRecyclerPhone.setAdapter(mAllPhoneAdapter);
+            }
+        });
     }
 
     @Override
     protected void initData(Bundle saveInstanceState) {
         mProgressBar.setVisibility(View.GONE);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Tìm thấy ").append(mPhoneProducts.size()).append(" sản phẩm");
-        mTextResult.setText(stringBuilder.toString());
-        PhoneAdapter phoneAdapter = new PhoneAdapter(mPhoneProducts, this);
-        mRecyclerPhone.setAdapter(phoneAdapter);
+        mTextResult.setText(String.format(getString(R.string.finded_product), mPhoneProducts.size()));
+        mAllPhoneAdapter = new AllPhoneAdapter(mIsViewWithCatalog, mPhoneProducts, this);
+        mRecyclerPhone.setLayoutManager(mIsViewWithCatalog ? new LinearLayoutManager(getContext()) : new GridLayoutManager(getContext(), 2));
+        mRecyclerPhone.setAdapter(mAllPhoneAdapter);
     }
 
     @Override

@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorWhite"
+    android:background="@color/color_bg"
     android:clickable="true"
     android:focusable="true">
 
     <LinearLayout
+        android:background="@color/colorWhite"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="5dp"
         app:layout_constraintBottom_toTopOf="@+id/view_underline"
         android:id="@+id/linear_filter"
         android:layout_width="match_parent"
@@ -30,21 +30,12 @@
             android:background="#7b7474"
             android:layout_height="match_parent"/>
         <ImageView
+            android:id="@+id/ic_grid"
             android:layout_gravity="center"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_filter_list_black_24dp"/>
-        <View
-            android:layout_width="0.5dp"
-            android:background="#7b7474"
-            android:layout_height="match_parent"/>
-        <ImageView
-            android:layout_gravity="center"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_format_align_justify_black_24dp"/>
+            android:src="@drawable/ic_format_list_bulleted_black_24dp"/>
     </LinearLayout>
 
     <View
